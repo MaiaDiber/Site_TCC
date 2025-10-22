@@ -4,7 +4,7 @@ export default function CabecalhoCadastro() {
     return (
         <>
         <section className='Container'>
-             <img src="logo_ViaSaúde.png" alt="" />
+             <img src="/images/logo_ViaSaúde.png" alt="" />
         </section>
         </>
     )
