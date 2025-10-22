@@ -3,8 +3,8 @@ import './cabecalhoCadastro.scss'
 export default function CabecalhoCadastro() {
     return (
         <>
-        <section>
-             <img src="" alt="" height={100}/>
+        <section className='Container'>
+             <img src="logo_ViaSaúde.png" alt="" />
         </section>
         </>
     )
