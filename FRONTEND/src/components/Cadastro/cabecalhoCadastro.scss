@@ -4,10 +4,18 @@
 }
 
 
-.Container {
+    .Container-cadastro{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .logosite {
+            height: 100px;
+            width: 200px;
+        }
 
-    img{
-        height: 100px;
-        width: 150px;
+        .aviso{
+            display: flex;
+        }
     }
-}
+

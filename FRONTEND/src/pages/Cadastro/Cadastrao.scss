@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+.all{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+
+
+    .Container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        height: 90%;
+        width: 600px;
+       
+    }
+}
