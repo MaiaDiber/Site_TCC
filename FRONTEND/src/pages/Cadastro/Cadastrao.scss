@@ -8,10 +8,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 150vh;
+    height: 160vh;
     width: 100vw;
-    background-color: black;
-
+    background-color: #16594D;
+    //#B6F2EC, #07735F, #16594D
 
     .Container {
         display: flex;
@@ -20,20 +20,184 @@
         flex-direction: column;
         gap: 50px;
         background-color: white;
+        border-radius: 3px;
         height: 95%;
         width: 800px;
        
 
         .primeiroP {
+            font-size: 17px;
             color: #017B38;
             font-family: Arial, Helvetica, sans-serif;
         }
 
         .informação-usuário{
-            height: 900px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 1050px;
             width: 650px;
-            border: 2px solid #017B38;
-            border-radius: 10px;
+            border: 3px solid #017B38;
+            border-radius: 20px;
+
+        .dados-usu{
+            font-size: 18px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color: #017B38;
+            position: absolute;
+            top: 5%;
+            left: 5%;
+        }
+        
+    
+
+    .dados{
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+
+        label{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            p{
+                font-family: Arial, Helvetica, sans-serif;
+                color: #017B38;
+                font-weight: bold;
+            }
+        }
+
+        .grupo1{
+            display: flex;
+            gap: 74px;
+
+            input{
+            text-align: left;
+            height: 35px;
+            width: 240px;
+            border-radius: 5px;
+            border: 1px solid #017B38;
+            background-color: #EEEEEE;
+            color: #737373;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-indent: 15px;    
+            
+            }
+        }
+
+        input{
+            text-align: left;
+            height: 35px;
+            width: 550px;
+            border-radius: 5px;
+            border: 1px solid #017B38;
+            background-color: #EEEEEE;
+            color: #737373;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-indent: 15px;
+        }
+
+      
+    }
+
+    .endereço{
+        margin-top: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+
+        label{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            p{
+                font-family: Arial, Helvetica, sans-serif;
+                color: #017B38;
+                font-weight: bold;
+            }
+        }
+
+        .endereço-usu{
+            font-size: 18px;
+           font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color: #017B38;
+            position: absolute;
+            top: 42%;
+            left: 5%;
+        }
+
+        .grupo2{
+            display: flex;
+            gap: 74px;
+
+            input{
+                display: flex;
+                justify-content: start;
+                height: 35px;
+                width: 240px;
+                border-radius: 5px;
+                border: 1px solid #017B38;
+                background-color: #EEEEEE;
+                color: #737373;
+                font-weight: bold;
+                font-family: Arial, Helvetica, sans-serif;
+                text-indent: 15px;
+            }
+        }
+
+        
+        input{
+            display: flex;
+            justify-content: start;
+            height: 35px;
+            width: 550px;
+            border-radius: 5px;
+            border: 1px solid #017B38;
+            background-color: #EEEEEE;
+            color: #737373;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-indent: 15px;
         }
     }
+}
+
+    .doisfinais{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+
+        button{
+            border: none;
+            margin-top: 50px;
+            padding: 15px 250px;
+            border-radius: 5px;
+            background-color: #017B38;
+            font-size: 15px;
+            color: white;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
+
+        p{
+            color: #017B38;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    }
+}
 }

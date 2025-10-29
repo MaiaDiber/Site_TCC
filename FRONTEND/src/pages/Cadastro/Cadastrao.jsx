@@ -24,21 +24,25 @@ export default function Cadastro() {
 
                 <div className="dados">
                     <label>  <p>Nome Completo*</p>
-                        <input type="text" />
+                        <input type="text" placeholder='Nome Completo' />
                     </label>
 
                     <div className="grupo1">
                         <label> <p>CPF*</p>
-                            <input type="text" />
+                            <input type="number" placeholder='CPF'/>
                             </label>
                             <label> <p>Data de Nascimeto*</p>
-                                <input type="text" />
+                                <input type="date" placeholder='DD/MM/AAAA' />
                                 </label>
                     </div>
                 
                 <label > <p>Telefone*</p>
-                    <input type="text" />
+                    <input type="number" placeholder='(00) 00000-0000' />
                 </label>
+
+                <label> <p>crie Sua Senha*</p>
+                            <input type="password" placeholder='sua senha' />
+                            </label>
                 </div>
 
                 <div className="endereço">
@@ -47,34 +51,34 @@ export default function Cadastro() {
                </div>
 
                 <label> <p>CEP*</p>
-                    <input type="text" />
+                    <input type="text" placeholder='00000-000' />
                 </label>
 
                 <div className="grupo2">
                         <label> <p>Rua/Avenida*</p>
-                            <input type="text" />
+                            <input type="text" placeholder='rua etc etc etc...'/>
                             </label>
                             <label> <p>Número*</p>
-                                <input type="text" />
+                                <input type="number" placeholder='123..' />
                                 </label>
                     </div>
 
                     <label> <p>Bairro*</p>
-                        <input type="text" />
+                        <input type="text" placeholder='Nome Bairro' />
                     </label>
 
-                    <div className="grupo3">
-                        <label> <p>Cidade*</p>
-                            <input type="text" />
+                    
+                        <label> <p>Distrito*</p>
+                            <input type="text" placeholder='Nome Distrito' />
                             </label>
-                            <label> <p>Estado</p>
-                                <input type="text" />
-                                </label>
-                    </div>
+
+                            
+                            
+                    
                 </div>
 
                 <div className="doisfinais">
-                    <button type='button' >Cadarstra-se</button>
+                    <button type='button' >Cadastrar-se</button>
                     <p>* Campos obrigratórios</p>
                 </div>
             </div>
