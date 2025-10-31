@@ -1,7 +1,5 @@
 import conexao from "./connection.js";
 
-
-
 export async function Repository () {
     const comando = "select * from perfil"
 

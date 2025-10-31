@@ -6,10 +6,10 @@ export default function Navegation() {
     return (
 
         <BrowserRouter>
-        <Routes>
-            <Route path='/' element={<Home/>} />
-            <Route path='/Cadastro' element={<Cadastro/>} />
-        </Routes>
+            <Routes>
+                <Route path='/' element={<Home/>} />
+                <Route path='/Cadastro' element={<Cadastro/>} />
+            </Routes>
         </BrowserRouter>
     )
 }
