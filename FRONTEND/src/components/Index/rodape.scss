@@ -1,0 +1,78 @@
+.rodape {
+  background-color: #015C2A; 
+  padding: 2rem 1rem;
+  font-family: "Poppins", "sans-serif";
+  color: #222;
+  margin-top: 250px;
+  border-top: 1px solid black;
+
+  .outro {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+  }
+
+  .Logo {
+    flex: 1 1 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+        img {
+            max-width: 180px;
+            height: auto;
+            opacity: 0.9;
+        }
+  }
+
+  .part {
+    flex: 1 1 200px;
+    margin: 1rem 0;
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 100;
+            margin-bottom: 0.5rem;
+            color: #111;
+        }
+
+        p {
+            font-size: 0.9rem;
+            margin: 0.2rem 0;
+            color: #ffffff;
+            font-family: "sans-serif";
+        }
+  }
+
+  .bottom {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #ffffff;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .rodape {
+    .outro {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .Logo {
+        margin-bottom: 1.5rem;
+      }
+
+      .part {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

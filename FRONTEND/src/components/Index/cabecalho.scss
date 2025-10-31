@@ -1,0 +1,112 @@
+.cabeçalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color:  #ffffff;;
+    border-bottom: 2px solid black;
+    position: relative;
+    z-index: 1000;
+    transition: filter 0.3s ease-in-out;
+
+    h1{
+        font-family:' sans-serif';
+        margin-left: 70px;
+        border-bottom: 1px solid black;
+    }
+    .Logo {
+    display: flex;
+    align-items: center;
+    padding-left: 640px;
+    padding-block: 10px;
+
+    }
+
+    .botoes {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-right: 30px;
+    margin-block: 0px;
+    margin-top: 10px;
+
+
+        .botao {
+
+            .b{
+                padding: 1px 40px;
+                font-size: 15px;
+                color: white;
+                background-color:transparent;
+                border: none;
+
+            }
+        }
+    }
+
+}
+
+.cabeçalho.blurred {
+    filter: blur(4px);
+    transition: filter 0.7s ease-in-out;
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 998;
+    transition: opacity 0.5s ease-in-out, backdrop-filter 0.5s ease-in-out;
+    opacity: 0;
+    backdrop-filter: blur(0px);
+}
+
+.menu-overlay.show {
+    opacity: 1;
+    backdrop-filter: blur(5px);
+}
+
+.menu-lateral {
+    position: fixed;
+    top: 0;
+    right: -50vw; 
+    width: 30vw;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    transition: right 0.7s ease-in-out;
+    z-index: 1001;
+    overflow-y: auto;
+}
+
+.menu-lateral.open {
+    right: 0; 
+}
+
+.menu-content {
+    padding: 20px;
+    h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            margin-bottom: 15px;
+            a {
+                text-decoration: none;
+                color: #333;
+                font-size: 18px;
+                &:hover {
+                    color: #015C2A;
+                }
+            }
+        }
+    }
+}
