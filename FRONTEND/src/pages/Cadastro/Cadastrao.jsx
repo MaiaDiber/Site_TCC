@@ -34,7 +34,7 @@ export default function Cadastro() {
                             <input type="number" placeholder='000.000.000-00'/>
                             </label>
                             <label> <p>Data de Nascimeto*</p>
-                                <input type="date" placeholder='DD/MM/AAAA' />
+                                <input type="date"  />
                                 </label>
                     </div>
                 

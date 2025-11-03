@@ -84,12 +84,14 @@
             border-radius: 5px;
             border: 2px solid #017B38;
             background-color: #EEEEEE;
-            color: #737373;
+            color: #000000;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             text-indent: 15px;    
-            
+
             }
+
+          
         }
 
         input{
@@ -99,7 +101,7 @@
             border-radius: 5px;
             border: 2px solid #017B38;
             background-color: #EEEEEE;
-            color: #737373;
+            color: #000000;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             text-indent: 15px;
@@ -149,7 +151,7 @@
                 border-radius: 5px;
                 border: 2px solid #017B38;
                 background-color: #EEEEEE;
-                color: #737373;
+                color: #000000;
                 font-weight: bold;
                 font-family: Arial, Helvetica, sans-serif;
                 text-indent: 15px;
@@ -165,7 +167,7 @@
             border-radius: 5px;
             border: 2px solid #017B38;
             background-color: #EEEEEE;
-            color: #737373;
+            color: #000000;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             text-indent: 15px;
@@ -192,7 +194,6 @@
             font-family: Arial, Helvetica, sans-serif;
             transition: all 0.3s;
 
-            
 
             &:hover{
                 background-color: #065e4d;
