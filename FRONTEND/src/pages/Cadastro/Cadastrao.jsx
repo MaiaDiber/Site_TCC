@@ -14,7 +14,7 @@ export default function Cadastro() {
 
 
             <div className="primeiroP">
-                <p>Preencha os dados abaixo para agilizar seu atendimento na unidade de saúde</p>
+                <p>Preencha os dados abaixo para completar seu atendimento na unidade de saúde</p>
             </div>
 
             <div className="informação-usuário">
