@@ -12,5 +12,12 @@ export default function Navegation() {
                 <Route path='/Sobre' element={<Sobrenos/>} />
             </Routes>
         </BrowserRouter>
-    )
+    
+
+)
 }
+
+
+
+
+
