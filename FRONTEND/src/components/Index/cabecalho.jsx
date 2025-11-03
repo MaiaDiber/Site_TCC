@@ -1,5 +1,5 @@
 import './cabecalho.scss';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { useState } from 'react';
 
 export default function Cabeçalho() {
@@ -31,7 +31,7 @@ export default function Cabeçalho() {
                     <ul>
                         <li><Link to="/">Início</Link></li>
                         <li><Link to="/sobre">Sobre</Link></li>
-                        {}
+                
                     </ul>
                 </div>
             </div>

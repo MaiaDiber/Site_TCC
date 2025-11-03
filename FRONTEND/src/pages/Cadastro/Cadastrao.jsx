@@ -40,7 +40,7 @@ export default function Cadastro() {
                     <input type="number" placeholder='(00) 00000-0000' />
                 </label>
 
-                <label> <p>crie Sua Senha*</p>
+                <label> <p>Crie sua senha*</p>
                             <input type="password" placeholder='sua senha' />
                             </label>
                 </div>
