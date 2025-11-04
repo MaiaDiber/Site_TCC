@@ -43,7 +43,7 @@ export default function Cadastro() {
                 </label>
 
                 <label> <p>Crie sua senha*</p>
-                            <input type="password" placeholder='Digite sua senha' />
+                            <input type="text" placeholder='Digite sua senha' />
                             </label>
                 </div>
 

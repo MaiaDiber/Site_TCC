@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router'
 import Home from './pages/home/index'
 import Cadastro from './pages/Cadastro/Cadastrao'
 import Sobrenos from './pages/Sobre/index'
+import Entrar from './pages/Entrar/Entrar'
 
 export default function Navegation() {
     return (
@@ -9,6 +10,7 @@ export default function Navegation() {
             <Routes>
                 <Route path='/' element={<Home/>} />
                 <Route path='/Cadastro' element={<Cadastro/>} />
+                <Route path='/Entrar' element={<Entrar/>} />
                 <Route path='/Sobre' element={<Sobrenos/>} />
             </Routes>
         </BrowserRouter>

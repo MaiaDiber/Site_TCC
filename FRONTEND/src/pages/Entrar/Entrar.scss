@@ -1,0 +1,224 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.all-entrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #107764;
+    //#B6F2EC, #07735F, #16594D
+
+    .container-entrar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        height: 90%;
+        width: 800px;
+        background-color: #fff;
+        border-radius: 10px;
+
+        .Entrar{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+            height: 70%;
+            width: 90%;
+            border: 3px solid #017B38;
+            border-radius: 5px;
+
+            .Login-linha{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 20px;
+
+                h1{
+                    font-family: 'Inter', sans-serif;
+                    font-size: 48px;
+                    color: #333;
+                }
+
+                .linha-entrar{
+                    padding: 1px 300px ;
+                    background-color: #2e2e2e;
+                }
+            }
+
+            .cpf-senha{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 25px;
+                width: 100%;
+
+                label {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    width: 100%;
+                    max-width: 550px;
+                    
+                    p {
+                        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                        font-size: 20px;
+                        margin-bottom: 8px;
+                        color: #333;
+                       
+                    }
+
+                    // ESTILOS PARA O CPF (input normal)
+                    input[type="number"] {
+                        height: 45px;
+                        width: 100%;
+                        padding: 0 15px;
+                        border: 2px solid #017B38;
+                        border-radius: 8px;
+                        font-size: 16px;
+                        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+
+                        &:focus {
+                            outline: none;
+                            border-color: #107764;
+                            box-shadow: 0 0 0 3px rgba(16, 119, 100, 0.2);
+                        }
+
+                        &::placeholder {
+                            color: #999;
+                            font-size: 14px;
+                        }
+
+                        // Remove setinhas do input number
+                        &::-webkit-outer-spin-button,
+                        &::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+                        
+                        -moz-appearance: textfield;
+                    }
+
+                    // CONTAINER PARA SENHA (input + botão do olho)
+                    .password-input-container {
+                        position: relative;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+
+                        // INPUT DA SENHA
+                        input {
+                            width: 100%;
+                            height: 45px;
+                            padding: 0 50px 0 15px; // Espaço extra na direita para o olho
+                            border: 2px solid #017B38;
+                            border-radius: 8px;
+                            font-size: 16px;
+                            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                            transition: all 0.3s ease;
+                            
+
+                            &:focus {
+                                outline: none;
+                                border-color: #107764;
+                                box-shadow: 0 0 0 3px rgba(16, 119, 100, 0.2);
+                            }
+
+                            &::placeholder {
+                                color: #999;
+                                font-size: 14px;
+                            }
+
+                           
+                        }
+
+                        // BOTÃO DO OLHO PERSONALIZADO
+                        .toggle-password-btn {
+                            position: absolute;
+                            right: 12px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            background: #fff;
+                            border: none;
+                            cursor: pointer;
+                            padding: 6px;
+                            color: #666;
+                            border-radius: 4px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            transition: all 0.2s ease;
+                            width: 32px;
+                            height: 32px;
+                            z-index: 10;
+
+                            &:hover {
+                                background-color: #f0f0f0;
+                                color: #333;
+                            }
+
+                            &:active {
+                                background-color: #e0e0e0;
+                                transform: translateY(-50%) scale(0.95);
+                            }
+
+                            svg {
+                                width: 20px;
+                                height: 20px;
+                                display: block;
+                                transition: all 0.2s ease;
+                            }
+
+                            // Efeito suave ao passar o mouse
+                            &:hover svg {
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // BOTÃO DE ENTRAR (se quiser adicionar)
+            .btn-entrar {
+                margin-top: 20px;
+                padding: 14px 80px;
+                background-color: #017B38;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 18px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+                &:hover {
+                    background-color: #107764;
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+                }
+
+                &:active {
+                    transform: translateY(0);
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+
+                &:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 3px rgba(16, 119, 100, 0.3);
+                }
+            }
+        }
+    }
+}
