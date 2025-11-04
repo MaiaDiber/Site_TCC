@@ -8,9 +8,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 160vh;
+    height: 170vh;
     width: 100vw;
-    background-color: #16594D;
+    background-color: #145045;
     //#B6F2EC, #07735F, #16594D
 
     .Container {
@@ -20,7 +20,7 @@
         flex-direction: column;
         gap: 50px;
         background-color: white;
-        border-radius: 3px;
+        border-radius: 10px;
         height: 95%;
         width: 800px;
        
@@ -37,10 +37,10 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            height: 1050px;
+            height: 1000px;
             width: 650px;
             border: 3px solid #017B38;
-            border-radius: 20px;
+            border-radius: 30px;
 
         .dados-usu{
             font-size: 18px;
@@ -82,14 +82,16 @@
             height: 35px;
             width: 240px;
             border-radius: 5px;
-            border: 1px solid #017B38;
+            border: 2px solid #017B38;
             background-color: #EEEEEE;
-            color: #737373;
+            color: #000000;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             text-indent: 15px;    
-            
+
             }
+
+          
         }
 
         input{
@@ -97,9 +99,9 @@
             height: 35px;
             width: 550px;
             border-radius: 5px;
-            border: 1px solid #017B38;
+            border: 2px solid #017B38;
             background-color: #EEEEEE;
-            color: #737373;
+            color: #000000;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             text-indent: 15px;
@@ -133,7 +135,7 @@
             font-weight: bold;
             color: #017B38;
             position: absolute;
-            top: 42%;
+            top: 50%;
             left: 5%;
         }
 
@@ -147,9 +149,9 @@
                 height: 35px;
                 width: 240px;
                 border-radius: 5px;
-                border: 1px solid #017B38;
+                border: 2px solid #017B38;
                 background-color: #EEEEEE;
-                color: #737373;
+                color: #000000;
                 font-weight: bold;
                 font-family: Arial, Helvetica, sans-serif;
                 text-indent: 15px;
@@ -163,9 +165,9 @@
             height: 35px;
             width: 550px;
             border-radius: 5px;
-            border: 1px solid #017B38;
+            border: 2px solid #017B38;
             background-color: #EEEEEE;
-            color: #737373;
+            color: #000000;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             text-indent: 15px;
@@ -190,6 +192,24 @@
             color: white;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
+            transition: all 0.3s;
+
+
+            &:hover{
+                background-color: #065e4d;
+                transform: scale(105%);
+
+            
+            }
+
+            &:active{
+                transform: scale(95%);
+                background-color: #017B38;
+            }
+
+            
+
+            
             
         }
 
