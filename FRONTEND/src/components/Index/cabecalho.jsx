@@ -11,7 +11,7 @@ export default function Cabeçalho() {
 
     return(
         <>
-            <div className={`cabeçalho ${menuOpen ? 'blurred' : ''}`}>
+            <div className="cabeçalho">
                 <div className="Logo">
                     <img src="/assets/Images/logo_ViaSaúde.png" alt="Imagem"  width='125px'/>
                 </div>

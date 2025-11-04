@@ -4,35 +4,101 @@
 }
 
 
-    .Container-cadastro{
+.Container-cadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+
+    .logosite {
+        height: 100px;
+        width: 200px;
+    }
+
+    .aviso{
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
-        gap: 50px;
+        background-color: #DCEFF9;
+        border-radius: 5px;
+        height: 100px;
+        width: 730px;
 
-        .logosite {
-            height: 100px;
-            width: 200px;
+        img{
+            margin-top: -30px;
         }
 
-        .aviso{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #DCEFF9;
-            border-radius: 5px;
-            height: 100px;
-            width: 730px;
+        p{
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-            img{
-                margin-top: -30px;
+    }
+}
+
+@media (max-width: 1366px) and (min-width: 1025px) {
+    .Container-cadastro {
+        gap: 40px;
+        .logosite {
+            height: 90px;
+            width: 180px;
+        }
+        .aviso {
+            width: 80%;
+            height: 90px;
+            padding: 10px;
+            img {
+                margin-top: -25px;
             }
-
-            p{
-                font-family: Arial, Helvetica, sans-serif;
+            p {
+                font-size: 13px;
             }
-
         }
     }
+}
+
+@media (max-width: 1024px) {
+    .Container-cadastro {
+        .aviso {
+            width: 90%;
+            height: auto;
+            padding: 15px;
+            flex-direction: column;
+            text-align: center;
+            img {
+                margin-top: 0;
+                margin-bottom: 10px;
+            }
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .Container-cadastro {
+        gap: 20px;
+        .logosite {
+            height: 80px;
+            width: 160px;
+        }
+        .aviso {
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            flex-direction: column;
+            text-align: center;
+            img {
+                margin-top: 0;
+                margin-bottom: 10px;
+                height: 50px;
+                width: auto;
+            }
+            p {
+                font-size: 12px;
+            }
+        }
+    }
+}
 
