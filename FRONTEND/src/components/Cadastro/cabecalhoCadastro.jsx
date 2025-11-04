@@ -7,7 +7,7 @@ export default function CabecalhoCadastro() {
         <section className='Container-cadastro'>
         <div className="duo">
                     <Link to={'/Entrar'}> 
-                    <img className='seta' src="/assets/Images/arrow_left_circle_icon-icons.com_66702.png" height={35} alt="" />
+                    <img className='seta' src="/assets/Images/arrow_left_circle_icon-icons.com_66702.png" height={40} alt="" />
                     </Link>
              <img className='logosite' src="/assets/Images/logo_ViaSaúde.png" height={150} alt="" />
              </div>

@@ -33,17 +33,17 @@ export default function Cadastro() {
                         <label> <p>CPF*</p>
                             <input type="number" placeholder='000.000.000-00'/>
                             </label>
-                            <label> <p>Data de Nascimeto*</p>
-                                <input type="date"  />
+                            <label> <p>Data de Nascimento*</p>
+                                <input type="date" placeholder='DD/MM/AAAA' />
                                 </label>
                     </div>
                 
                 <label > <p>E-mail*</p>
-                    <input type="text" placeholder='exemplo@gmail.com' />
+                    <input type="email" placeholder='exemplo@gmail.com' />
                 </label>
 
                 <label> <p>Crie sua senha*</p>
-                            <input type="text" placeholder='Digite sua senha' />
+                            <input type="password" placeholder='Digite sua senha' />
                             </label>
                 </div>
 

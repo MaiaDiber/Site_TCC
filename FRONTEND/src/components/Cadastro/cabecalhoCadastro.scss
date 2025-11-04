@@ -11,6 +11,22 @@
     flex-direction: column;
     gap: 50px;
 
+    .duo{
+        margin-left: -250px;
+        display: flex;
+        align-items: center;
+        gap: 230px;
+
+        .seta{
+            transition: all 0.3s;
+
+        &:hover{
+            transform: scale(1.1);
+
+        }
+    }
+    }
+
     .logosite {
         height: 100px;
         width: 200px;

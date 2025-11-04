@@ -91,6 +91,15 @@
 
             }
 
+            input[type="date"]{
+                color: black;
+                
+            }
+            input[type="date"]:valid {
+                color: gray;
+                
+            }
+
           
         }
 
