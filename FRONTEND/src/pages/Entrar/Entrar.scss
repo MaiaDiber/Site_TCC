@@ -19,11 +19,12 @@
         flex-direction: column;
         gap: 20px;
         height: 90%;
-        width: 800px;
+        width: 700px;
         background-color: #fff;
         border-radius: 10px;
 
         .Entrar{
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -35,6 +36,8 @@
             border-radius: 5px;
 
             .Login-linha{
+                position: absolute;
+                top: 8%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -44,14 +47,16 @@
                 h1{
                     font-family: 'Inter', sans-serif;
                     font-size: 48px;
-                    color: #333;
+                    color: #017B38;
                 }
 
                 .linha-entrar{
-                    padding: 1px 300px ;
+                    padding: 1px 225px ;
                     background-color: #2e2e2e;
                 }
             }
+
+
 
             .cpf-senha{
                 display: flex;
@@ -77,7 +82,7 @@
                     }
 
                     // ESTILOS PARA O CPF (input normal)
-                    input[type="number"] {
+                    input[type="email"] {
                         height: 45px;
                         width: 100%;
                         padding: 0 15px;
@@ -99,14 +104,6 @@
                             font-size: 14px;
                         }
 
-                        // Remove setinhas do input number
-                        &::-webkit-outer-spin-button,
-                        &::-webkit-inner-spin-button {
-                            -webkit-appearance: none;
-                            margin: 0;
-                        }
-                        
-                        -moz-appearance: textfield;
                     }
 
                     // CONTAINER PARA SENHA (input + botão do olho)
@@ -182,6 +179,12 @@
                             // Efeito suave ao passar o mouse
                             &:hover svg {
                                 transform: scale(1.1);
+                            }
+                        }
+
+                        .EsqueciminhaSenha{
+                            p{
+                                
                             }
                         }
                     }

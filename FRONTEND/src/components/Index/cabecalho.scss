@@ -46,40 +46,34 @@
 
 }
 
-.cabeçalho.blurred {
-    filter: blur(4px);
-    transition: filter 0.7s ease-in-out;
-}
-
 .menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    z-index: 998;
-    transition: opacity 0.5s ease-in-out, backdrop-filter 0.5s ease-in-out;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 1001;
+    transition: all 0.5s ease-in-out;
     opacity: 0;
-    backdrop-filter: blur(0px);
 }
 
 .menu-overlay.show {
     opacity: 1;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(4px);
 }
 
 .menu-lateral {
     position: fixed;
     top: 0;
-    right: -50vw; 
+    right: -50vw;
     width: 30vw;
     height: 100vh;
     background-color: #ffffff;
     box-shadow: -2px 0 5px rgba(0,0,0,0.5);
     transition: right 0.7s ease-in-out;
-    z-index: 1001;
+    z-index: 1002;
     overflow-y: auto;
 }
 
@@ -107,6 +101,84 @@
                     color: #015C2A;
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 1366px) and (min-width: 1025px) {
+    .cabeçalho {
+        h1 {
+            margin-left: 50px;
+            font-size: 1.8rem;
+        }
+        .Logo {
+            padding-left: 600px;
+        }
+        .botoes {
+            gap: 25px;
+            margin-right: 25px;
+            .botao .b {
+                padding: 1px 30px;
+                font-size: 14px;
+            }
+        }
+    }
+    .menu-lateral {
+        width: 35vw;
+    }
+}
+
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
+    .cabeçalho {
+        h1 {
+            margin-left: 30px;
+            font-size: 1.5rem;
+        }
+        .Logo {
+            padding-left: 300px;
+        }
+        .botoes {
+            gap: 20px;
+            margin-right: 20px;
+            .botao .b {
+                padding: 1px 20px;
+                font-size: 14px;
+            }
+        }
+    }
+    .menu-lateral {
+        width: 40vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .cabeçalho {
+        flex-direction: column;
+        padding: 10px;
+        h1 {
+            margin-left: 0;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        .Logo {
+            padding-left: 0;
+            justify-content: center;
+        }
+        .botoes {
+            display: none;
+        }
+    }
+    .menu-lateral {
+        width: 70vw;
+    }
+    .menu-content {
+        padding: 15px;
+        h2 {
+            font-size: 20px;
+        }
+        ul li a {
+            font-size: 16px;
         }
     }
 }

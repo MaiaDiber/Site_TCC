@@ -91,6 +91,15 @@
 
             }
 
+            input[type="date"]{
+                color: black;
+                
+            }
+            input[type="date"]:valid {
+                color: gray;
+                
+            }
+
           
         }
 
@@ -220,4 +229,153 @@
         }
     }
 }
+}
+
+/* Responsividade para notebooks */
+@media (max-width: 1366px) and (min-width: 1025px) {
+    .all {
+        .Container {
+            width: 95%;
+            height: auto;
+            padding: 30px;
+            .informação-usuário {
+                width: 90%;
+                height: auto;
+                padding: 25px;
+                .dados {
+                    .grupo1 {
+                        gap: 50px;
+                        input {
+                            width: 220px;
+                        }
+                    }
+                    input {
+                        width: 500px;
+                    }
+                }
+                .endereço {
+                    .grupo2 {
+                        gap: 50px;
+                        input {
+                            width: 220px;
+                        }
+                    }
+                    input {
+                        width: 500px;
+                    }
+                }
+            }
+            .doisfinais button {
+                padding: 15px 200px;
+            }
+        }
+    }
+}
+
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
+    .all {
+        .Container {
+            width: 90%;
+            height: auto;
+            padding: 20px;
+            .informação-usuário {
+                width: 100%;
+                height: auto;
+                padding: 20px;
+                .dados {
+                    .grupo1 {
+                        flex-direction: column;
+                        gap: 20px;
+                        input {
+                            width: 100%;
+                        }
+                    }
+                    input {
+                        width: 100%;
+                    }
+                }
+                .endereço {
+                    .grupo2 {
+                        flex-direction: column;
+                        gap: 20px;
+                        input {
+                            width: 100%;
+                        }
+                    }
+                    input {
+                        width: 100%;
+                    }
+                }
+            }
+            .doisfinais button {
+                padding: 15px 100px;
+            }
+        }
+    }
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .all {
+        height: auto;
+        padding: 10px;
+        .Container {
+            width: 100%;
+            gap: 30px;
+            .primeiroP {
+                font-size: 14px;
+                text-align: center;
+            }
+            .informação-usuário {
+                width: 100%;
+                height: auto;
+                padding: 15px;
+                .dados-usu, .endereço-usu {
+                    font-size: 16px;
+                    position: static;
+                    margin-bottom: 10px;
+                }
+                .dados {
+                    margin-top: 20px;
+                    gap: 15px;
+                    .grupo1 {
+                        flex-direction: column;
+                        gap: 15px;
+                        input {
+                            width: 100%;
+                        }
+                    }
+                    input {
+                        width: 100%;
+                    }
+                }
+                .endereço {
+                    margin-top: 60px;
+                    gap: 15px;
+                    .grupo2 {
+                        flex-direction: column;
+                        gap: 15px;
+                        input {
+                            width: 100%;
+                        }
+                    }
+                    input {
+                        width: 100%;
+                    }
+                }
+            }
+            .doisfinais {
+                gap: 15px;
+                button {
+                    padding: 12px 50px;
+                    font-size: 14px;
+                }
+                p {
+                    font-size: 14px;
+                    text-align: center;
+                }
+            }
+        }
+    }
 }

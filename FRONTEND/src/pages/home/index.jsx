@@ -6,9 +6,8 @@ export default function Home() {
     return (
         <>
             <section className='Tudo'>
-                <div className='img'>
+                <div className='img' style={{ backgroundImage: 'url(/assets/Images/Fundo.png)' }}>
                     <Cabeçalho/>
-                    <img src='/assets/Images/Fundo.png' alt='imi' width='1280px' />
                 </div>
                 <div className="banner">
                     <div className="banner__overlay">

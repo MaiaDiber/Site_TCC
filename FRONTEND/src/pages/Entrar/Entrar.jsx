@@ -23,8 +23,8 @@ export default function Entrar() {
 
                 <div className="cpf-senha">
                     <label> 
-                        <p>CPF</p>
-                        <input type="number" placeholder='Insira seu CPF' />
+                        <p>E-mail</p>
+                        <input type="email" placeholder='Insira seu e-mail' />
                     </label>
                     
                     <label> 
@@ -37,7 +37,7 @@ export default function Entrar() {
                                 placeholder='Insira sua senha' 
                             />
                             
-                            {/* OLHO PERSONALIZADO - IDÊNTICO AO CHROME */}
+                            
                             <button 
                                 onClick={togglePasswordVisivel} 
                                 type='button' 
@@ -46,7 +46,7 @@ export default function Entrar() {
                             >
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     {showPassword ? (
-    // Olho fechado (estilizado)
+    
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
         <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
@@ -54,7 +54,7 @@ export default function Entrar() {
         <line x1="2" y1="2" x2="22" y2="22"/>
     </svg>
 ) : (
-    // Olho aberto (estilizado)
+    
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z"/>
         <circle cx="12" cy="12" r="3"/>
@@ -64,6 +64,10 @@ export default function Entrar() {
                             </button>
                         </div>
                     </label>
+                </div>
+
+                <div className="EsqueciminhaSenha">
+                    <p>Esqueci minha senha</p>
                 </div>
              </div>
             </section>
