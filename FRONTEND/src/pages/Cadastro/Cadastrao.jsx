@@ -5,7 +5,46 @@ import './Cadastrao.scss';
 import CabecalhoCadastro from '../../components/Cadastro/cabecalhoCadastro';
 
 export default function Cadastro() {
-    
+     const [form, setform] = useState({
+     nome_completo: '',
+     cpf: '',
+     data_nascimento: '',
+     telefone: '',
+     senha: '',
+     cep: '',
+     rua: '',
+     numero: '',
+     bairro: '',
+     cidade: '',
+     estado: '',
+     });
+
+     function atualizar(campo, valor) {
+        setform({...form, [campo]: valor});
+     }
+
+     async  function salvar() {
+        try {
+            await api.post('/usuarios', form);
+            alert('Usuario cadastrado com sucesso!');
+            setForm({
+                nome_completo: '',
+                cpf: '',
+                data_nascimento: '',
+                telefone: '',
+                senha: '',
+                cep: '',
+                rua: '',
+                numero: '',
+                bairro: '',
+                cidade: '',
+                estado: ''
+            });
+            } catch (erro) {
+      console.error(erro);
+      alert('Erro ao cadastrar usuário. Veja o console.');
+        }
+     }
 
    return (
     <>
@@ -16,7 +55,7 @@ export default function Cadastro() {
 
 
             <div className="primeiroP">
-                <p>Preencha os dados abaixo para completar seu atendimento na unidade de saúde</p>
+                <p>Preencha os dados abaixo para agilizar seu atendimento na unidade de saúde</p>
             </div>
 
             <div className="informação-usuário">
@@ -31,19 +70,19 @@ export default function Cadastro() {
 
                     <div className="grupo1">
                         <label> <p>CPF*</p>
-                            <input type="number" placeholder='000.000.000-00'/>
+                            <input type="number" placeholder='CPF'/>
                             </label>
-                            <label> <p>Data de Nascimento*</p>
+                            <label> <p>Data de Nascimeto*</p>
                                 <input type="date" placeholder='DD/MM/AAAA' />
                                 </label>
                     </div>
                 
-                <label > <p>E-mail*</p>
-                    <input type="email" placeholder='exemplo@gmail.com' />
+                <label > <p>Telefone*</p>
+                    <input type="number" placeholder='(00) 00000-0000' />
                 </label>
 
-                <label> <p>Crie sua senha*</p>
-                            <input type="password" placeholder='Digite sua senha' />
+                <label> <p>crie Sua Senha*</p>
+                            <input type="password" placeholder='sua senha' />
                             </label>
                 </div>
 
@@ -53,16 +92,16 @@ export default function Cadastro() {
                </div>
 
                 <label> <p>CEP*</p>
-                    <input type="number" placeholder='00000-000' />
+                    <input type="text" placeholder='00000-000' />
                 </label>
 
                 <div className="grupo2">
                         <label> <p>Rua/Avenida*</p>
-                            <input type="text" placeholder='Rua Via Saúde/Avenida Via Saúde'/>
+                            <input type="text" placeholder='rua etc etc etc...'/>
                             </label>
                             <label> <p>Número*</p>
-                                <input type="number" placeholder='nº 1234' />
-                                </label> 
+                                <input type="number" placeholder='123..' />
+                                </label>
                     </div>
 
                     <label> <p>Bairro*</p>
@@ -70,12 +109,17 @@ export default function Cadastro() {
                     </label>
 
                     
+                        <label> <p>Distrito*</p>
+                            <input type="text" placeholder='Nome Distrito' />
+                            </label>
+
+                            
                             
                     
                 </div>
 
                 <div className="doisfinais">
-                    <button type='button' id='batao'>Cadastra-se</button>
+                    <button type='button' >Cadastrar-se</button>
                     <p>* Campos obrigratórios</p>
                 </div>
             </div>

@@ -66,8 +66,12 @@ export default function Entrar() {
                     </label>
                 </div>
 
-                <div className="EsqueciminhaSenha">
+                <button type='button' className="esquecisenha">
                     <p>Esqueci minha senha</p>
+                </button>
+
+                <div className="btn-entrar">
+                    <p>Entrar</p>
                 </div>
              </div>
             </section>
