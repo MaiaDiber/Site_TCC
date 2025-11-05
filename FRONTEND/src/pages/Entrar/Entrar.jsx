@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router'
 import './Entrar.scss'
 
 export default function Entrar() {
@@ -72,6 +73,13 @@ export default function Entrar() {
 
                 <div className="btn-entrar">
                     <p>Entrar</p>
+                </div>
+
+                <div className="naotemconta">
+                    <p>Ainda não tem uma Conta?</p>
+                    <Link to={'/Cadastro'}> 
+                        Cadastre-se
+                     </Link>
                 </div>
              </div>
             </section>
