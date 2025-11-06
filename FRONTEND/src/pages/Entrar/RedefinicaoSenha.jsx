@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import './RedefiniçãoSenha.scss'
+import './RedefinicaoSenha.scss'
 
 export default function EmailEnviado() {
     const location = useLocation()

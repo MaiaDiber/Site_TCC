@@ -1,49 +1,38 @@
 .cabeçalho {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    background-color:  #ffffff;;
+    background-color: #ffffff;
     border-bottom: 2px solid black;
     position: relative;
     z-index: 1000;
-    transition: filter 0.3s ease-in-out;
 
-    h1{
-        font-family:' sans-serif';
-        margin-left: 70px;
-        border-bottom: 1px solid black;
-    }
     .Logo {
-    display: flex;
-    align-items: center;
-    padding-left: 640px;
-    padding-block: 10px;
-
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-block: 10px;
     }
 
     .botoes {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-right: 30px;
-    margin-block: 0px;
-    margin-top: 10px;
-
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-left: auto;
+        margin-right: 30px;
+        margin-top: 10px;
 
         .botao {
-
-            .b{
+            .b {
                 padding: 1px 40px;
                 font-size: 15px;
                 color: white;
-                background-color:transparent;
+                background-color: transparent;
                 border: none;
-
             }
         }
     }
-
 }
 
 .menu-overlay {
@@ -53,15 +42,45 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
     z-index: 1001;
-    transition: all 0.5s ease-in-out;
     opacity: 0;
+    transition: backdrop-filter 0.8s ease-in-out, -webkit-backdrop-filter 0.8s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .menu-overlay.show {
     opacity: 1;
-    backdrop-filter: blur(4px);
+    animation: blurLuxury 0.5s ease-in-out forwards;
+}
+
+@keyframes blurLuxury {
+    0%   { backdrop-filter: blur(0px);  -webkit-backdrop-filter: blur(0px); }
+    12.5%{ backdrop-filter: blur(2px);  -webkit-backdrop-filter: blur(2px); }
+    25%  { backdrop-filter: blur(4px);  -webkit-backdrop-filter: blur(4px); }
+    37.5%{ backdrop-filter: blur(6px);  -webkit-backdrop-filter: blur(6px); }
+    50%  { backdrop-filter: blur(8px);  -webkit-backdrop-filter: blur(8px); }
+    62.5%{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    75%  { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    87.5%{ backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    100% { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+}
+
+.menu-overlay.hide {
+    animation: blurLuxuryReverse 1.0s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes blurLuxuryReverse {
+    0%   { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    12.5%{ backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    25%  { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    37.5%{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    50%  { backdrop-filter: blur(8px);  -webkit-backdrop-filter: blur(8px);  }
+    62.5%{ backdrop-filter: blur(6px);  -webkit-backdrop-filter: blur(6px);  }
+    75%  { backdrop-filter: blur(4px);  -webkit-backdrop-filter: blur(4px);  }
+    87.5%{ backdrop-filter: blur(2px);  -webkit-backdrop-filter: blur(2px);  }
+    100% { backdrop-filter: blur(0px);  -webkit-backdrop-filter: blur(0px);  }
 }
 
 .menu-lateral {
@@ -107,12 +126,8 @@
 
 @media (max-width: 1366px) and (min-width: 1025px) {
     .cabeçalho {
-        h1 {
-            margin-left: 50px;
-            font-size: 1.8rem;
-        }
         .Logo {
-            padding-left: 600px;
+            padding-left: calc(50% - 62.5px);
         }
         .botoes {
             gap: 25px;
@@ -128,15 +143,10 @@
     }
 }
 
-/* Responsividade para tablets */
 @media (max-width: 1024px) {
     .cabeçalho {
-        h1 {
-            margin-left: 30px;
-            font-size: 1.5rem;
-        }
         .Logo {
-            padding-left: 300px;
+            padding-left: calc(50% - 62.5px);
         }
         .botoes {
             gap: 20px;
@@ -156,11 +166,6 @@
     .cabeçalho {
         flex-direction: column;
         padding: 10px;
-        h1 {
-            margin-left: 0;
-            font-size: 1.2rem;
-            text-align: center;
-        }
         .Logo {
             padding-left: 0;
             justify-content: center;

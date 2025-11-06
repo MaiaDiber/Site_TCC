@@ -1,0 +1,82 @@
+.med-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: left;
+  border-left: 6px solid #36b37e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  }
+
+  h2 {
+    color: #2e7d32;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 4px 0;
+    color: #333;
+    font-size: 0.95rem;
+  }
+
+  .data {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 10px;
+  }
+
+  .card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+
+    button {
+      flex: 1;
+      margin: 0 4px;
+      padding: 8px 10px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-mapa {
+      background: #36b37e;
+      color: #fff;
+
+      &:hover {
+        background: #2e8b57;
+      }
+    }
+
+    .btn-detalhes {
+      background: #e0f2f1;
+      color: #00695c;
+
+      &:hover {
+        background: #b2dfdb;
+      }
+    }
+  }
+
+  &.estoque-baixo {
+    border-left-color: #ffb300;
+  }
+
+  &.indisponivel {
+    border-left-color: #d32f2f;
+
+    h2 {
+      color: #c62828;
+    }
+  }
+}
