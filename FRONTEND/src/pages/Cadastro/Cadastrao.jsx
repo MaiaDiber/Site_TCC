@@ -4,7 +4,14 @@ import { useNavigate } from 'react-router';
 import './Cadastrao.scss';                           
 import CabecalhoCadastro from '../../components/Cadastro/cabecalhoCadastro';
 
+
+
+
 export default function Cadastro() {
+
+   const hoje = new Date().toISOString().split("T")[0];
+    const dataMinima = "1900-01-01";
+    
      const [form, setform] = useState({
      nome_completo: '',
      cpf: '',
@@ -25,6 +32,16 @@ export default function Cadastro() {
 
      async  function salvar() {
         try {
+
+           const dataNasc = new Date(form.data_nascimento);
+           const dataMin = new Date(dataMinima);
+           const dataMax = new Date();
+
+           if (dataNasc < dataMin || dataNasc > dataMax){
+            alert("Data de nascimento invalida! deve estar entre 1900-01-01 e hoje!");
+            return;
+           }
+
             await api.post('/usuarios', form);
             alert('Usuario cadastrado com sucesso!');
             setForm({

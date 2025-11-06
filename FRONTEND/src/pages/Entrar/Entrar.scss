@@ -10,7 +10,7 @@
     height: 100vh;
     width: 100vw;
     background-color: #107764;
-    //#B6F2EC, #07735F, #16594D
+    
 
     .container-entrar{
         display: flex;
@@ -83,7 +83,7 @@
                        
                     }
 
-                    // ESTILOS PARA O CPF (input normal)
+                    
                     input[type="email"] {
                         height: 45px;
                         width: 100%;
@@ -108,18 +108,18 @@
 
                     }
 
-                    // CONTAINER PARA SENHA (input + botão do olho)
+                    
                     .password-input-container {
                         position: relative;
                         width: 100%;
                         display: flex;
                         align-items: center;
 
-                        // INPUT DA SENHA
+                        
                         input {
                             width: 100%;
                             height: 45px;
-                            padding: 0 50px 0 15px; // Espaço extra na direita para o olho
+                            padding: 0 50px 0 15px; 
                             border: 2px solid #017B38;
                             border-radius: 8px;
                             font-size: 16px;
@@ -141,7 +141,7 @@
                            
                         }
 
-                        // BOTÃO DO OLHO PERSONALIZADO
+                        
                         .toggle-password-btn {
                             position: absolute;
                             right: 12px;
@@ -174,11 +174,11 @@
                             svg {
                                 width: 20px;
                                 height: 20px;
-                                display: block;
+                               
                                 transition: all 0.2s ease;
                             }
 
-                            // Efeito suave ao passar o mouse
+                           
                             &:hover svg {
                                 transform: scale(1.1);
                             }
@@ -191,13 +191,13 @@
 
             .esquecisenha{
                 position: absolute;
-                bottom: 30%;
+                bottom: 33%;
                 left: 7%;
                 background: none;
                 border: none;
                 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 font-size: 15px;
-                color: rgb(17, 90, 199);
+                color: rgb(60, 127, 228);
 
                 &:hover{
                     text-decoration: underline;
@@ -207,7 +207,7 @@
            
             .btn-entrar {
                 position: absolute;
-                bottom: 16%;
+                bottom: 20%;
                 padding: 14px 250px;
                 background-color: #017B38;
                 color: white;
@@ -234,6 +234,45 @@
                 &:focus {
                     outline: none;
                     box-shadow: 0 0 0 3px rgba(16, 119, 100, 0.3);
+                }
+            }
+
+            .naotemconta{
+                position: absolute;
+                bottom: 5%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 10px;
+
+                p{
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    font-size: 17px;
+                    color: rgb(107, 107, 107);
+
+                }
+
+                a{
+                    font-weight: bold;
+                    border: 2px solid #017B38;
+                    border-radius: 5px;
+                    padding: 5px 8px;
+                    text-decoration: none;
+                    color: #017B38;
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    transition: all 0.4s ease-in-out;
+
+
+                    &:hover{
+                        transform: translateY(-3px) scale(1.1);
+                        border: 2px solid #017B38;
+                        color: #017B38;
+                    }
+
+                    &:active{
+                        transform: translate(3px);
+                    }
                 }
             }
         }
