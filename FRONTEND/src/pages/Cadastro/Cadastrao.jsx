@@ -5,9 +5,9 @@ import './Cadastrao.scss';
 import CabecalhoCadastro from '../../components/Cadastro/cabecalhoCadastro';
 
 
-
-
 export default function Cadastro() {
+
+    const navigate = useNavigate()
 
    const hoje = new Date().toISOString().split("T")[0];
     const dataMinima = "1900-01-01";
@@ -16,21 +16,19 @@ export default function Cadastro() {
      nome_completo: '',
      cpf: '',
      data_nascimento: '',
-     telefone: '',
+     email: '',
      senha: '',
      cep: '',
      rua: '',
      numero: '',
-     bairro: '',
-     cidade: '',
-     estado: '',
+     bairro: ''
      });
 
      function atualizar(campo, valor) {
         setform({...form, [campo]: valor});
      }
 
-     async  function salvar() {
+     async function salvar() {
         try {
 
            const dataNasc = new Date(form.data_nascimento);
@@ -38,28 +36,29 @@ export default function Cadastro() {
            const dataMax = new Date();
 
            if (dataNasc < dataMin || dataNasc > dataMax){
-            alert("Data de nascimento invalida! deve estar entre 1900-01-01 e hoje!");
+            alert("Data de nascimento invalida!");
             return;
            }
 
             await api.post('/usuarios', form);
             alert('Usuario cadastrado com sucesso!');
-            setForm({
+            setform({
                 nome_completo: '',
                 cpf: '',
                 data_nascimento: '',
-                telefone: '',
+                email: '',
                 senha: '',
                 cep: '',
                 rua: '',
                 numero: '',
-                bairro: '',
-                cidade: '',
-                estado: ''
+                bairro: ''
+                
             });
+
+            navigate('/')
             } catch (erro) {
       console.error(erro);
-      alert('Erro ao cadastrar usuário. Veja o console.');
+      alert('Erro ao cadastrar usuário.');
         }
      }
 
@@ -82,24 +81,36 @@ export default function Cadastro() {
 
                 <div className="dados">
                     <label>  <p>Nome Completo*</p>
-                        <input type="text" placeholder='Nome Completo' />
+                        <input type="text" placeholder='Nome Completo'
+                        value={form.nome_completo} onChange={(e) => atualizar('nome_completo', e.target.value)}
+                        />
                     </label>
 
                     <div className="grupo1">
                         <label> <p>CPF*</p>
-                            <input type="number" placeholder='CPF'/>
+                            <input type="text" placeholder='000.000.000-00' 
+                            value={form.cpf} onChange={(e) => atualizar('cpf',e.target.value)}
+                            />
                             </label>
                             <label> <p>Data de Nascimeto*</p>
-                                <input type="date" placeholder='DD/MM/AAAA' />
+                                <input type="date" placeholder='DD/MM/AAAA' 
+                                min={dataMinima}
+                                max={hoje}
+                                value={form.data_nascimento} onChange={(e) => atualizar('data_nascimento', e.target.value)}
+                                />
                                 </label>
                     </div>
                 
-                <label > <p>Telefone*</p>
-                    <input type="number" placeholder='(00) 00000-0000' />
+                <label > <p>E-mail*</p>
+                    <input type="email" placeholder='exemplo@gmail.com' 
+                    value={form.email} onChange={(e) => atualizar('email', e.target.value)}
+                    />
                 </label>
 
-                <label> <p>crie Sua Senha*</p>
-                            <input type="password" placeholder='sua senha' />
+                <label> <p>Crie sua senha*</p>
+                            <input type="password" placeholder='Digite sua senha' 
+                            value={form.senha} onChange={(e) => atualizar('senha', e.target.value)}
+                            />
                             </label>
                 </div>
 
@@ -109,34 +120,34 @@ export default function Cadastro() {
                </div>
 
                 <label> <p>CEP*</p>
-                    <input type="text" placeholder='00000-000' />
+                    <input type="text" placeholder='00000-000'
+                    value={form.cep} onChange={(e) => atualizar('cep', e.target.value)}
+                    />
                 </label>
 
                 <div className="grupo2">
                         <label> <p>Rua/Avenida*</p>
-                            <input type="text" placeholder='rua etc etc etc...'/>
+                            <input type="text" placeholder='Rua ViaSaúde/Avenida ViaSaúde'
+                            value={form.rua} onChange={(e) => atualizar('rua', e.target.value)}
+                            />
                             </label>
                             <label> <p>Número*</p>
-                                <input type="number" placeholder='123..' />
+                                <input type="number" placeholder='n° 1234' 
+                                value={form.numero} onChange={(e) => atualizar('numero', e.target.value)}
+                                />
                                 </label>
                     </div>
 
                     <label> <p>Bairro*</p>
-                        <input type="text" placeholder='Nome Bairro' />
+                        <input type="text" placeholder='Nome Bairro' 
+                        value={form.bairro} onChange={(e) => atualizar('bairro', e.target.value)}
+                        />
                     </label>
 
-                    
-                        <label> <p>Distrito*</p>
-                            <input type="text" placeholder='Nome Distrito' />
-                            </label>
-
-                            
-                            
-                    
                 </div>
 
                 <div className="doisfinais">
-                    <button type='button' >Cadastrar-se</button>
+                    <button type='button' onClick={salvar} >Cadastrar-se</button>
                     <p>* Campos obrigratórios</p>
                 </div>
             </div>

@@ -1,0 +1,85 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.all-email{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0e6353;
+    height: 100vh;
+    width: 100vw;
+
+    .email-confirmacao {
+    height: 50%;
+    width: 30%;
+    margin: 50px auto;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #f9f9f9;
+
+    h2{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+    }
+
+    .mensagem-importante{
+
+        h3{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        p{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .email-mascarado {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+    }
+
+    
+
+.detalhes {
+    background: #e8f4ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.detalhes p {
+    margin: 8px 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.voltar-btn {
+    background: #007bff;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.info-seguranca {
+    margin-top: 30px;
+    color: #666;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+}
+}
+
+
+

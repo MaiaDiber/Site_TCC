@@ -28,7 +28,7 @@
         .primeiroP {
             font-size: 17px;
             color: #017B38;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
 
         .informação-usuário{
@@ -43,8 +43,8 @@
             border-radius: 30px;
 
         .dados-usu{
-            font-size: 18px;
-            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-weight: bold;
             color: #017B38;
             position: absolute;
@@ -67,7 +67,7 @@
             flex-direction: column;
             gap: 5px;
             p{
-                font-family: Arial, Helvetica, sans-serif;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 color: #017B38;
                 font-weight: bold;
             }
@@ -75,7 +75,7 @@
 
         .grupo1{
             display: flex;
-            gap: 74px;
+            gap: 68px;
 
             input{
             text-align: left;
@@ -86,13 +86,14 @@
             background-color: #EEEEEE;
             color: #000000;
             font-weight: bold;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             text-indent: 15px;    
 
             }
 
             input[type="date"]{
                 color: black;
+                
                 
             }
             input[type="date"]:valid {
@@ -112,7 +113,7 @@
             background-color: #EEEEEE;
             color: #000000;
             font-weight: bold;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             text-indent: 15px;
         }
 
@@ -132,15 +133,15 @@
             flex-direction: column;
             gap: 5px;
             p{
-                font-family: Arial, Helvetica, sans-serif;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 color: #017B38;
                 font-weight: bold;
             }
         }
 
         .endereço-usu{
-            font-size: 18px;
-           font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-weight: bold;
             color: #017B38;
             position: absolute;
@@ -150,7 +151,7 @@
 
         .grupo2{
             display: flex;
-            gap: 74px;
+            gap: 68px;
 
             input{
                 display: flex;
@@ -162,7 +163,7 @@
                 background-color: #EEEEEE;
                 color: #000000;
                 font-weight: bold;
-                font-family: Arial, Helvetica, sans-serif;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 text-indent: 15px;
             }
         }
@@ -178,7 +179,7 @@
             background-color: #EEEEEE;
             color: #000000;
             font-weight: bold;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             text-indent: 15px;
         }
     }
@@ -194,38 +195,34 @@
         button{
             border: none;
             margin-top: 50px;
-            padding: 15px 250px;
+            padding: 13px 230px;
             border-radius: 5px;
             background-color: #017B38;
-            font-size: 15px;
+            font-size: 18px;
             color: white;
             font-weight: bold;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             transition: all 0.3s;
+            cursor: pointer;
 
 
             &:hover{
                 background-color: #065e4d;
-                transform: scale(105%);
-
-            
+                transform: scale(102%);
             }
 
             &:active{
-                transform: scale(95%);
+                transform: scale(101%);
                 background-color: #017B38;
             }
 
-            
-
-            
-            
         }
 
         p{
+            font-size: 15px;
             color: #017B38;
             font-weight: bold;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
     }
 }

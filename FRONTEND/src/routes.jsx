@@ -4,6 +4,8 @@ import Cadastro from './pages/Cadastro/Cadastrao'
 import Sobrenos from './pages/Sobre/index'
 import Entrar from './pages/Entrar/Entrar'
 
+import EmailEnviado from './pages/Entrar/RedefiniçãoSenha'
+
 export default function Navegation() {
     return (
         <BrowserRouter>
@@ -12,6 +14,7 @@ export default function Navegation() {
                 <Route path='/Cadastro' element={<Cadastro/>} />
                 <Route path='/Entrar' element={<Entrar/>} />
                 <Route path='/Sobre' element={<Sobrenos/>} />
+                <Route path='/RedefinirSenha' element={<EmailEnviado/>} />
             </Routes>
         </BrowserRouter>
     
