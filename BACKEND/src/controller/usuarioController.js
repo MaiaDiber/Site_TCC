@@ -5,20 +5,8 @@ const router = express.Router();
 
 router.post('/usuarios', async (req, res) => {
     try {
-        const {
-            nome_completo,
-            cpf,
-            data_nascimento,
-            telefone,
-            email,
-            senha,
-            cep,
-            rua,
-            numero,
-            bairro,
-            cidade,
-            estado
-        } = req.body;
+        const { nome_completo, cpf, data_nascimento, telefone, email, senha,
+            cep, rua, numero, bairro, cidade, estado } = req.body;
 
         const [resultadoUsuario] = await conexao.execute(
             `INSERT INTO usuarios (nome_completo, cpf, data_nascimento, telefone, email, senha)
@@ -41,6 +29,6 @@ router.post('/usuarios', async (req, res) => {
     console.error(erro);
     res.status(500).send({ erro: "Erro ao cadastrar usuário." });
   }
-    });
+});
 
     export default router;

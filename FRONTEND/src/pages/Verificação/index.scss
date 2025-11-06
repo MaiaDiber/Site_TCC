@@ -1,0 +1,25 @@
+.pagina-medicamentos {
+  padding: 40px;
+  text-align: center;
+  background: #f6fcf8;
+  min-height: 100vh;
+
+  h1 {
+    color: #2e7d32;
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    padding: 10px 20px;
+  }
+
+  .loading {
+    color: #388e3c;
+    font-weight: bold;
+  }
+}
