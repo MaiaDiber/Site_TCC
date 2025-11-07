@@ -1,8 +1,3 @@
-drop database if exists TCC;
-
-create database TCC;
-use TCC;
-
 create table Cadastrar(
 id int primary key auto_increment,
 nome_completo varchar(100) not null,
@@ -23,12 +18,6 @@ cep varchar(10) not null,
 rua_aven varchar(255) not null,
 numero_casa varchar(8) not null,
 bairro varchar(200) not null
-);
-
-CREATE TABLE tb_usuario (
-	id int primary key auto_increment not null,
-    usuario varchar(255) not null,
-    senha varchar(255) not null
 );
 
 create table Campanhas(
