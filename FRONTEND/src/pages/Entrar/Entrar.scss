@@ -17,11 +17,16 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        gap: 20px;
+        gap: 10px;
         height: 90%;
         width: 700px;
         background-color: #fff;
         border-radius: 10px;
+        
+
+        img{
+           margin-top: -20px;
+        }
 
         .Entrar{
             position: relative;
@@ -34,6 +39,7 @@
             width: 90%;
             border: 3px solid #017B38;
             border-radius: 5px;
+            margin-top: 30px;
 
             .Login-linha{
                 position: absolute;
@@ -88,7 +94,7 @@
                         height: 45px;
                         width: 100%;
                         padding: 0 15px;
-                        border: 2px solid #017B38;
+                        border: 3px solid #017B38;
                         border-radius: 8px;
                         font-size: 16px;
                         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -120,7 +126,7 @@
                             width: 100%;
                             height: 45px;
                             padding: 0 50px 0 15px; 
-                            border: 2px solid #017B38;
+                            border: 3px solid #017B38;
                             border-radius: 8px;
                             font-size: 16px;
                             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -198,6 +204,7 @@
                 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 font-size: 15px;
                 color: rgb(60, 127, 228);
+                cursor: pointer;
 
                 &:hover{
                     text-decoration: underline;
@@ -255,7 +262,7 @@
 
                 a{
                     font-weight: bold;
-                    border: 2px solid #017B38;
+                    border: 3px solid #017B38;
                     border-radius: 5px;
                     padding: 5px 8px;
                     text-decoration: none;
@@ -266,7 +273,7 @@
 
                     &:hover{
                         transform: translateY(-3px) scale(1.1);
-                        border: 2px solid #017B38;
+                        border: 3px solid #017B38;
                         color: #017B38;
                     }
 
