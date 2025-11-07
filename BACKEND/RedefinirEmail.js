@@ -1,4 +1,4 @@
-// teste-email.js (com import)
+
 import { enviarEmailRedefinicao } from './src/services/emailService.js'
 
 async function testar() {
@@ -6,7 +6,7 @@ async function testar() {
         console.log('Enviando e-mail de teste...')
         
         const resultado = await enviarEmailRedefinicao(
-            'ra50892392827@acaonsfatima.org.br', // SEU E-MAIL AQUI
+            'ra50892392827@acaonsfatima.org.br', 
             'teste-token-123456'
         )
         
