@@ -1,8 +1,10 @@
 
-const nodemailer = require('nodemailer')
+import nodemailer from 'nodemailer'
 
 
-const transporter = nodemailer.createTransporter({
+
+
+const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'viasaudetcc@gmail.com', 
@@ -64,4 +66,4 @@ const enviarEmailRedefinicao = async (emailDestino, token) => {
     }
 }
 
-module.exports = { enviarEmailRedefinicao }
+export  { enviarEmailRedefinicao }

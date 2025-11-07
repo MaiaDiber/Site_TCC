@@ -193,18 +193,19 @@
         gap: 20px;
 
         button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border: none;
             margin-top: 50px;
-            padding: 13px 230px;
+            padding: 6px 200px;
             border-radius: 5px;
             background-color: #017B38;
-            font-size: 18px;
-            color: white;
-            font-weight: bold;
+            font-size: 14px;
+            color: white;           
             font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             transition: all 0.3s;
             cursor: pointer;
-
 
             &:hover{
                 background-color: #065e4d;
