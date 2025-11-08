@@ -1,7 +1,7 @@
 import * as repo from '../Repository/cadastroRepository.js';
 import { getAuthentication } from '../../utils/jwt.js'
 
-import multer from'multer';
+import multer from 'multer';
 import { Router } from "express";
 const endpoints = Router();
 
