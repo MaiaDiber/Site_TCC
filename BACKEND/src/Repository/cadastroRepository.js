@@ -3,7 +3,7 @@ import conexao from "./connection.js";
 export async function inserirCadastro(cadastro) {
     let comando = `
         INSERT INTO Cadastrar (nome_completo, cpf, data_nascimento, senha, email, tipo, id_endereco, id_campanha)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, MD5(?), ?, ?, ?, ?)
     `;
 
     let [resposta] = await conexao.execute(comando, [
@@ -23,7 +23,7 @@ export async function inserirCadastro(cadastro) {
 export async function alterarCadastro(id, cadastro) {
     let comando = `
         UPDATE Cadastrar
-        SET nome_completo = ?, cpf = ?, data_nascimento = ?, senha = ?, email = ?, tipo = ?, id_endereco = ?, id_campanha = ?
+        SET nome_completo = ?, cpf = ?, data_nascimento = ?, senha = MD5(?), email = ?, tipo = ?, id_endereco = ?, id_campanha = ?
         WHERE id = ?
     `;
 
@@ -69,7 +69,9 @@ export async function listarCadastros() {
 }
 
 export async function verificarLogin(email, senha) {
-    let comando = `SELECT id, nome_completo, email, tipo FROM Cadastrar WHERE email = ? AND senha = ?`;
+    let comando = `
+                    SELECT id, nome_completo, email, tipo FROM Cadastrar 
+                    WHERE email = ? AND senha = MD5(?)`;
 
     let [resposta] = await conexao.execute(comando, [email, senha]);
 

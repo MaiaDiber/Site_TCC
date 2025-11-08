@@ -1,379 +1,220 @@
 * {
-    padding: 0;
-    margin: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+.all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #145045;
 
-.all{
+  .Container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 170vh;
-    width: 100vw;
-    background-color: #145045;
-    //#B6F2EC, #07735F, #16594D
+    gap: 40px;
+    background-color: white;
+    border-radius: 15px;
+    width: 850px;
+    padding: 40px 0;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 
-    .Container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 50px;
-        background-color: white;
-        border-radius: 10px;
-        height: 95%;
-        width: 800px;
-       
-
-        .primeiroP {
-            font-size: 17px;
-            color: #017B38;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-
-        .informação-usuário{
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 1000px;
-            width: 650px;
-            border: 3px solid #017B38;
-            border-radius: 30px;
-
-        .dados-usu{
-            font-size: 20px;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-weight: bold;
-            color: #017B38;
-            position: absolute;
-            top: 5%;
-            left: 5%;
-        }
-        
-    
-
-    .dados{
-        margin-top: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 20px;
-
-        label{
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            p{
-                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                color: #017B38;
-                font-weight: bold;
-            }
-        }
-
-        .grupo1{
-            display: flex;
-            gap: 68px;
-
-            input{
-            text-align: left;
-            height: 35px;
-            width: 240px;
-            border-radius: 5px;
-            border: 3px solid #017B38;
-            background-color: #EEEEEE;
-            color: #000000;
-            font-weight: bold;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            text-indent: 15px;    
-
-            }
-
-            input[type="date"]{
-                color: black;
-                
-                
-            }
-            input[type="date"]:valid {
-                color: gray;
-                
-            }
-
-          
-        }
-
-        input{
-            text-align: left;
-            height: 35px;
-            width: 550px;
-            border-radius: 5px;
-            border: 3px solid #017B38;
-            background-color: #EEEEEE;
-            color: #000000;
-            font-weight: bold;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            text-indent: 15px;
-        }
-
-      
+    .primeiroP {
+      text-align: center;
+      font-size: 17px;
+      color: #017b38;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      padding: 0 20px;
     }
 
-    .endereço{
-        margin-top: 120px;
+    .informação-usuário {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 3px solid #017b38;
+      border-radius: 25px;
+      padding: 40px 0;
+      width: 700px;
+      gap: 20px;
+      background-color: #fff;
+
+      .dados-usu {
+        font-size: 22px;
+        font-weight: bold;
+        color: #017b38;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        align-self: flex-start;
+        margin-left: 5%;
+      }
+
+      .inputs {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 20px;
+        gap: 25px;
+        margin-top: 20px;
 
-        label{
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            p{
-                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                color: #017B38;
-                font-weight: bold;
-            }
+        input {
+          height: 40px;
+          width: 300px;
+          border-radius: 8px;
+          border: 3px solid #017b38;
+          background-color: #eeeeee;
+          color: #000;
+          font-weight: bold;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+          text-indent: 15px;
+          transition: 0.2s ease;
+
+          &:focus {
+            outline: none;
+            border-color: #065e4d;
+            background-color: #f6fefc;
+          }
+
+          &[type='date'] {
+            color: #000;
+          }
         }
+      }
 
-        .endereço-usu{
-            font-size: 20px;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-weight: bold;
-            color: #017B38;
-            position: absolute;
-            top: 50%;
-            left: 5%;
-        }
-
-        .grupo2{
-            display: flex;
-            gap: 68px;
-
-            input{
-                display: flex;
-                justify-content: start;
-                height: 35px;
-                width: 240px;
-                border-radius: 5px;
-                border: 3px solid #017B38;
-                background-color: #EEEEEE;
-                color: #000000;
-                font-weight: bold;
-                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                text-indent: 15px;
-            }
-        }
-
-        
-        input{
-            display: flex;
-            justify-content: start;
-            height: 35px;
-            width: 550px;
-            border-radius: 5px;
-            border: 3px solid #017B38;
-            background-color: #EEEEEE;
-            color: #000000;
-            font-weight: bold;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            text-indent: 15px;
-        }
-    }
-}
-
-    .doisfinais{
+      .doisfinais {
         display: flex;
-        justify-content: center;
-        align-items: center;
         flex-direction: column;
-        gap: 20px;
+        align-items: center;
+        gap: 10px;
+        margin-top: 30px;
 
-        button{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            margin-top: 50px;
-            padding: 6px 200px;
-            border-radius: 5px;
-            background-color: #017B38;
-            font-size: 14px;
-            color: white;           
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            transition: all 0.3s;
-            cursor: pointer;
+        .cadastrar-img {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          border: none;
+          padding: 8px 150px;
+          border-radius: 8px;
+          background-color: #017b38;
+          color: white;
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+          transition: all 0.3s ease;
 
-            &:hover{
-                background-color: #065e4d;
-                transform: scale(102%);
-            }
+          &:hover {
+            background-color: #065e4d;
+            transform: scale(1.02);
+          }
 
-            &:active{
-                transform: scale(101%);
-                background-color: #017B38;
-            }
+          &:active {
+            transform: scale(0.99);
+          }
 
+          img {
+            height: 45px;
+          }
         }
 
-        p{
-            font-size: 15px;
-            color: #017B38;
-            font-weight: bold;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        p {
+          font-size: 15px;
+          color: #017b38;
+          font-weight: bold;
+          text-align: center;
         }
+      }
     }
-}
+  }
 }
 
-/* Responsividade para notebooks */
-@media (max-width: 1366px) and (min-width: 1025px) {
-    .all {
-        .Container {
-            width: 95%;
-            height: auto;
-            padding: 30px;
-            .informação-usuário {
-                width: 90%;
-                height: auto;
-                padding: 25px;
-                .dados {
-                    .grupo1 {
-                        gap: 50px;
-                        input {
-                            width: 220px;
-                        }
-                    }
-                    input {
-                        width: 500px;
-                    }
-                }
-                .endereço {
-                    .grupo2 {
-                        gap: 50px;
-                        input {
-                            width: 220px;
-                        }
-                    }
-                    input {
-                        width: 500px;
-                    }
-                }
-            }
-            .doisfinais button {
-                padding: 15px 200px;
-            }
-        }
+/* 💻 Responsividade para notebooks (1366px) */
+@media (max-width: 1366px) {
+  .Container {
+    width: 780px !important;
+
+    .informação-usuário {
+      width: 680px;
+      padding: 35px 0;
+
+      .inputs input {
+        width: 280px;
+      }
+
+      .doisfinais .cadastrar-img {
+        padding: 8px 130px;
+      }
     }
+  }
 }
 
-/* Responsividade para tablets */
+/* 📱 Tablets */
 @media (max-width: 1024px) {
-    .all {
-        .Container {
-            width: 90%;
-            height: auto;
-            padding: 20px;
-            .informação-usuário {
-                width: 100%;
-                height: auto;
-                padding: 20px;
-                .dados {
-                    .grupo1 {
-                        flex-direction: column;
-                        gap: 20px;
-                        input {
-                            width: 100%;
-                        }
-                    }
-                    input {
-                        width: 100%;
-                    }
-                }
-                .endereço {
-                    .grupo2 {
-                        flex-direction: column;
-                        gap: 20px;
-                        input {
-                            width: 100%;
-                        }
-                    }
-                    input {
-                        width: 100%;
-                    }
-                }
-            }
-            .doisfinais button {
-                padding: 15px 100px;
-            }
+  .Container {
+    width: 90%;
+    padding: 30px;
+
+    .informação-usuário {
+      width: 100%;
+      padding: 25px;
+
+      .inputs {
+        flex-direction: column;
+        align-items: center;
+
+        input {
+          width: 100%;
+          max-width: 500px;
         }
+      }
+
+      .doisfinais .cadastrar-img {
+        padding: 10px 100px;
+      }
     }
+  }
 }
 
-/* Responsividade para dispositivos móveis */
+/* 📱 Celulares */
 @media (max-width: 768px) {
-    .all {
-        height: auto;
-        padding: 10px;
-        .Container {
-            width: 100%;
-            gap: 30px;
-            .primeiroP {
-                font-size: 14px;
-                text-align: center;
-            }
-            .informação-usuário {
-                width: 100%;
-                height: auto;
-                padding: 15px;
-                .dados-usu, .endereço-usu {
-                    font-size: 16px;
-                    position: static;
-                    margin-bottom: 10px;
-                }
-                .dados {
-                    margin-top: 20px;
-                    gap: 15px;
-                    .grupo1 {
-                        flex-direction: column;
-                        gap: 15px;
-                        input {
-                            width: 100%;
-                        }
-                    }
-                    input {
-                        width: 100%;
-                    }
-                }
-                .endereço {
-                    margin-top: 60px;
-                    gap: 15px;
-                    .grupo2 {
-                        flex-direction: column;
-                        gap: 15px;
-                        input {
-                            width: 100%;
-                        }
-                    }
-                    input {
-                        width: 100%;
-                    }
-                }
-            }
-            .doisfinais {
-                gap: 15px;
-                button {
-                    padding: 12px 50px;
-                    font-size: 14px;
-                }
-                p {
-                    font-size: 14px;
-                    text-align: center;
-                }
-            }
-        }
+  .all {
+    padding: 20px 0;
+  }
+
+  .Container {
+    width: 95%;
+    padding: 15px;
+
+    .primeiroP {
+      font-size: 14px;
     }
+
+    .informação-usuário {
+      width: 100%;
+      padding: 15px;
+
+      .dados-usu {
+        font-size: 18px;
+        margin-left: 0;
+        text-align: center;
+      }
+
+      .inputs input {
+        width: 100%;
+        font-size: 14px;
+      }
+
+      .doisfinais .cadastrar-img {
+        padding: 10px 60px;
+        font-size: 14px;
+
+        img {
+          height: 35px;
+        }
+      }
+    }
+  }
 }
