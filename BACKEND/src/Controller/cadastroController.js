@@ -72,7 +72,6 @@ endpoints.post('/login', async (req, resp) => {
     if (usuario) {
         let token = jwt.sign({
             id: usuario.id,
-            nome: usuario.nome_completo,
             email: usuario.email,
             tipo: usuario.tipo
         }, 'ViaSaúde');

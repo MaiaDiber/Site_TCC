@@ -96,7 +96,7 @@ export async function listarCadastros() {
 }
 
 export async function verificarLogin(email, senha) {
-    let comando = `SELECT id, nome_completo, email, tipo FROM Cadastrar WHERE email = ? AND senha = ?`;
+    let comando = `SELECT id, email FROM Cadastrar WHERE email = ? AND senha = ?`;
 
     let [resposta] = await conexao.query(comando, [email, senha]);
 
