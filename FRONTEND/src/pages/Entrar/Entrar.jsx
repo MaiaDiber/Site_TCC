@@ -44,6 +44,7 @@ export default function Entrar() {
     } 
 
   return (
+    <>
     <section className='all-entrar'>
       <section className='container-entrar'>
         <img className='logosite-entrar' src='/assets/Images/logo_ViaSaúde.png' height={70} alt='' />

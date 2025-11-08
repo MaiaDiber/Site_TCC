@@ -82,7 +82,9 @@ export default function Cadastro() {
           </div>
 
                 <div className="dados">
-                    <label>  <p>Nome Completo*</p>
+                   
+                    <div className="inputs">
+                         <label>  <p>Nome Completo*</p>
                         <input type="text" placeholder='Nome Completo'
                         value={form.nome_completo} onChange={(e) => atualizar('nome_completo', e.target.value)}
                         />
@@ -114,6 +116,8 @@ export default function Cadastro() {
                             value={form.senha} onChange={(e) => atualizar('senha', e.target.value)}
                             />
                             </label>
+                    </div>
+
                 </div>
 
                 <div className="endereço">
@@ -182,9 +186,6 @@ export default function Cadastro() {
     )}
   </div>
 </label>
-
-
-
                 </div>
 
                 <div className="doisfinais">

@@ -52,6 +52,12 @@
         margin-left: 5%;
       }
 
+      .dados{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+        
       .inputs {
         display: flex;
         flex-wrap: wrap;
@@ -117,6 +123,7 @@
 
       
     }
+      }
 
     .endereço{
         margin-top: 120px;
@@ -299,7 +306,7 @@
       }
     }
   }
-}
+
 
 /* 💻 Responsividade para notebooks (1366px) */
 @media (max-width: 1366px) {
