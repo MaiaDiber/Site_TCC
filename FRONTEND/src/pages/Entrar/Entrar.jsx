@@ -1,10 +1,43 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import api from '../../axios'
+import { useNavigate } from 'react-router'
 import { Link } from 'react-router'
 import './Entrar.scss'
 
 export default function Entrar() {
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const nomeEmail = localStorage.getItem("EMAIL")
+
+        if(nomeEmail != undefined || nomeEmail != null){
+            navigate('/')
+        }
+    }, [])
+
+    async function Logar() {
+        try{
+            const body = {
+                "email": email,
+                "senha": senha
+            }
+
+            const response = await api.post('/entrar', body)
+            const token = response.data.token
+            const nomeEmail = response.data.email.email
+
+            localStorage.setItem("EMAIL", nomeEmail)
+            localStorage.setItem("TOKEN", token)
+
+            navigate('/')
+        } catch (error) {
+            alert (erro)
+        }
+    }
 
     const togglePasswordVisivel = () => {
         setShowPassword(!showPassword)
@@ -25,7 +58,10 @@ export default function Entrar() {
                 <div className="cpf-senha">
                     <label> 
                         <p>E-mail</p>
-                        <input type="email" placeholder='Insira seu e-mail' />
+                        <input type="email" placeholder='Insira seu e-mail' 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        />
                     </label>
                     
                     <label> 
@@ -71,9 +107,9 @@ export default function Entrar() {
                     <p>Esqueci minha senha</p>
                 </button>
 
-                <div className="btn-entrar">
+                <button onClick={Logar} className="btn-entrar">
                     <p>Entrar</p>
-                </div>
+                </button>
 
                 <div className="naotemconta">
                     <p>Ainda não tem uma Conta?</p>

@@ -12,17 +12,20 @@ export default function Cadastro() {
    const hoje = new Date().toISOString().split("T")[0];
     const dataMinima = "1900-01-01";
     
-     const [form, setform] = useState({
-     nome_completo: '',
-     cpf: '',
-     data_nascimento: '',
-     email: '',
-     senha: '',
-     cep: '',
-     rua: '',
-     numero: '',
-     bairro: ''
-     });
+    const [form, setform] = useState({
+  nome_completo: '',
+  cpf: '',
+  data_nascimento: '',
+  email: '',
+  senha: '',
+  cep: '',
+  rua: '',
+  numero: '',
+  bairro: '',
+  tipo: '',
+  abrirDropdown: false
+});
+
 
      function atualizar(campo, valor) {
         setform({...form, [campo]: valor});
@@ -40,20 +43,26 @@ export default function Cadastro() {
             return;
            }
 
+           if (!form.tipo) {
+             alert("Selecione o cargo (Usuário ou Solicitar Administrador).");
+                return;
+        }
+
             await api.post('/inserir', form);
             alert('Usuario cadastrado com sucesso!');
-            setform({
-                nome_completo: '',
-                cpf: '',
-                data_nascimento: '',
-                email: '',
-                senha: '',
-                cep: '',
-                rua: '',
-                numero: '',
-                bairro: ''
-                
+            const [form, setform] = useState({
+            nome_completo: '',
+            cpf: '',
+            data_nascimento: '',
+            email: '',
+            senha: '',
+            cep: '',
+            rua_aven: '',   
+            numero_casa: '',
+            bairro: '',
+            tipo: 'Usuario'
             });
+
 
             navigate('/')
             } catch (erro) {
@@ -128,12 +137,12 @@ export default function Cadastro() {
                 <div className="grupo2">
                         <label> <p>Rua/Avenida*</p>
                             <input type="text" placeholder='Rua ViaSaúde/Avenida ViaSaúde'
-                            value={form.rua} onChange={(e) => atualizar('rua', e.target.value)}
+                            value={form.rua_aven} onChange={(e) => atualizar('rua_aven', e.target.value)}
                             />
                             </label>
                             <label> <p>Número*</p>
                                 <input type="number" placeholder='n° 1234' 
-                                value={form.numero} onChange={(e) => atualizar('numero', e.target.value)}
+                                value={form.numero_casa} onChange={(e) => atualizar('numero_casa', e.target.value)}
                                 />
                                 </label>
                     </div>
@@ -143,6 +152,45 @@ export default function Cadastro() {
                         value={form.bairro} onChange={(e) => atualizar('bairro', e.target.value)}
                         />
                     </label>
+
+<label>
+  <p>Cargo*</p>
+  <div className="dropdown">
+    <button
+      type="button"
+      className="dropdown-btn"
+      onClick={() => atualizar("abrirDropdown", !form.abrirDropdown)}
+    >
+      {form.tipo ? form.tipo : "Selecione o cargo"}
+      <span className="setinha">▼</span>
+    </button>
+
+    {form.abrirDropdown && (
+      <div className="dropdown-menu">
+        <div
+          className="dropdown-item"
+          onClick={() => {
+            atualizar("tipo", "Usuario");
+            atualizar("abrirDropdown", false);
+          }}
+        >
+          Usuário
+        </div>
+        <div
+          className="dropdown-item"
+          onClick={() => {
+            atualizar("tipo", "Admin");
+            atualizar("abrirDropdown", false);
+          }}
+        >
+          Solicitar Administrador
+        </div>
+      </div>
+    )}
+  </div>
+</label>
+
+
 
                 </div>
 
