@@ -1,44 +1,44 @@
 import conexao from "./connection.js";
 
 export async function inserirCadastro(cadastro) {
-    let comando = `
-        INSERT INTO Cadastrar (nome_completo, cpf, data_nascimento, senha, email, tipo, id_endereco, id_campanha)
-        VALUES (?, ?, ?, MD5(?), ?, ?, ?, ?)
-
+    const comando = `
+        INSERT INTO Cadastrar (nome_completo, cpf, data_nascimento, senha, email, tipo)
+        VALUES (?, ?, ?, MD5(?), ?, ?)
     `;
 
-    let [resposta] = await conexao.execute(comando, [
-        cadastro.nome_completo,
-        cadastro.cpf,
-        cadastro.data_nascimento,
-        cadastro.senha,
-        cadastro.email
-    ]);
-    return resposta;
-}
-
-
-export async function alterarCadastro(id, cadastro) {
-    let comando = `
-        UPDATE Cadastrar
-        SET nome_completo = ?, cpf = ?, data_nascimento = ?, senha = MD5(?), email = ?, tipo = ?, id_endereco = ?, id_campanha = ?
-        WHERE id = ?
-    `;
-
-    let [resposta] = await conexao.execute(comando, [
+    const [resposta] = await conexao.execute(comando, [
         cadastro.nome_completo,
         cadastro.cpf,
         cadastro.data_nascimento,
         cadastro.senha,
         cadastro.email,
-        cadastro.tipo || 'Paciente',
-        cadastro.id_endereco,
-        cadastro.id_campanha,
+        cadastro.tipo || 'paciente'
+    ]);
+
+    return resposta.insertId;
+}
+
+
+export async function alterarCadastro(id, cadastro) {
+    const comando = `
+        UPDATE Cadastrar
+        SET nome_completo = ?, cpf = ?, data_nascimento = ?, senha = MD5(?), email = ?, tipo = ?
+        WHERE id = ?
+    `;
+
+    const [resposta] = await conexao.execute(comando, [
+        cadastro.nome_completo,
+        cadastro.cpf,
+        cadastro.data_nascimento,
+        cadastro.senha,
+        cadastro.email,
+        cadastro.tipo || 'paciente',
         id
     ]);
 
     return resposta.affectedRows;
 }
+
 
 export async function deletarCadastro(id) {
     let comando = `DELETE FROM Cadastrar WHERE id = ?`;
