@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import api from '../../axios.js';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import './Cadastrao.scss';
 import CabecalhoCadastro from '../../components/Cadastro/cabecalhoCadastro';
 
@@ -27,18 +27,36 @@ export default function Cadastro() {
   }
 
   async function salvar() {
-    const dataNasc = new Date(form.data_nascimento);
-    const dataMin = new Date(dataMinima);
-    const dataMax = new Date();
+    try {
+      const dataNasc = new Date(form.data_nascimento);
+      const dataMin = new Date(dataMinima);
+      const dataMax = new Date();
 
-    if (dataNasc < dataMin || dataNasc > dataMax) {
-      alert("Data de nascimento inválida!");
-      return;
+      if (dataNasc < dataMin || dataNasc > dataMax) {
+        alert("Data de nascimento inválida!");
+        return;
+      }
+
+      await api.post('/usuarios', form);
+      alert('Usuário cadastrado com sucesso!');
+
+      setform({
+        nome_completo: '',
+        cpf: '',
+        data_nascimento: '',
+        email: '',
+        senha: '',
+        cep: '',
+        rua: '',
+        numero: '',
+        bairro: ''
+      });
+
+      navigate('/');
+    } catch (erro) {
+      console.error(erro);
+      alert('Erro ao cadastrar usuário.');
     }
-
-    await api.post('/usuarios', form);
-    alert('Usuário cadastrado com sucesso!');
-    navigate('/');
   }
 
   return (

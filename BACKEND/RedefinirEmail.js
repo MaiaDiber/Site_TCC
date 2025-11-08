@@ -6,7 +6,7 @@ async function testar() {
         console.log('Enviando e-mail de teste...')
         
         const resultado = await enviarEmailRedefinicao(
-            'ra50892392827@acaonsfatima.org.br', 
+            'gustavomaiaxre@gmail.com', 
             'teste-token-123456'
         )
         

@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router'
-import './RedefinicaoSenha.scss'
+import './PaginadeEspera.scss'
 
 export default function EmailEnviado() {
     const location = useLocation()
