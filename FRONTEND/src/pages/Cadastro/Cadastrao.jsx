@@ -40,7 +40,7 @@ export default function Cadastro() {
             return;
            }
 
-            await api.post('/usuarios', form);
+            await api.post('/inserir', form);
             alert('Usuario cadastrado com sucesso!');
             setform({
                 nome_completo: '',
