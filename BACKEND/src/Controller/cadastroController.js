@@ -8,11 +8,18 @@ const endpoints = Router();
 
 const autenticador = getAuthentication();
 
-endpoints.post('/inserir', autenticador, async (req, resp) => {
+endpoints.post('/inserir', async (req, resp) => {
+    try{
     let cadastro = req.body;
     let id = await repo.inserirCadastro(cadastro);
 
     resp.send({ novoId: id });
+    }
+    catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
 });
 
 endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
@@ -52,7 +59,7 @@ endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.get('/listar', autenticador, async (req, resp) => {
+endpoints.get('/listar',  async (req, resp) => {
     let registros = await repo.listarCadastros();
     resp.send(registros);
 });
@@ -68,7 +75,7 @@ endpoints.post('/login', async (req, resp) => {
             nome: usuario.nome_completo,
             email: usuario.email,
             tipo: usuario.tipo
-        }, 'borapracima');
+        }, 'ViaSaúde');
 
         resp.send({
             token: token,

@@ -1,19 +1,16 @@
-import express from 'express'
-const router = express.Router()
-
 import cadastroController from './Controller/cadastroController.js'
 import enderecoController from './Controller/enderecoController.js'
 import campanhasController from './Controller/campanhasController.js'
 import susController from './Controller/susController.js'
+import endpointLogar from './Controller/logarController.js'
 
-router.use('/cadastro', cadastroController)
-router.use('/endereco', enderecoController)
-router.use('/campanhas', campanhasController)
-router.use('/sus', susController)
+export default function Rotas(servidor) {
+  servidor.use(cadastroController)
+  servidor.use(enderecoController)
+  servidor.use(campanhasController)
+  servidor.use(susController)
+  servidor.use(endpointLogar)
+}
 
-router.get('/teste', (req, res) => {
-  res.json({ mensagem: 'Rota funcionando com sucesso!' })
-})
 
-export default router
 
