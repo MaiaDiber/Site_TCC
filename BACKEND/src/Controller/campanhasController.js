@@ -1,7 +1,7 @@
 import * as repo from '../Repository/campanhasRepository.js';
 import { getAuthentication } from '../../utils/jwt.js'
 
-import multer from'multer';
+import multer from 'multer';
 import { Router } from "express";
 const endpoints = Router();
 
@@ -9,7 +9,7 @@ const autenticador = getAuthentication();
 
 const uploadImagem = multer({ dest: './public/strorage/' });
 
-endpoints.post('/inserir', uploadImagem.single('imagem'), async (req, resp) => {
+endpoints.post('/inserir', autenticador, uploadImagem.single('imagem'), async (req, resp) => {
     let campanha = req.body;
 
     if (req.file) {
@@ -19,7 +19,7 @@ endpoints.post('/inserir', uploadImagem.single('imagem'), async (req, resp) => {
     resp.send({ novoId: id });
 });
 
-endpoints.put('/alterar/:id', uploadImagem.single('imagem'), async (req, resp) => {
+endpoints.put('/alterar/:id', autenticador, uploadImagem.single('imagem'), async (req, resp) => {
     let id = req.params.id;
     let campanha = req.body;
 
@@ -35,7 +35,7 @@ endpoints.put('/alterar/:id', uploadImagem.single('imagem'), async (req, resp) =
     }
 });
 
-endpoints.delete('/deletar/:id', async (req, resp) => {
+endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
     let linhasAfetadas = await repo.deletarCampanha(id);
     if (linhasAfetadas >= 1) {
@@ -46,7 +46,7 @@ endpoints.delete('/deletar/:id', async (req, resp) => {
     }
 });
 
-endpoints.get('/consultar/:id', async (req, resp) => {
+endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
     let registro = await repo.consultarCampanha(id);
 
@@ -58,7 +58,7 @@ endpoints.get('/consultar/:id', async (req, resp) => {
     }
 });
 
-endpoints.get('/listar', async (req, resp) => {
+endpoints.get('/listar', autenticador, async (req, resp) => {
     let registros = await repo.listarCampanhas();
     resp.send(registros);
 });
