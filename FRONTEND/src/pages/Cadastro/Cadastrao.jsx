@@ -147,7 +147,10 @@ export default function Cadastro() {
                 </div>
 
                 <div className="doisfinais">
-                    <button type='button' onClick={salvar} >Cadastrar-se</button>
+                    <button className='cadastrar-img' type='button' onClick={salvar} >
+                        <img src= "/public/assets/images/ChatGPT_Image_7_de_nov._de_2025__00_53_06-removebg-preview.png" height={50} alt="" />
+                        <h2>Cadastrar-se</h2>
+                        </button>
                     <p>* Campos obrigratórios</p>
                 </div>
             </div>

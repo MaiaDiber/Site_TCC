@@ -1,6 +1,6 @@
 .cabeçalho {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
     background-color: #ffffff;
@@ -13,13 +13,14 @@
         align-items: center;
         justify-content: center;
         padding-block: 10px;
+        flex: 1;
+        padding-left: 320px;
     }
 
     .botoes {
         display: flex;
         align-items: center;
         gap: 30px;
-        margin-left: auto;
         margin-right: 30px;
         margin-top: 10px;
 

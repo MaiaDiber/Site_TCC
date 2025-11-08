@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router'
 import './RedefinicaoSenha.scss'
 
 export default function EmailEnviado() {
@@ -17,8 +17,15 @@ export default function EmailEnviado() {
 
     return (
       <section className='all-email' >
+
+        <div className="logo-white">
+            <img src="/public/assets/images/logo-branco.png" height={100} alt="" />
+        </div>
+
           <section className="email-confirmacao">
             <h2> E-mail Enviado!</h2>
+
+            <div className="linha-email"></div>
             
             <div className="mensagem-importante">
                 <h3>Instruções Enviadas</h3>
