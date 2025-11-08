@@ -1,5 +1,6 @@
 import * as repo from '../Repository/cadastroRepository.js';
 import { getAuthentication } from '../../utils/jwt.js'
+import jwt from 'jsonwebtoken';
 
 import multer from 'multer';
 import { Router } from "express";
@@ -7,14 +8,14 @@ const endpoints = Router();
 
 const autenticador = getAuthentication();
 
-endpoints.post('/inserir', async (req, resp) => {
+endpoints.post('/inserir', autenticador, async (req, resp) => {
     let cadastro = req.body;
     let id = await repo.inserirCadastro(cadastro);
 
     resp.send({ novoId: id });
 });
 
-endpoints.put('/alterar/:id', async (req, resp) => {
+endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
     let cadastro = req.body;
 
@@ -27,7 +28,7 @@ endpoints.put('/alterar/:id', async (req, resp) => {
     }
 });
 
-endpoints.delete('/deletar/:id', async (req, resp) => {
+endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
 
     let linhasAfetadas = await repo.deletarCadastro(id);
@@ -39,7 +40,7 @@ endpoints.delete('/deletar/:id', async (req, resp) => {
     }
 });
 
-endpoints.get('/consultar/:id', async (req, resp) => {
+endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
 
     let registro = await repo.consultarCadastro(id);
@@ -51,9 +52,31 @@ endpoints.get('/consultar/:id', async (req, resp) => {
     }
 });
 
-endpoints.get('/listar', async (req, resp) => {
+endpoints.get('/listar', autenticador, async (req, resp) => {
     let registros = await repo.listarCadastros();
     resp.send(registros);
+});
+
+endpoints.post('/login', async (req, resp) => {
+    let { email, senha } = req.body;
+
+    let usuario = await repo.verificarLogin(email, senha);
+
+    if (usuario) {
+        let token = jwt.sign({
+            id: usuario.id,
+            nome: usuario.nome_completo,
+            email: usuario.email,
+            tipo: usuario.tipo
+        }, 'borapracima');
+
+        resp.send({
+            token: token,
+            usuario: usuario
+        });
+    } else {
+        resp.status(401).send({ erro: 'Credenciais inválidas' });
+    }
 });
 
 export default endpoints;

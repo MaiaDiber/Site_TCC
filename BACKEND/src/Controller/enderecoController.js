@@ -1,20 +1,20 @@
 import * as repo from '../Repository/enderecoRepository.js';
 import { getAuthentication } from '../../utils/jwt.js'
 
-import multer from'multer';
+import multer from 'multer';
 import { Router } from "express";
 const endpoints = Router();
 
 const autenticador = getAuthentication();
 
-endpoints.post('/inserir', async (req, resp) => {
+endpoints.post('/inserir', autenticador, async (req, resp) => {
     let endereco = req.body;
     let id = await repo.inserirEndereco(endereco);
 
     resp.send({ novoId: id });
 });
 
-endpoints.put('/alterar/:id', async (req, resp) => {
+endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
     let endereco = req.body;
 
@@ -27,7 +27,7 @@ endpoints.put('/alterar/:id', async (req, resp) => {
     }
 });
 
-endpoints.delete('/deletar/:id', async (req, resp) => {
+endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
     let linhasAfetadas = await repo.deletarEndereco(id);
 
@@ -38,7 +38,7 @@ endpoints.delete('/deletar/:id', async (req, resp) => {
     }
 });
 
-endpoints.get('/consultar/:id', async (req, resp) => {
+endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
     let registro = await repo.consultarEndereco(id);
 
@@ -49,7 +49,7 @@ endpoints.get('/consultar/:id', async (req, resp) => {
     }
 });
 
-endpoints.get('/listar', async (req, resp) => {
+endpoints.get('/listar', autenticador, async (req, resp) => {
     let registros = await repo.listarEnderecos();
     resp.send(registros);
 });
