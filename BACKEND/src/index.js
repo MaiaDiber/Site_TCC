@@ -1,7 +1,6 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
-import conexao from './Repository/connection.js';
 import rotas from './rotas.js'
 
 const servidor = express();

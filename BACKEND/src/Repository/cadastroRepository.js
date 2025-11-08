@@ -2,8 +2,8 @@ import conexao from "./connection.js";
 
 export async function inserirCadastro(cadastro) {
     let comando = `
-        INSERT INTO Cadastrar (nome_completo, cpf, data_nascimento, senha, email, tipo, id_endereco, id_campanha)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO Cadastrar (nome_completo, cpf, data_nascimento, senha, email)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
 
     let [resposta] = await conexao.execute(comando, [
@@ -11,12 +11,9 @@ export async function inserirCadastro(cadastro) {
         cadastro.cpf,
         cadastro.data_nascimento,
         cadastro.senha,
-        cadastro.email,
-        cadastro.tipo || 'Paciente',
-        cadastro.id_endereco,
-        cadastro.id_campanha
+        cadastro.email
     ]);
-    return resposta.insertId;
+    return resposta;
 }
 
 
