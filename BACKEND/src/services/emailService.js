@@ -53,9 +53,9 @@ const enviarEmailRedefinicao = async (emailDestino, token) => {
 
             attachments: [
                 {
-                    filename: 'a.png',          // nome do arquivo
-                    path: './src/image/a.png',     // caminho da imagem no servidor
-                    cid: 'logoTCC'                 // o mesmo cid usado no HTML
+                    filename: 'a.png',          
+                    path: './src/image/a.png',     
+                    cid: 'logoTCC'                 
                 }
             ]
 

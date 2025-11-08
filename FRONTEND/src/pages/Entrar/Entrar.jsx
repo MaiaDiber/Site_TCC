@@ -43,17 +43,15 @@ export default function Entrar() {
         setShowPassword(!showPassword)
     } 
 
-    return (
-        <>
-        <section className='all-entrar' >
-            <section className='container-entrar' >
-             <img className='logosite-entrar' src="/assets/Images/logo_ViaSaúde.png" height={70} alt="" />
-
-             <div className="Entrar">
-                <div className="Login-linha">
-                    <h1>Login</h1>
-                    <div className="linha-entrar"></div>
-                </div>
+  return (
+    <section className='all-entrar'>
+      <section className='container-entrar'>
+        <img className='logosite-entrar' src='/assets/Images/logo_ViaSaúde.png' height={70} alt='' />
+        <div className='Entrar'>
+          <div className='Login-linha'>
+            <h1>Login</h1>
+            <div className='linha-entrar'></div>
+          </div>
 
                 <div className="cpf-senha">
                     <label> 
@@ -103,9 +101,9 @@ export default function Entrar() {
                     </label>
                 </div>
 
-                <button type='button' className="esquecisenha">
-                    <p>Esqueci minha senha</p>
-                </button>
+          <button type='button' className='btn-entrar' onClick={logar}>
+            Entrar
+          </button>
 
                 <button onClick={Logar} className="btn-entrar">
                     <p>Entrar</p>

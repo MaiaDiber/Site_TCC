@@ -47,9 +47,9 @@ export async function inserirCadastro(cadastro) {
 
 
 export async function alterarCadastro(id, cadastro) {
-    let comando = `
+    const comando = `
         UPDATE Cadastrar
-        SET nome_completo = ?, cpf = ?, data_nascimento = ?, senha = ?, email = ?, tipo = ?, id_endereco = ?, id_campanha = ?
+        SET nome_completo = ?, cpf = ?, data_nascimento = ?, senha = MD5(?), email = ?, tipo = ?
         WHERE id = ?
     `;
 
@@ -59,14 +59,13 @@ export async function alterarCadastro(id, cadastro) {
         cadastro.data_nascimento,
         cadastro.senha,
         cadastro.email,
-        cadastro.tipo || 'Paciente',
-        cadastro.id_endereco,
-        cadastro.id_campanha,
+        cadastro.tipo || 'paciente',
         id
     ]);
 
     return resposta.affectedRows;
 }
+
 
 export async function deletarCadastro(id) {
     let comando = `DELETE FROM Cadastrar WHERE id = ?`;

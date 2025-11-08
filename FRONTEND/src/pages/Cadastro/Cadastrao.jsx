@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import api from '../../axios.js';
-import { useNavigate } from 'react-router';
-import './Cadastrao.scss';                           
+import { useNavigate } from 'react-router-dom';
+import './Cadastrao.scss';
 import CabecalhoCadastro from '../../components/Cadastro/cabecalhoCadastro';
 
-
 export default function Cadastro() {
-
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
    const hoje = new Date().toISOString().split("T")[0];
     const dataMinima = "1900-01-01";
@@ -27,16 +25,15 @@ export default function Cadastro() {
 });
 
 
-     function atualizar(campo, valor) {
-        setform({...form, [campo]: valor});
-     }
+  function atualizar(campo, valor) {
+    setform({ ...form, [campo]: valor });
+  }
 
-     async function salvar() {
-        try {
-
-           const dataNasc = new Date(form.data_nascimento);
-           const dataMin = new Date(dataMinima);
-           const dataMax = new Date();
+  async function salvar() {
+    try {
+      const dataNasc = new Date(form.data_nascimento);
+      const dataMin = new Date(dataMinima);
+      const dataMax = new Date();
 
            if (dataNasc < dataMin || dataNasc > dataMax){
             alert("Data de nascimento invalida!");
@@ -64,29 +61,25 @@ export default function Cadastro() {
             });
 
 
-            navigate('/')
-            } catch (erro) {
+      navigate('/');
+    } catch (erro) {
       console.error(erro);
       alert('Erro ao cadastrar usuário.');
-        }
-     }
+    }
+  }
 
-   return (
-    <>
+  return (
     <section className='all'>
-    <section className="Container">
-
+      <section className='Container'>
         <CabecalhoCadastro />
+        <div className='primeiroP'>
+          <p>Preencha os dados abaixo para completar seu atendimento na unidade de saúde</p>
+        </div>
 
-
-            <div className="primeiroP">
-                <p>Preencha os dados abaixo para agilizar seu atendimento na unidade de saúde</p>
-            </div>
-
-            <div className="informação-usuário">
-               <div className="dados-usu">
-               <p>Dados pessoais</p>
-               </div>
+        <div className='informação-usuário'>
+          <div className='dados-usu'>
+            <p>Dados pessoais</p>
+          </div>
 
                 <div className="dados">
                     <label>  <p>Nome Completo*</p>
@@ -206,6 +199,5 @@ export default function Cadastro() {
 
     </section>
     </section>
-    </>
-   ) 
+  );
 }
