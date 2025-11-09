@@ -4,6 +4,12 @@ import "leaflet/dist/leaflet.css";
 
 export default function TesteMapa() {
   useEffect(() => {
+    // ✅ Corrige o erro de "Map container is already initialized"
+    const existingMap = L.DomUtil.get("map");
+    if (existingMap != null) {
+      existingMap._leaflet_id = null; // força o Leaflet a recriar o mapa
+    }
+
     // Inicializa o mapa centralizado na Zona Sul de SP
     const map = L.map("map").setView([-23.65, -46.63], 12);
 
