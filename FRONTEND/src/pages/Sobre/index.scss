@@ -1,0 +1,66 @@
+.sobre {
+  max-width: 600px;
+  text-align: center;
+}
+
+.titulo{
+    display: flex;
+    gap: 5px;
+    text-align: center;
+    justify-content: center;
+}
+
+
+.so{
+    color: #12501d;
+}
+.va{
+    color: #2f8f46;
+}
+.sa{
+    color: #12501d;
+}
+
+
+
+.sobre h2 {
+  color: #2f8f46;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.descricao {
+  color: #444;
+  font-size: 15px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.historia {
+  background-color: #e8f7e9;
+  border-radius: 6px;
+  padding: 25px 20px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.historia h3 {
+  color: #3c914b;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+.historia hr {
+  width: 40%;
+  border: none;
+  border-top: 1px solid #a8d4ad;
+  margin: 8px auto 15px auto;
+}
+
+.historia p {
+  color: #333;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: justify;
+  margin-bottom: 12px;
+}

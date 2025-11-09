@@ -33,6 +33,7 @@ background: linear-gradient(180deg, rgba(255,255,255,0.9), var(--card));
 padding: 18px;
 border-radius: var(--radius);
 box-shadow: var(--shadow);
+
 }
 
 
@@ -45,13 +46,18 @@ overflow: hidden;
 display: grid;
 place-items: center;
 background: #eef2ff;
+&:hover{
+    scale: 105%;
+}
 }
 
 
 .avatar-fallback {
 font-weight: 600;
 font-size: 20px;
-color: #1e293b;
+color: #0a367c;
+
+
 }
 
 .profile-actions{
@@ -73,6 +79,15 @@ button {
   font-size: 15px;
   color: #ffffff;
 
+  &:hover{
+    scale: 110%;
+    background-color: #099c4b;
+  }
+
+  &:active{
+    scale: 97%;
+  }
+
 }
 
 .detail{
@@ -80,7 +95,49 @@ button {
     flex-direction: column;
     gap: 30px;
 
-   
+}
+
+
+.details{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.tel{
+    transition: 0.3s;
+
+    &:hover{
+        scale: 110%;
+        color: #099c4b;
+    }
+}
+
+.data{
+    transition: 0.3s;
+
+    &:hover{
+        scale: 110%;
+        color: #099c4b;
+    }
+}
+
+.email{
+    transition: 0.3s;
+
+    &:hover{
+        scale: 110%;
+        color: #099c4b;
+    }
+}
+
+.cep{
+    transition: 0.3s;
+
+    &:hover{
+        scale: 110%;
+        color: #099c4b;
+    }
 }
 
 
