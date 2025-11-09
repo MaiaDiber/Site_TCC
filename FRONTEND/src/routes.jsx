@@ -21,7 +21,7 @@ export default function Navegation() {
                 <Route path='/RedefinirSenha' element={<AtualizarSenha />} />
                 <Route path='/Verificar' element={<Verificacao />} />
 
-                {/* Rota protegida — somente Adm pode acessar */}
+                
                 <Route
                     path='/Admin'
                     element={

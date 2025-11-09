@@ -8,7 +8,7 @@ const endpoints = Router();
 
 const autenticador = getAuthentication();
 
-endpoints.post('/inserir', async (req, resp) => {
+endpoints.post('/inserir', autenticador, async (req, resp) => {
     try{
     let cadastro = req.body;
     let id = await repo.inserirCadastro(cadastro);

@@ -5,7 +5,7 @@ export async function inserirAdmin(admin){
     INSERT INTO Cadastrar_admin (nome_completo, cpf, data_nascimento, senha, email)
     VALUES (?, ?, ?,  MD5(?), ?)`;
     
-    const [resposta] = await conexao.execute(comando, [
+    const [resposta] = await conexao.query(comando, [
         admin.nome_completo,
         admin.cpf,
         admin.data_nascimento,
@@ -19,21 +19,21 @@ export async function inserirAdmin(admin){
 export async function deletarAdmin(id) {
     const comando = `DELETE FROM Cadastrar_admin WHERE id = ?`;
 
-    const [resposta] = await conexao.execute(comando, [id]);
+    const [resposta] = await conexao.query(comando, [id]);
     return resposta.affectedRows;
 }
 
 export async function consultarAdmin(id){
 const comando = `SELECT * FROM Cadastrar_admin WHERE id = ?`;
 
-const [resposta] = await conexao.execute(comando, [id]);
+const [resposta] = await conexao.query(comando, [id]);
 return resposta[0];
 }
 
 export async function listarAdmins(){
     const comando = `SELECT * FROM Cadastrar_admin`;
 
-    const[resposta] = await conexao.execute(comando);
+    const[resposta] = await conexao.query(comando);
     return resposta;
 }
 
@@ -43,6 +43,6 @@ SELECT id, nome_completo, email
 FROM Cadastrar_admin
 WHERE email = ? AND senha = MD5(?) `;
 
-const [resposta] = await conexao.execute(comando, [email, senha]);
+const [resposta] = await conexao.query(comando, [email, senha]);
 return resposta[0];
 }
