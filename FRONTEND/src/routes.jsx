@@ -9,7 +9,7 @@ import EmailEnviado from './pages/Entrar/PaginadeEspera';
 import AtualizarSenha from './pages/RedefinirSenha/TrocarSenha';
 import RotaProtegida from './components/component';
 import Solicitacoes from './pages/Admin/Solicitacoes';
-
+import TesteMapa from './pages/mapa/testeMapa';
 export default function Navegation() {
     return (
         <BrowserRouter>
@@ -22,6 +22,7 @@ export default function Navegation() {
                 <Route path='/RedefinirSenha' element={<AtualizarSenha />} />
                 <Route path='/Verificar' element={<Verificacao />} />
                 <Route path='/Perfil' element={<Perfil />} />
+                <Route path='/TesteMapa' element={<TesteMapa />} />
                 <Route path='/Admin'  element={<RotaProtegida tipoPermitido="Adm"><Solicitacoes /></RotaProtegida>}/>
             </Routes>
         </BrowserRouter>
