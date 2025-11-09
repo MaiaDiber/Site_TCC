@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home/index';
+import Perfil from './pages/Perfil/Perfil';
 import Cadastro from './pages/Cadastro/Cadastrao';
 import Sobrenos from './pages/Sobre/index';
 import Entrar from './pages/Entrar/Entrar';
@@ -20,6 +21,7 @@ export default function Navegation() {
                 <Route path='/PaginaDeEspera' element={<EmailEnviado />} />
                 <Route path='/RedefinirSenha' element={<AtualizarSenha />} />
                 <Route path='/Verificar' element={<Verificacao />} />
+                <Route path='/Perfil' element={<Perfil />} />
 
                 
                 <Route
