@@ -34,19 +34,19 @@ export default function Perfil() {
 <div class="detail">
 <h3>Sobre</h3>
 <div className='details'>    
-    <div>
+    <div className='tel'>
 <h5>Tel</h5>
 <p>(11)99999-9999</p>
 </div>
-<div>
+<div className='data'>
 <h5>Data de nascimento</h5>
 <p>01/01/2001</p>
 </div>
-<div>
+<div className='email'>
 <h5>Email</h5>
 <p>Carlos@gmail.com</p>
 </div>
-<div>
+<div className='cep'>
 <h5>Cep</h5>
 <p>00000-000</p>
 </div>
