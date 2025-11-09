@@ -1,0 +1,90 @@
+:root {
+--bg: #ffffff;
+--card: #f8fafc;
+--muted: #6b7280;
+--primary: #2563eb;
+--danger: #ef4444;
+--shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+--radius: 12px;
+--gap: 16px;
+}
+
+
+body {
+font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+background-color: var(--bg);
+margin: 0;
+color: #0f172a;
+}
+
+
+.profile-tab {
+max-width: 920px;
+margin: 24px auto;
+padding: 20px;
+}
+
+
+.profile-card {
+display: flex;
+align-items: center;
+gap: var(--gap);
+background: linear-gradient(180deg, rgba(255,255,255,0.9), var(--card));
+padding: 18px;
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+}
+
+
+.profile-avatar {
+width: 88px;
+height: 88px;
+flex: 0 0 88px;
+border-radius: 14px;
+overflow: hidden;
+display: grid;
+place-items: center;
+background: #eef2ff;
+}
+
+
+.avatar-fallback {
+font-weight: 600;
+font-size: 20px;
+color: #1e293b;
+}
+
+.profile-actions{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px;
+    width: 300px;
+    
+}
+
+button {
+    background-color: #015C2A;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition:0.25s ;
+  font-size: 15px;
+  color: #ffffff;
+
+}
+
+.detail{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+   
+}
+
+
+
+
+
+
