@@ -1,8 +1,8 @@
 import Cabeçalho from '../../components/Index/cabecalho'
 import Rodape from '../../components/Index/rodape'
-import './index.scss'
+import './Principal.scss'
 
-export default function Home() {
+export default function PaginaAdmin() {
     return (
         <>
             <section className='Tudo'>

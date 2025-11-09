@@ -84,94 +84,97 @@ export default function Cadastro() {
         return Object.keys(novosErros).length === 0;
     }
 
-    async function salvar() {
-        try {
-            // Validar campos
-            if (!validarCampos()) {
-                alert("Por favor, corrija os erros no formulário.");
-                return;
-            }
+    // NO SEU COMPONENTE Cadastro.jsx - ATUALIZE A FUNÇÃO salvar:
 
-            // Validar data de nascimento
-            const dataNasc = new Date(form.data_nascimento);
-            const dataMin = new Date(dataMinima);
-            const dataMax = new Date();
-
-            if (dataNasc < dataMin || dataNasc > dataMax) {
-                alert("Data de nascimento inválida!");
-                return;
-            }
-
-            setCarregando(true);
-
-            // Preparar dados para envio
-            const dadosEnvio = {
-                nome_completo: form.nome_completo,
-                cpf: form.cpf,
-                data_nascimento: form.data_nascimento,
-                email: form.email,
-                senha: form.senha,
-                cep: form.cep,
-                rua_aven: form.rua_aven,
-                numero_casa: form.numero_casa,
-                bairro: form.bairro
-            };
-
-            // Determinar endpoint
-            if (form.tipo === "Solicitar Administrador") {
-                dadosEnvio.motivo = form.motivo;
-                
-                await api.post('/solicitar-admin', dadosEnvio);
-                
-                alert('✅ Solicitação de administrador enviada!\n\n' +
-                      'Você já pode fazer login como usuário.\n' +
-                      'Quando sua solicitação for aprovada, você terá acesso à área de administrador.');
-
-            } else {
-                await api.post('/cadastrar', dadosEnvio);
-                
-                alert('✅ Cadastro realizado com sucesso!\n\nAgora você pode fazer login.');
-            }
-
-            // Limpar formulário
-            setform({
-                nome_completo: '',
-                cpf: '',
-                data_nascimento: '',
-                email: '',
-                senha: '',
-                cep: '',
-                rua_aven: '',
-                numero_casa: '',
-                bairro: '',
-                tipo: '',
-                abrirDropdown: false,
-                motivo: ''
-            });
-
-            // Redirecionar para login
-            setTimeout(() => {
-                navigate('/');
-            }, 1500);
-
-        } catch (erro) {
-            console.error('Erro ao cadastrar:', erro);
-            
-            let mensagemErro = 'Erro ao realizar cadastro.';
-            
-            if (erro.response?.data?.erro) {
-                mensagemErro = erro.response.data.erro;
-            } else if (erro.response?.status === 400) {
-                mensagemErro = 'Dados inválidos. Verifique os campos.';
-            } else if (erro.response?.status === 409) {
-                mensagemErro = 'Email ou CPF já cadastrado.';
-            }
-            
-            alert('❌ ' + mensagemErro);
-        } finally {
-            setCarregando(false);
+async function salvar() {
+    try {
+        // Validar campos (seu código atual...)
+        if (!validarCampos()) {
+            alert("Por favor, corrija os erros no formulário.");
+            return;
         }
+
+        setCarregando(true);
+
+        // Preparar dados para envio
+        const dadosEnvio = {
+            nome_completo: form.nome_completo,
+            cpf: form.cpf,
+            data_nascimento: form.data_nascimento,
+            email: form.email,
+            senha: form.senha,
+            cep: form.cep,
+            rua_aven: form.rua_aven,
+            numero_casa: form.numero_casa,
+            bairro: form.bairro,
+            tipo: form.tipo === "Solicitar Administrador" ? "paciente" : "paciente" // SEMPRE paciente inicialmente
+        };
+
+        let endpoint = '';
+        let mensagemSucesso = '';
+
+        if (form.tipo === "Solicitar Administrador") {
+            endpoint = '/solicitar-admin';
+            dadosEnvio.motivo = form.motivo;
+            mensagemSucesso = '✅ Solicitação de administrador enviada!\\n\\nVocê já pode fazer login como usuário.\\nQuando sua solicitação for aprovada, você terá acesso à área de administrador.';
+        } else {
+            endpoint = '/cadastrar'; // ✅ ENDPOINT CORRETO
+            mensagemSucesso = '✅ Cadastro realizado com sucesso!\\n\\nAgora você pode fazer login.';
+        }
+
+        // 🔥 TENTE PRIMEIRO COM adminController, SE DER ERRO, TENTE cadastroController
+        let response;
+        try {
+            response = await api.post(endpoint, dadosEnvio);
+        } catch (erroEndpoint1) {
+            console.log('Tentando endpoint alternativo...');
+            // Se o primeiro endpoint falhar, tente o alternativo
+            response = await api.post('/api/cadastro' + endpoint, dadosEnvio);
+        }
+
+        alert(mensagemSucesso);
+
+        // Limpar formulário
+        setform({
+            nome_completo: '',
+            cpf: '',
+            data_nascimento: '',
+            email: '',
+            senha: '',
+            cep: '',
+            rua_aven: '',
+            numero_casa: '',
+            bairro: '',
+            tipo: '',
+            abrirDropdown: false,
+            motivo: ''
+        });
+
+        // Redirecionar para login
+        setTimeout(() => {
+            navigate('/');
+        }, 1500);
+
+    } catch (erro) {
+        console.error('Erro ao cadastrar:', erro);
+        
+        let mensagemErro = 'Erro ao realizar cadastro.';
+        
+        if (erro.response?.data?.erro) {
+            mensagemErro = erro.response.data.erro;
+        } else if (erro.response?.status === 400) {
+            mensagemErro = 'Dados inválidos. Verifique os campos.';
+        } else if (erro.response?.status === 409) {
+            mensagemErro = 'Email ou CPF já cadastrado.';
+        } else if (erro.response?.status === 404) {
+            mensagemErro = 'Endpoint não encontrado. Verifique a configuração do servidor.';
+        }
+        
+        alert('❌ ' + mensagemErro);
+    } finally {
+        setCarregando(false);
     }
+}
 
     return (
         <section className='all'>

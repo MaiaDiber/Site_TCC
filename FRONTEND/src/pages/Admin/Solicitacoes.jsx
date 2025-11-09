@@ -11,17 +11,7 @@ export default function Solicitacoes() {
     const navigate = useNavigate();
 
     // Verificar se é admin
-    useEffect(() => {
-        const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
-        
-        if (usuario.tipo !== 'admin') {
-            alert('Acesso negado! Apenas administradores podem acessar esta página.');
-            navigate('/');
-            return;
-        }
-
-        carregarSolicitacoes();
-    }, []);
+  
 
     async function carregarSolicitacoes() {
         try {

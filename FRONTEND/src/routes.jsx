@@ -9,6 +9,8 @@ import EmailEnviado from './pages/Entrar/PaginadeEspera';
 import AtualizarSenha from './pages/RedefinirSenha/TrocarSenha';
 import RotaProtegida from './components/component';
 import Solicitacoes from './pages/Admin/Solicitacoes';
+import TesteMapa from './pages/mapa/testeMapa';
+import PaginaAdmin from './pages/Admin/Principal';
 
 export default function Navegation() {
     return (
@@ -22,7 +24,9 @@ export default function Navegation() {
                 <Route path='/RedefinirSenha' element={<AtualizarSenha />} />
                 <Route path='/Verificar' element={<Verificacao />} />
                 <Route path='/Perfil' element={<Perfil />} />
-                <Route path='/Admin'  element={<RotaProtegida tipoPermitido="Adm"><Solicitacoes /></RotaProtegida>}/>
+                <Route path='/Mapa' element={<TesteMapa/>} />
+                <Route path='/Admin'  element={<RotaProtegida tipoPermitido="admin"><PaginaAdmin /></RotaProtegida>}/>
+                <Route path='/SolicitaçõesAdmin'  element={<RotaProtegida tipoPermitido="admin"><Solicitacoes /></RotaProtegida>}/>
             </Routes>
         </BrowserRouter>
     );

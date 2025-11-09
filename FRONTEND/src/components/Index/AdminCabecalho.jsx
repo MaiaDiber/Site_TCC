@@ -1,13 +1,13 @@
 import './cabecalho.scss';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cabeçalho() {
     const [menuOpen, setMenuOpen] = useState(false);
     const[PosicaoVisivel, setPosicaoVisivel] = useState(false);
 
-      const navigate = useNavigate()
+    const navigate = useNavigate()
 
      const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
 
@@ -61,6 +61,12 @@ export default function Cabeçalho() {
                     <ul>
                         <li><Link to="/">Início</Link></li>
                         <li><Link to="/Sobre">Sobre</Link></li>
+                        <li> <button 
+                        className="btn consulta" 
+                        onClick={() => window.location.href = '/Admin'}
+                    >
+                        Ver Solicitações
+                    </button></li>
                          <li>
                             <button 
                                 onClick={() => {

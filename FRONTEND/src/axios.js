@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000' // Ajuste a porta se necessário
+    baseURL: 'http://localhost:6045' // Ajuste a porta se necessário
 });
 
 // ✅ Interceptor CORRETO - envia token automaticamente

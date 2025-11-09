@@ -3,7 +3,7 @@ import crypto from "crypto-js"
 
 export async function  InseririrUsuario(pessoa) {
     const comando = `
-    insert into usuarios (email, senha)
+    insert into Cadastrar (email, senha)
     values (?, ?)
     `;
 
@@ -18,7 +18,7 @@ export async function  InseririrUsuario(pessoa) {
 export async function  validarUsuario(pessoa) {
     const comando = `
     select id, email
-    from usuario
+    from Cadastrar
     where 
     email = ?
     and senha = ?

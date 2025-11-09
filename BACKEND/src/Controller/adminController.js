@@ -24,7 +24,9 @@ endpointAdmin.post('/cadastrar', async (req, resp) => {
             cpf: dados.cpf,
             data_nascimento: dados.data_nascimento,
             senha: dados.senha,
-            email: dados.email
+            email: dados.email,
+            tipo: dados.tipo,
+            status_admin: dados.status_admin,
         });
 
         await repo.inserirEndereco({
