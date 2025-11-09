@@ -74,4 +74,5 @@ const enviarEmailRedefinicao = async (emailDestino, token) => {
     }
 }
 
+export { transporter }
 export  { enviarEmailRedefinicao }

@@ -43,7 +43,7 @@ export default function Cabeçalho() {
                     <h2>Menu</h2>
                     <ul>
                         <li><Link to="/">Início</Link></li>
-                        <li><Link to="/sobre">Sobre</Link></li>
+                        <li><Link to="/Sobre">Sobre</Link></li>
                     </ul>
                 </div>
             </div>

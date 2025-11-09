@@ -1,3 +1,4 @@
+// Cadastro.jsx - VERSÃO CORRIGIDA
 import { useState } from 'react';
 import api from '../../axios.js';
 import { useNavigate } from 'react-router-dom';
@@ -5,246 +6,428 @@ import './Cadastrao.scss';
 import CabecalhoCadastro from '../../components/Cadastro/cabecalhoCadastro';
 
 export default function Cadastro() {
+
+
     const [erros, setErros] = useState({});
+    const [carregando, setCarregando] = useState(false);
+    const navigate = useNavigate();
 
-  const navigate = useNavigate();
+    const hoje = new Date().toISOString().split("T")[0];
+    const dataMinima = "1900-01-01";
 
-  function validarCampos() {
-  const novosErros = {};
-
-  if (!form.nome_completo.trim()) novosErros.nome_completo = "Informe o nome completo";
-  if (!form.cpf.trim()) novosErros.cpf = "Informe o CPF";
-  if (!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(form.cpf))
-    novosErros.cpf = "CPF inválido (use o formato 000.000.000-00)";
-  if (!form.data_nascimento) novosErros.data_nascimento = "Informe a data de nascimento";
-  if (!form.email.trim()) novosErros.email = "Informe o e-mail";
-  if (!form.senha.trim()) novosErros.senha = "Crie uma senha";
-  if (!form.cep.trim()) novosErros.cep = "Informe o CEP";
-  if (!form.rua.trim()) novosErros.rua = "Informe a rua ou avenida";
-  if (!form.numero.trim()) novosErros.numero = "Informe o número da casa";
-  if (!form.bairro.trim()) novosErros.bairro = "Informe o bairro";
-  if (!form.tipo) novosErros.tipo = "Selecione o cargo";
-
-  setErros(novosErros);
-  return Object.keys(novosErros).length === 0;
-}
-
-
-  const hoje = new Date().toISOString().split("T")[0];
-  const dataMinima = "1900-01-01";
-
-  const [form, setform] = useState({
-    nome_completo: '',
-    cpf: '',
-    data_nascimento: '',
-    email: '',
-    senha: '',
-    cep: '',
-    rua: '',
-    numero: '',
-    bairro: '',
-    tipo: '',
-    abrirDropdown: false
-  });
-
-  function atualizar(campo, valor) {
-    setform({ ...form, [campo]: valor });
-  }
-
-  async function salvar() {
-    try {
-      const dataNasc = new Date(form.data_nascimento);
-      const dataMin = new Date(dataMinima);
-      const dataMax = new Date();
-
-       if (!validarCampos()) {
-    alert("Preencha todos os campos obrigatórios corretamente.");
-    return;
-  }
-
-      if (dataNasc < dataMin || dataNasc > dataMax) {
-        alert("Data de nascimento inválida!");
-        return;
-      }
-
-      if (!form.tipo) {
-        alert("Selecione o cargo (Usuário ou Solicitar Administrador).");
-        return;
-      }
-
-      await api.post('/inserir', form);
-      alert('Usuário cadastrado com sucesso!');
-
-      
-      setform({
+    const [form, setform] = useState({
         nome_completo: '',
         cpf: '',
         data_nascimento: '',
         email: '',
         senha: '',
         cep: '',
-        rua: '',
-        numero: '',
+        rua_aven: '',
+        numero_casa: '',
         bairro: '',
         tipo: '',
-        abrirDropdown: false
-      });
+        abrirDropdown: false,
+        motivo: ''
+    });
 
-      navigate('/');
-    } catch (erro) {
-      console.error(erro);
-      alert('Erro ao cadastrar usuário.');
+    function atualizar(campo, valor) {
+        setform({ ...form, [campo]: valor });
+        // Limpar erro do campo ao digitar
+        if (erros[campo]) {
+            setErros({ ...erros, [campo]: '' });
+        }
     }
-  }
 
-  return (
-    <section className='all'>
-      <section className='Container'>
-        <CabecalhoCadastro />
-        <div className='primeiroP'>
-          <p>Preencha os dados abaixo para completar seu atendimento na unidade de saúde</p>
-        </div>
+    function validarCampos() {
+        const novosErros = {};
 
-        <div className='informação-usuário'>
-          <div className='dados-usu'>
-            <p>Dados pessoais</p>
-          </div>
+        if (!form.nome_completo.trim()) 
+            novosErros.nome_completo = "Informe o nome completo";
 
-                <div className="dados">
-                   
-                    <div className="inputs">
-                         <label>  <p>Nome Completo*</p>
-                        <input type="text" placeholder='Nome Completo'
-                        value={form.nome_completo} onChange={(e) => atualizar('nome_completo', e.target.value)}
-                        className={erros.nome_completo ? 'erro' : ''}
-                        />
-                        {erros.nome_completo && <span className="msg-erro">{erros.nome_completo}</span>}
-                    </label>
+        if (!form.cpf.trim()) 
+            novosErros.cpf = "Informe o CPF";
+        else if (!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(form.cpf))
+            novosErros.cpf = "CPF inválido (use o formato 000.000.000-00)";
 
-                    <div className="grupo1">
-                        <label> <p>CPF*</p>
-                            <input type="text" placeholder='000.000.000-00' 
-                            value={form.cpf} onChange={(e) => atualizar('cpf',e.target.value)}
-                            className={erros.cpf ? 'erro' : ''}
-                            />
-                            {erros.cpf && <span className="msg-erro">{erros.cpf}</span>}
-                            </label>
+        if (!form.data_nascimento) 
+            novosErros.data_nascimento = "Informe a data de nascimento";
 
-                            <label> <p>Data de Nascimeto*</p>
-                                <input type="date" placeholder='DD/MM/AAAA' 
-                                min={dataMinima}
-                                max={hoje}
-                                value={form.data_nascimento} onChange={(e) => atualizar('data_nascimento', e.target.value)}
-                                className={erros.data_nascimento ? 'erro' : ''}
-                                />
-                                {erros.data_nascimento && <span className="msg-erro">{erros.data_nascimento}</span>}
-                                </label>
-                    </div>
+        if (!form.email.trim()) 
+            novosErros.email = "Informe o e-mail";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+            novosErros.email = "E-mail inválido";
+
+        if (!form.senha.trim()) 
+            novosErros.senha = "Crie uma senha";
+        else if (form.senha.length < 6)
+            novosErros.senha = "Senha deve ter no mínimo 6 caracteres";
+
+        if (!form.cep.trim()) 
+            novosErros.cep = "Informe o CEP";
+
+        if (!form.rua_aven.trim()) 
+            novosErros.rua_aven = "Informe a rua ou avenida";
+
+        if (!form.numero_casa.trim()) 
+            novosErros.numero_casa = "Informe o número da casa";
+
+        if (!form.bairro.trim()) 
+            novosErros.bairro = "Informe o bairro";
+
+        if (!form.tipo) 
+            novosErros.tipo = "Selecione o cargo";
+
+        if (form.tipo === "Solicitar Administrador" && !form.motivo.trim())
+            novosErros.motivo = "Explique o motivo da solicitação";
+
+        setErros(novosErros);
+        return Object.keys(novosErros).length === 0;
+    }
+
+    async function salvar() {
+        try {
+            // Validar campos
+            if (!validarCampos()) {
+                alert("Por favor, corrija os erros no formulário.");
+                return;
+            }
+
+            // Validar data de nascimento
+            const dataNasc = new Date(form.data_nascimento);
+            const dataMin = new Date(dataMinima);
+            const dataMax = new Date();
+
+            if (dataNasc < dataMin || dataNasc > dataMax) {
+                alert("Data de nascimento inválida!");
+                return;
+            }
+
+            setCarregando(true);
+
+            // Preparar dados para envio
+            const dadosEnvio = {
+                nome_completo: form.nome_completo,
+                cpf: form.cpf,
+                data_nascimento: form.data_nascimento,
+                email: form.email,
+                senha: form.senha,
+                cep: form.cep,
+                rua_aven: form.rua_aven,
+                numero_casa: form.numero_casa,
+                bairro: form.bairro
+            };
+
+            // Determinar endpoint
+            if (form.tipo === "Solicitar Administrador") {
+                dadosEnvio.motivo = form.motivo;
                 
-                <label > <p>E-mail*</p>
-                    <input type="email" placeholder='exemplo@gmail.com' 
-                    value={form.email} onChange={(e) => atualizar('email', e.target.value)}
-                    className={erros.email ? 'erro' : ''}
-                    />
-                     {erros.email && <span className="msg-erro">{erros.email}</span>}
-                </label>
+                await api.post('/solicitar-admin', dadosEnvio);
+                
+                alert('✅ Solicitação de administrador enviada!\n\n' +
+                      'Você já pode fazer login como usuário.\n' +
+                      'Quando sua solicitação for aprovada, você terá acesso à área de administrador.');
 
-                <label> <p>Crie sua senha*</p>
-                            <input type="password" placeholder='Digite sua senha' 
-                            value={form.senha} onChange={(e) => atualizar('senha', e.target.value)}
-                            className={erros.senha ? 'erro' : ''}
-                            />
-                            {erros.senha && <span className="msg-erro">{erros.senha}</span>}
-                            </label>
-                    </div>
+            } else {
+                await api.post('/cadastrar', dadosEnvio);
+                
+                alert('✅ Cadastro realizado com sucesso!\n\nAgora você pode fazer login.');
+            }
 
+            // Limpar formulário
+            setform({
+                nome_completo: '',
+                cpf: '',
+                data_nascimento: '',
+                email: '',
+                senha: '',
+                cep: '',
+                rua_aven: '',
+                numero_casa: '',
+                bairro: '',
+                tipo: '',
+                abrirDropdown: false,
+                motivo: ''
+            });
+
+            // Redirecionar para login
+            setTimeout(() => {
+                navigate('/');
+            }, 1500);
+
+        } catch (erro) {
+            console.error('Erro ao cadastrar:', erro);
+            
+            let mensagemErro = 'Erro ao realizar cadastro.';
+            
+            if (erro.response?.data?.erro) {
+                mensagemErro = erro.response.data.erro;
+            } else if (erro.response?.status === 400) {
+                mensagemErro = 'Dados inválidos. Verifique os campos.';
+            } else if (erro.response?.status === 409) {
+                mensagemErro = 'Email ou CPF já cadastrado.';
+            }
+            
+            alert('❌ ' + mensagemErro);
+        } finally {
+            setCarregando(false);
+        }
+    }
+
+    return (
+        <section className='all'>
+            <section className='Container'>
+                <CabecalhoCadastro />
+                
+                <div className='primeiroP'>
+                    <p>Preencha os dados abaixo para completar seu cadastro na Via Saúde</p>
                 </div>
 
-                <div className="endereço">
-                <div className="endereço-usu">
-               <p>Endereço</p>
-               </div>
+                <div className='informação-usuário'>
+                    {/* DADOS PESSOAIS */}
+                    <div className='dados-usu'>
+                        <p>Dados Pessoais</p>
+                    </div>
 
-                <label> <p>CEP*</p>
-                    <input type="text" placeholder='00000-000'
-                    value={form.cep} onChange={(e) => atualizar('cep', e.target.value)}
-                    className={erros.cep ? 'erro' : ''}
-                    />
-                    {erros.cep && <span className="msg-erro">{erros.cep}</span>}
-                </label>
-
-                <div className="grupo2">
-                        <label> <p>Rua/Avenida*</p>
-                            <input type="text" placeholder='Rua ViaSaúde/Avenida ViaSaúde'
-                            value={form.rua_aven} onChange={(e) => atualizar('rua_aven', e.target.value)}
-                            className={erros.rua_aven ? 'erro' : ''}
-                            />
-                            {erros.rua_aven && <span className="msg-erro">{erros.rua_aven}</span>}
-                            </label>
-                            <label> <p>Número*</p>
-                                <input type="number" placeholder='n° 1234' 
-                                value={form.numero_casa} onChange={(e) => atualizar('numero_casa', e.target.value)}
-                                className={erros.numero_casa ? 'erro' : ''}
+                    <div className="dados">
+                        <div className="inputs">
+                            <label>
+                                <p>Nome Completo*</p>
+                                <input 
+                                    type="text" 
+                                    placeholder='Nome Completo'
+                                    value={form.nome_completo} 
+                                    onChange={(e) => atualizar('nome_completo', e.target.value)}
+                                    className={erros.nome_completo ? 'erro' : ''}
+                                    disabled={carregando}
                                 />
-                                {erros.numero_casa && <span className="msg-erro">{erros.numero_casa}</span>}
+                                {erros.nome_completo && (
+                                    <span className="msg-erro">{erros.nome_completo}</span>
+                                )}
+                            </label>
+
+                            <div className="grupo1">
+                                <label>
+                                    <p>CPF*</p>
+                                    <input 
+                                        type="text" 
+                                        placeholder='000.000.000-00' 
+                                        value={form.cpf} 
+                                        onChange={(e) => atualizar('cpf', e.target.value)}
+                                        className={erros.cpf ? 'erro' : ''}
+                                        disabled={carregando}
+                                    />
+                                    {erros.cpf && (
+                                        <span className="msg-erro">{erros.cpf}</span>
+                                    )}
                                 </label>
+
+                                <label>
+                                    <p>Data de Nascimento*</p>
+                                    <input 
+                                        type="date" 
+                                        min={dataMinima}
+                                        max={hoje}
+                                        value={form.data_nascimento} 
+                                        onChange={(e) => atualizar('data_nascimento', e.target.value)}
+                                        className={erros.data_nascimento ? 'erro' : ''}
+                                        disabled={carregando}
+                                    />
+                                    {erros.data_nascimento && (
+                                        <span className="msg-erro">{erros.data_nascimento}</span>
+                                    )}
+                                </label>
+                            </div>
+
+                            <label>
+                                <p>E-mail*</p>
+                                <input 
+                                    type="email" 
+                                    placeholder='exemplo@gmail.com' 
+                                    value={form.email} 
+                                    onChange={(e) => atualizar('email', e.target.value)}
+                                    className={erros.email ? 'erro' : ''}
+                                    disabled={carregando}
+                                />
+                                {erros.email && (
+                                    <span className="msg-erro">{erros.email}</span>
+                                )}
+                            </label>
+
+                            <label>
+                                <p>Crie sua senha* (mínimo 6 caracteres)</p>
+                                <input 
+                                    type="password" 
+                                    placeholder='Digite sua senha' 
+                                    value={form.senha} 
+                                    onChange={(e) => atualizar('senha', e.target.value)}
+                                    className={erros.senha ? 'erro' : ''}
+                                    disabled={carregando}
+                                />
+                                {erros.senha && (
+                                    <span className="msg-erro">{erros.senha}</span>
+                                )}
+                            </label>
+                        </div>
                     </div>
 
-                    <label> <p>Bairro*</p>
-                        <input type="text" placeholder='Nome Bairro' 
-                        value={form.bairro} onChange={(e) => atualizar('bairro', e.target.value)}
-                        className={erros.bairro ? 'erro' : ''}
-                        />
-                         {erros.bairro && <span className="msg-erro">{erros.bairro}</span>}
-                    </label>
+                    {/* ENDEREÇO */}
+                    <div className="endereço">
+                        <div className="endereço-usu">
+                            <p>Endereço</p>
+                        </div>
 
-<label>
-  <p>Cargo*</p>
-  <div className="dropdown">
-    <button
-      type="button"
-      className="dropdown-btn"
-      onClick={() => atualizar("abrirDropdown", !form.abrirDropdown)}
-    >
-      {form.tipo ? form.tipo : "Selecione o cargo"}
-      <span className="setinha">▼</span>
-    </button>
+                        <label>
+                            <p>CEP*</p>
+                            <input 
+                                type="text" 
+                                placeholder='00000-000'
+                                value={form.cep} 
+                                onChange={(e) => atualizar('cep', e.target.value)}
+                                className={erros.cep ? 'erro' : ''}
+                                disabled={carregando}
+                            />
+                            {erros.cep && (
+                                <span className="msg-erro">{erros.cep}</span>
+                            )}
+                        </label>
 
-    {form.abrirDropdown && (
-      <div className="dropdown-menu">
-        <div
-          className="dropdown-item"
-          onClick={() => setform({ ...form, tipo: "Usuário", abrirDropdown: false })}
-        >
-          Usuário
-        </div>
-        <div
-          className="dropdown-item"
-          onClick={() => setform({ ...form, tipo: "Solicitar Administrador", abrirDropdown: false })}
-        >
-          Solicitar Administrador
-        </div>
-      </div>
-    )}
-  </div>
-</label>
+                        <div className="grupo2">
+                            <label>
+                                <p>Rua/Avenida*</p>
+                                <input 
+                                    type="text" 
+                                    placeholder='Rua ViaSaúde/Avenida ViaSaúde'
+                                    value={form.rua_aven} 
+                                    onChange={(e) => atualizar('rua_aven', e.target.value)}
+                                    className={erros.rua_aven ? 'erro' : ''}
+                                    disabled={carregando}
+                                />
+                                {erros.rua_aven && (
+                                    <span className="msg-erro">{erros.rua_aven}</span>
+                                )}
+                            </label>
 
+                            <label>
+                                <p>Número*</p>
+                                <input 
+                                    type="number" 
+                                    placeholder='n° 1234' 
+                                    value={form.numero_casa} 
+                                    onChange={(e) => atualizar('numero_casa', e.target.value)}
+                                    className={erros.numero_casa ? 'erro' : ''}
+                                    disabled={carregando}
+                                />
+                                {erros.numero_casa && (
+                                    <span className="msg-erro">{erros.numero_casa}</span>
+                                )}
+                            </label>
+                        </div>
 
+                        <label>
+                            <p>Bairro*</p>
+                            <input 
+                                type="text" 
+                                placeholder='Nome Bairro' 
+                                value={form.bairro} 
+                                onChange={(e) => atualizar('bairro', e.target.value)}
+                                className={erros.bairro ? 'erro' : ''}
+                                disabled={carregando}
+                            />
+                            {erros.bairro && (
+                                <span className="msg-erro">{erros.bairro}</span>
+                            )}
+                        </label>
 
+                        {/* CARGO */}
+                        <label>
+                            <p>Cargo*</p>
+                            <div className="dropdown">
+                                <button
+                                    type="button"
+                                    className={`dropdown-btn ${erros.tipo ? 'erro' : ''}`}
+                                    onClick={() => atualizar("abrirDropdown", !form.abrirDropdown)}
+                                    disabled={carregando}
+                                >
+                                    {form.tipo ? form.tipo : "Selecione o cargo"}
+                                    <span className="setinha">▼</span>
+                                </button>
 
-                </div>
+                                {form.abrirDropdown && (
+                                    <div className="dropdown-menu">
+                                        <div
+                                            className="dropdown-item"
+                                            onClick={() =>
+                                                setform({ 
+                                                    ...form, 
+                                                    tipo: "Usuário", 
+                                                    abrirDropdown: false, 
+                                                    motivo: "" 
+                                                })
+                                            }
+                                        >
+                                            Usuário
+                                        </div>
+                                        <div
+                                            className="dropdown-item"
+                                            onClick={() =>
+                                                setform({ 
+                                                    ...form, 
+                                                    tipo: "Solicitar Administrador", 
+                                                    abrirDropdown: false 
+                                                })
+                                            }
+                                        >
+                                            Solicitar Administrador
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
 
-                <div className="doisfinais">
-                    <button className='cadastrar-img' type='button' onClick={salvar} >
-                        <img src= "/public/assets/images/ChatGPT_Image_7_de_nov._de_2025__00_53_06-removebg-preview.png" height={50} alt="" />
-                        <h2>Cadastrar-se</h2>
+                            {erros.tipo && (
+                                <span className="msg-erro" style={{ marginTop: "5px", display: "block" }}>
+                                    {erros.tipo}
+                                </span>
+                            )}
+                        </label>
+
+                        {/* MOTIVO (se solicitar admin) */}
+                        {form.tipo === "Solicitar Administrador" && (
+                            <div className="motivo-admin">
+                                <p>Por que você quer ser administrador?*</p>
+                                <textarea
+                                    placeholder="Explique brevemente o motivo da solicitação..."
+                                    value={form.motivo}
+                                    onChange={(e) => atualizar("motivo", e.target.value)}
+                                    rows={4}
+                                    className={erros.motivo ? "erro" : ""}
+                                    disabled={carregando}
+                                ></textarea>
+                                {erros.motivo && (
+                                    <span className="msg-erro">{erros.motivo}</span>
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* BOTÃO CADASTRAR */}
+                    <div className="doisfinais">
+                        <button 
+                            className='cadastrar-img' 
+                            type='button' 
+                            onClick={salvar}
+                            disabled={carregando}
+                        >
+                            <img 
+                                src="/public/assets/images/ChatGPT_Image_7_de_nov._de_2025__00_53_06-removebg-preview.png" 
+                                height={50} 
+                                alt="" 
+                            />
+                            <h2>{carregando ? 'Cadastrando...' : 'Cadastrar-se'}</h2>
                         </button>
-                    <p>* Campos obrigratórios</p>
+                        <p>* Campos obrigatórios</p>
+                    </div>
                 </div>
-            </div>
-
-
-    </section>
-    </section>
-  );
+            </section>
+        </section>
+    );
 }

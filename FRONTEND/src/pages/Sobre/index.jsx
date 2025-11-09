@@ -7,9 +7,9 @@ export default function Sobrenos() {
     return(
         <>
             <section className='Tudo'>
-                <Cabeçalho/>
-                
-                <Rodape/>
+                <section>
+                    
+                </section>
             </section>
         </>
     )
