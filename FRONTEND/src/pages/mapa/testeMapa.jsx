@@ -4,16 +4,24 @@ import "leaflet/dist/leaflet.css";
 
 export default function TesteMapa() {
   useEffect(() => {
-    // ✅ Corrige o erro de "Map container is already initialized"
+    // ✅ Corrige recriação do mapa
     const existingMap = L.DomUtil.get("map");
     if (existingMap != null) {
-      existingMap._leaflet_id = null; // força o Leaflet a recriar o mapa
+      existingMap._leaflet_id = null;
     }
 
-    // Inicializa o mapa centralizado na Zona Sul de SP
-    const map = L.map("map").setView([-23.65, -46.63], 12);
+    // Cria o mapa centralizado na Zona Sul de SP
+    const map = L.map("map", {
+      center: [-23.65, -46.63],
+      zoom: 12,
+      minZoom: 11, // 🔹 Impede que afaste demais
+      maxZoom: 18, // 🔹 Impede que aproxime demais
+      zoomControl: true, // 🔹 Mostra controle de zoom (+ / -)
+      scrollWheelZoom: true, // 🔹 Permite zoom com scroll do mouse
+      dragging: true, // 🔹 Permite arrastar o mapa
+    });
 
-    // 🔹 Mapa base (OpenStreetMap - gratuito)
+    // Mapa base gratuito (OpenStreetMap)
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
@@ -25,6 +33,7 @@ export default function TesteMapa() {
       [-23.58, -46.50]  // nordeste
     );
 
+    // Define os limites e mantém o foco dentro
     map.setMaxBounds(bounds);
     map.on("drag", function () {
       map.panInsideBounds(bounds, { animate: false });
@@ -65,9 +74,13 @@ export default function TesteMapa() {
         <b>${ubs.nome}</b><br>${ubs.info}
       `);
     });
+
+    // 🔹 Centraliza para ver todas as UBS
+    const group = L.featureGroup(ubsList.map((u) => L.marker(u.coords)));
+    map.fitBounds(group.getBounds(), { padding: [20, 20] });
   }, []);
 
-  // 🔹 O mapa é renderizado aqui
+  // Renderiza o mapa
   return (
     <div style={{ height: "100vh", width: "100%", padding: "10px" }}>
       <h2 style={{ textAlign: "center", marginBottom: "10px" }}>
