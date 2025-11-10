@@ -1,25 +1,22 @@
-import * as repo from '../Repository/cadastroRepository.js';
+import * as repo from '../Repository/medicamentosRepository.js';
 import { getAuthentication } from '../../utils/jwt.js'
-import jwt from 'jsonwebtoken';
-
-import multer from 'multer';
 import { Router } from "express";
 const endpoints = Router();
 
 const autenticador = getAuthentication();
 
-endpoints.post('/inserir', async (req, resp) => {
-    let cadastro = req.body;
-    let id = await repo.inserirCadastro(cadastro);
+endpoints.post('/inserir', autenticador, async (req, resp) => {
+    let medicamento = req.body;
+    let id = await repo.inserirMedicamento(medicamento);
 
     resp.send({ novoId: id });
 });
 
 endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
-    let cadastro = req.body;
+    let medicamento = req.body;
 
-    let linhasAfetadas = await repo.alterarCadastro(id, cadastro);
+    let linhasAfetadas = await repo.alterarMedicamento(id, medicamento);
 
     if (linhasAfetadas >= 1) {
         resp.send();
@@ -28,10 +25,22 @@ endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
     }
 });
 
+endpoints.get('/estoque/:id', autenticador, async (req, resp) => {
+    let id = req.params.id;
+
+    let registro = await repo.consultarMedicamento(id);
+
+    if (registro) {
+        resp.send({ estoque: registro.estoque_produto });
+    } else {
+        resp.status(404).send({ erro: 'Medicamento não encontrado' });
+    }
+});
+
 endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
 
-    let linhasAfetadas = await repo.deletarCadastro(id);
+    let linhasAfetadas = await repo.deletarMedicamento(id);
 
     if (linhasAfetadas >= 1) {
         resp.send();
@@ -43,8 +52,8 @@ endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
 endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
 
-    let registro = await repo.consultarCadastro(id);
-    
+    let registro = await repo.consultarMedicamento(id);
+
     if (registro) {
         resp.send(registro);
     } else {
@@ -53,30 +62,8 @@ endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
 });
 
 endpoints.get('/listar', autenticador, async (req, resp) => {
-    let registros = await repo.listarCadastros();
+    let registros = await repo.listarMedicamentos();
     resp.send(registros);
 });
 
-endpoints.post('/login', async (req, resp) => {
-    let { email, senha } = req.body;
-
-    let usuario = await repo.verificarLogin(email, senha);
-
-    if (usuario) {
-        let token = jwt.sign({
-            id: usuario.id,
-            nome: usuario.nome_completo,
-            email: usuario.email
-        }, 'borapracima');
-
-        resp.send({
-            token: token,
-            usuario: usuario
-        });
-    } else {
-        resp.status(401).send({ erro: 'Credenciais inválidas' });
-    }
-});
-
 export default endpoints;
-

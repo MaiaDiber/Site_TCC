@@ -1,25 +1,23 @@
-import * as repo from '../Repository/cadastroRepository.js';
+import * as repo from '../Repository/cadastrarAdminRepository.js';
 import { getAuthentication } from '../../utils/jwt.js'
 import jwt from 'jsonwebtoken';
-
-import multer from 'multer';
 import { Router } from "express";
 const endpoints = Router();
 
 const autenticador = getAuthentication();
 
 endpoints.post('/inserir', async (req, resp) => {
-    let cadastro = req.body;
-    let id = await repo.inserirCadastro(cadastro);
+    let admin = req.body;
+    let id = await repo.inserirAdmin(admin);
 
     resp.send({ novoId: id });
 });
 
 endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
-    let cadastro = req.body;
+    let admin = req.body;
 
-    let linhasAfetadas = await repo.alterarCadastro(id, cadastro);
+    let linhasAfetadas = await repo.alterarAdmin(id, admin);
 
     if (linhasAfetadas >= 1) {
         resp.send();
@@ -31,7 +29,7 @@ endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
 endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
 
-    let linhasAfetadas = await repo.deletarCadastro(id);
+    let linhasAfetadas = await repo.deletarAdmin(id);
 
     if (linhasAfetadas >= 1) {
         resp.send();
@@ -43,8 +41,8 @@ endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
 endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
 
-    let registro = await repo.consultarCadastro(id);
-    
+    let registro = await repo.consultarAdmin(id);
+
     if (registro) {
         resp.send(registro);
     } else {
@@ -53,14 +51,14 @@ endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
 });
 
 endpoints.get('/listar', autenticador, async (req, resp) => {
-    let registros = await repo.listarCadastros();
+    let registros = await repo.listarAdmins();
     resp.send(registros);
 });
 
 endpoints.post('/login', async (req, resp) => {
     let { email, senha } = req.body;
 
-    let usuario = await repo.verificarLogin(email, senha);
+    let usuario = await repo.verificarLoginAdmin(email, senha);
 
     if (usuario) {
         let token = jwt.sign({
@@ -79,4 +77,3 @@ endpoints.post('/login', async (req, resp) => {
 });
 
 export default endpoints;
-

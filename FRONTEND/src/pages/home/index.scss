@@ -1,384 +1,367 @@
-.Tudo{
+.Tudo {
   background-color: #fffdf3;
-  .Faixa {
-    text-align: center;
-    margin: 0 auto;
-    max-width: 800px;
-    margin: 5px 350px;
-    padding: 50px 50px;
-    border: double 6px #015C2A;
-    border-radius: 10px;
-    background-color: rgb(255, 255, 255);
+
+  .faixa-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+
+    .Faixa {
+      text-align: center;
+      flex: 1;
+      margin-left: -20px;
+
+      h2 {
+        font-size: 2rem;
+        color: #0d3b66;
+        margin-bottom: 15px;
+      }
+
+      p {
+        font-size: 1.1rem;
+        color: #333;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+    .FaixaaoLado {
+      text-align: center;
+      flex: 1;
+
+      h2 {
+        font-size: 2rem;
+        color: #0d3b66;
+        margin-bottom: 15px;
+      }
+
+      p {
+        font-size: 1.1rem;
+        color: #333;
+      }
+    }
   }
 }
 
+/* ====== Banner ====== */
 .img {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .banner {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  transform: translateY(-50%);
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__content {
+    color: #fff;
+    text-align: left;
+    padding: 32px 48px;
+    max-width: 800px;
+
+    h1 {
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .banner__subtitle {
+      font-size: 24px;
+      color: #9edaff;
+      font-weight: 400;
+      position: relative;
+
+      &::before {
+        content: "›";
+        margin-right: 8px;
+        color: #9edaff;
+      }
+    }
+  }
+}
+
+.SaibaMais {
+  padding-top: 40px;
+  h1{
+    font-size: 55px;
+    font-weight: 600;
+    margin-top: 18px;
+    margin-left: 48px;
+    font-family: 'Poppins', sans-serif;
+    color: #0d3b66;
+  }
+  p{
+    font-size: 19px;
+    padding: 10px 40px;
+    line-height: 1.65;
+  }
+  h3{
+    font-size: 24px;
+    padding: 5px 40px;
+    color: #04213d;
+  }
+  .Saiba{
+     font-size: 25px;
+    &::before {
+        content: "---›";
+      }
+  }
+}
+
+/* ====== Cartões principais ====== */
+.Servicos {
+  margin: 70px 0;
+
+  .faixa-verde {
+    background: linear-gradient(135deg, #164918 0%, #18541b 100%);
+    padding: 60px 20px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .titulo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+
+    .titulo-servicos {
+      font-size: 58px;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      text-align: left;
+      padding-left: 30px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .carousel-btns {
+      display: flex;
+      gap: 10px;
+      padding-right: 30px;
+    }
+  }
+
+  /* ====== Carrossel ====== */
+  .carousel {
+    position: relative;
+    overflow: hidden;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .cards {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease;
+    will-change: transform;
+  }
+
+  .card-wrapper {
+    flex: 0 0 400px;
+    min-width: 400px;
+    transition: transform 0.3s ease;
+    color: #fff;
+
+    h3 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-top: 18px;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      padding-left: 4px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #c7f1e0;
+      line-height: 1.5;
+      max-height: 3em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .card {
+    position: relative;
+    border-radius: 20px;
+    width: 100%;
+    height: 240px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  /* ====== Mostrar 3 e meio cards ====== */
+  .carousel::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 10%;
+    height: 100%;
+    background: linear-gradient(to left, #164918, transparent);
+    pointer-events: none;
+  }
+
+  /* ====== Botões ====== */
+  .carousel-btns {
     position: absolute;
     top: 50%;
     left: 0;
     width: 100%;
-    height: 300px;
-    transform: translateY(-50%);
-
-    &__overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    &__content {
-      color: #fff;
-      text-align: left;
-      padding: 32px 48px;
-      max-width: 800px;
-
-      h1 {
-        font-size: 56px;
-        font-weight: 700;
-        line-height: 1.3;
-        margin-bottom: 16px;
-      }
-
-      .banner__subtitle {
-        font-size: 24px;
-        color: #9edaff;
-        font-weight: 400;
-        position: relative;
-
-        &::before {
-          content: "›";
-          margin-right: 8px;
-          color: #9edaff;
-        }
-      }
-    }
-  }
-
-@media (max-width: 1366px) and (min-width: 1025px) {
-  .banner {
-    height: 280px;
-    &__content {
-      padding: 28px 40px;
-      max-width: 700px;
-      h1 {
-        font-size: 52px;
-      }
-      .banner__subtitle {
-        font-size: 22px;
-      }
-    }
-  }
-}
-
-@media (max-width: 1024px) {
-  .banner {
-    height: 250px;
-    &__content {
-      padding: 24px 32px;
-      max-width: 600px;
-      h1 {
-        font-size: 48px;
-      }
-      .banner__subtitle {
-        font-size: 20px;
-      }
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .banner {
-    height: 200px;
-    &__content {
-      padding: 16px 24px;
-      max-width: 100%;
-      text-align: center;
-      h1 {
-        font-size: 32px;
-        line-height: 1.2;
-      }
-      .banner__subtitle {
-        font-size: 18px;
-      }
-    }
-  }
-}
-
-.Servicos {
-  display: flex;
-  justify-content: center;
-  margin: 60px 0;
-
-  .cards {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 20px;
+  }
 
-    .card {
-      background-color: #fff;
-      border: 2px solid #a6dba6;
-      border-radius: 12px;
-      padding: 32px;
-      text-align: center;
-      width: 450px;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  .carousel-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 26px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
 
-      &:hover {
-        background-color: #f7fff7;
-        transform: translateY(-3px);
-      }
-
-      svg {
-        color: #3b923b;
-        margin-bottom: 8px;
-      }
-
-      h3 {
-        font-size: 20px;
-        margin-bottom: 8px;
-      }
-
-      p {
-        font-size: 16px;
-        color: #444;
-      }
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.1);
     }
+  }
+
+  /* ====== Fundos dos Cards ====== */
+  .card-vacinas {
+    background: url('/assets/Images/R.jpeg') center/cover no-repeat;
+  }
+
+  .card-unidades {
+    background: url('/assets/Images/OIP (1).webp') center/cover no-repeat;
+  }
+
+  .card-medicamentos {
+    background: url('/assets/Images/OIP.webp') center/cover no-repeat;
+  }
+
+  .card-campanhas {
+    background: url('/assets/Images/Mask.jpg') center/cover no-repeat;
   }
 }
 
-
-.Busca {
-  text-align: center;
-  margin: 40px 0 20px 0;
-
-  p {
-    margin-bottom: 12px;
-    font-size: 16px;
-  }
-
-  .barra {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #fff;
-    border: 2px solid #8ccf8c;
-    border-radius: 25px;
-    padding: 10px 20px;
-    width: 60%;
-
-    input {
-      flex: 1;
-      border: none;
-      outline: none;
-      font-size: 15px;
-      color: #333;
-      background: transparent;
-    }
-
-    svg {
-      color: #3b923b;
-    }
-  }
+.container-geral{
+  padding: 30px 50px;
+  margin-block: -60px;
+  margin-top: 50px;
 }
 
 .Botoes {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
+  margin-top: 40px;
+  padding-top: 50px;
 
   .btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    background-color: #e5e5e5;
     border: none;
-    padding: 14px 28px;
+    padding: 14px 25px;
     border-radius: 12px;
-    font-size: 15px;
-    color: white;
+    font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-  }
+    transition: all 0.3s;
+    color: #333;
 
-  .consulta {
-    background-color: #2e8b57;
-  }
+    &.ativo {
+      background-color: #0d6b3b;
+      color: #fff;
+    }
 
-  .medico {
-    background-color: #3aa86e;
-  }
-
-  .remedio {
-    background-color: #4cb27e;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
+    &:hover {
+      opacity: 0.9;
+    }
   }
 }
-
 
 .UBS {
-  max-width: 800px;
-  margin: 0 auto 80px auto;
-  background-color: #fff;
-  border: 2px solid #a6dba6;
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 
-  .UBS-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-
-    h4 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .status {
-      background-color: #e1fae1;
-      color: #2e8b57;
-      padding: 4px 10px;
-      border-radius: 10px;
-      font-size: 14px;
-    }
-  }
-
-  .UBS-info,
-  .UBS-horario {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #333;
-    margin-bottom: 10px;
-
-    svg {
-      color: #3b923b;
-    }
-  }
-
-  .UBS-alerta {
-    background-color: #fff6e5;
-    border-left: 4px solid #ffb347;
-    padding: 10px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    color: #704e00;
-    margin-top: 10px;
-  }
-}
-
-
-@media (max-width: 1024px) {
-  .Tudo .Faixa {
-    margin: 5px 200px;
-    padding: 40px 30px;
-  }
-
-  .Servicos .cards {
-    gap: 15px;
-  }
-
-  .Servicos .card {
-    width: 250px;
-  }
-
-  .Busca .barra {
-    width: 70%;
-  }
-
-  .Botoes {
-    gap: 15px;
-  }
-
-  .Botoes .btn {
-    padding: 12px 24px;
-    font-size: 14px;
-  }
-
-  .UBS {
+  .UBS-card {
+    background-color: #fff;
+    border: 1.5px solid #0d6b3b;
+    border-radius: 15px;
     padding: 20px;
-  }
-}
+    width: 500px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
-@media (max-width: 768px) {
-  .Tudo .Faixa {
-    margin: 5px 50px;
-    padding: 30px 20px;
-  }
+    .UBS-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-  .Servicos .cards {
-    flex-direction: column;
-    align-items: center;
-  }
+      h4 {
+        margin: 0;
+        font-weight: 600;
+        color: #0d3b66;
+      }
 
-  .Servicos .card {
-    width: 100%;
-    max-width: 300px;
-  }
+      .status {
+        background-color: #b1efc8;
+        color: #036c33;
+        font-size: 0.9rem;
+        padding: 3px 8px;
+        border-radius: 8px;
+      }
+    }
 
-  .Busca .barra {
-    width: 90%;
-  }
+    .UBS-info {
+      margin-top: 10px;
+      color: #444;
+    }
 
-  .Botoes {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .Botoes .btn {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .UBS {
-    padding: 15px;
-    margin: 0 20px 40px 20px;
-  }
-
-  .UBS-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .Tudo .Faixa {
-    margin: 5px 20px;
-    padding: 20px 15px;
-  }
-
-  .Servicos .card {
-    padding: 20px;
-  }
-
-  .Busca .barra {
-    width: 95%;
-  }
-
-  .UBS {
-    margin: 0 10px 20px 10px;
-    padding: 10px;
+    .UBS-alerta {
+      margin-top: 12px;
+      background-color: #fff3e0;
+      border: 1px solid #ffa726;
+      color: #444;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+    }
   }
 }
