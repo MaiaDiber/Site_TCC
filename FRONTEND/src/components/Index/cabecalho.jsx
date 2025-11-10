@@ -1,13 +1,29 @@
 import './cabecalho.scss';
 import { Link } from 'react-router';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 export default function Cabeçalho() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [PosicaoVisivel, setPosicaoVisivel] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
 
-    // Controla a animação e visibilidade do menu lateral
+    const navigate = useNavigate()
+
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+
+    function fazerLogout() {
+        if (window.confirm('Tem certeza que deseja sair?')) {
+            // Limpa todos os dados
+            localStorage.removeItem('TOKEN');
+            localStorage.removeItem('usuario');
+            localStorage.removeItem('EMAIL');
+
+            // Redireciona para a página inicial
+            navigate('/');
+        }
+    }
+
     useEffect(() => {
         if (menuOpen) {
             setPosicaoVisivel(true);
@@ -56,8 +72,24 @@ export default function Cabeçalho() {
                 <div className="menu-content">
                     <h2>Menu</h2>
                     <ul>
-                        <li><Link to="/">Início</Link></li>
-                        <li><Link to="/sobre">Sobre</Link></li>
+                        <li><Link to="/Home">Início</Link></li>
+                        <li><Link to="/Sobre">Sobre</Link></li>
+                         <li>
+                            <button
+                                onClick={() => {
+                                if (window.confirm('Tem certeza que deseja sair?')) {
+                                localStorage.removeItem('TOKEN');
+                                localStorage.removeItem('usuario');
+                                localStorage.removeItem('EMAIL');
+                                window.location.href = '/'; // Redireciona para home
+                            }
+                            }}
+                                className="btn-sair-menu"
+                                 >
+                                 Sair
+                                </button>
+                                </li>
+
                     </ul>
                 </div>
             </div>

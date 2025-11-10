@@ -1,0 +1,343 @@
+// EsqueciSenha.scss
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.all-esqueci-senha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #107764;
+
+    .container-esqueci-senha {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        height: 90%;
+        width: 700px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 40px 0;
+
+        .logo-site-esqueci-senha {
+            margin-top: -10px;
+        }
+
+        .card-esqueci-senha {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+            height: 75%;
+            width: 90%;
+            border: 3px solid #017B38;
+            border-radius: 8px;
+            padding: 40px 30px;
+            margin-top: 10px;
+
+            .cabecalho-esqueci-senha {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+
+                h1 {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 36px;
+                    color: #017B38;
+                    font-weight: bold;
+                }
+
+                .linha-esqueci-senha {
+                    padding: 1px 180px;
+                    background-color: #2e2e2e;
+                    border-radius: 2px;
+                }
+            }
+
+            .instrucoes {
+                text-align: center;
+                margin-bottom: 10px;
+
+                p {
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    font-size: 16px;
+                    color: #555;
+                    line-height: 1.4;
+                }
+            }
+
+            .campo-email {
+                width: 100%;
+                max-width: 500px;
+
+                label {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    width: 100%;
+
+                    p {
+                        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                        font-size: 18px;
+                        margin-bottom: 8px;
+                        color: #017B38;
+                        font-weight: bold;
+                    }
+
+                    input {
+                        height: 45px;
+                        width: 100%;
+                        padding: 0 15px;
+                        border: 3px solid transparent;
+                        border-radius: 8px;
+                        font-size: 16px;
+                        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                        transition: all 0.3s ease;
+                        box-sizing: border-box;
+                        background-color: #EEEEEE;
+                        box-shadow: 0 0 5px 2px #2b6851;
+                        outline: none;
+
+                        &:focus {
+                            border-color: #107764;
+                            box-shadow: 0 0 0 3px rgba(16, 119, 100, 0.2);
+                        }
+
+                        &::placeholder {
+                            color: #999;
+                            font-size: 14px;
+                        }
+
+                        &.erro {
+                            box-shadow: 0 0 7px 2px #ff0000 !important;
+                        }
+                    }
+
+                    .msg-erro {
+                        color: #ff0000;
+                        font-size: 13px;
+                        margin-top: 5px;
+                        font-weight: bold;
+                        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    }
+                }
+            }
+
+            .mensagem-sucesso {
+                background-color: #d4edda;
+                color: #155724;
+                padding: 12px 20px;
+                border-radius: 6px;
+                border: 1px solid #c3e6cb;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 15px;
+                text-align: center;
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .btn-enviar-email {
+                padding: 14px 40px;
+                background-color: #017B38;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                min-width: 280px;
+
+                &:hover:not(:disabled) {
+                    background-color: #107764;
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+                }
+
+                &:active:not(:disabled) {
+                    transform: translateY(0);
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+
+                &:disabled {
+                    background-color: #7a9c8c;
+                    cursor: not-allowed;
+                    transform: none;
+                }
+
+                &:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 3px rgba(16, 119, 100, 0.3);
+                }
+            }
+
+            .voltar-login {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+
+                p {
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    font-size: 16px;
+                    color: rgb(107, 107, 107);
+                }
+
+                a {
+                    font-weight: bold;
+                    border: 3px solid #017B38;
+                    border-radius: 5px;
+                    padding: 8px 16px;
+                    text-decoration: none;
+                    color: #017B38;
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    transition: all 0.3s ease;
+                    font-size: 15px;
+
+                    &:hover {
+                        transform: translateY(-3px);
+                        background-color: #017B38;
+                        color: white;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+                    }
+
+                    &:active {
+                        transform: translateY(-1px);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* 💻 Responsividade para notebooks (1366px) */
+@media (max-width: 1366px) {
+    .container-esqueci-senha {
+        width: 650px !important;
+        
+        .card-esqueci-senha {
+            .cabecalho-esqueci-senha {
+                .linha-esqueci-senha {
+                    padding: 1px 150px !important;
+                }
+            }
+        }
+    }
+}
+
+/* 📱 Tablets */
+@media (max-width: 1024px) {
+    .all-esqueci-senha {
+        padding: 20px;
+        
+        .container-esqueci-senha {
+            width: 90%;
+            height: auto;
+            min-height: 600px;
+            
+            .card-esqueci-senha {
+                padding: 30px 20px;
+                
+                .cabecalho-esqueci-senha {
+                    h1 {
+                        font-size: 32px;
+                    }
+                    
+                    .linha-esqueci-senha {
+                        padding: 1px 120px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* 📱 Celulares */
+@media (max-width: 768px) {
+    .all-esqueci-senha {
+        padding: 15px;
+        
+        .container-esqueci-senha {
+            width: 95%;
+            padding: 20px 0;
+            
+            .logo-site-esqueci-senha {
+                height: 60px;
+            }
+            
+            .card-esqueci-senha {
+                padding: 25px 15px;
+                gap: 20px;
+                
+                .cabecalho-esqueci-senha {
+                    h1 {
+                        font-size: 28px;
+                        text-align: center;
+                    }
+                    
+                    .linha-esqueci-senha {
+                        padding: 1px 80px !important;
+                    }
+                }
+                
+                .instrucoes p {
+                    font-size: 14px;
+                    padding: 0 10px;
+                }
+                
+                .btn-enviar-email {
+                    padding: 12px 20px;
+                    font-size: 15px;
+                    min-width: 250px;
+                }
+                
+                .voltar-login {
+                    a {
+                        padding: 6px 12px;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* 📱 Celulares pequenos */
+@media (max-width: 480px) {
+    .all-esqueci-senha {
+        .container-esqueci-senha {
+            .card-esqueci-senha {
+                .cabecalho-esqueci-senha {
+                    h1 {
+                        font-size: 24px;
+                    }
+                    
+                    .linha-esqueci-senha {
+                        padding: 1px 60px !important;
+                    }
+                }
+                
+                .btn-enviar-email {
+                    min-width: 200px;
+                    font-size: 14px;
+                    padding: 10px 15px;
+                }
+            }
+        }
+    }
+}

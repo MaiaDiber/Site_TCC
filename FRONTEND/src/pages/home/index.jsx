@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import './index.scss'
 
 export default function Home() {
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [abaAtiva, setAbaAtiva] = useState('consultas');
     const [dados, setDados] = useState([]);
@@ -62,6 +63,10 @@ export default function Home() {
             prevIndex === 0 ? cards.length - 1 : prevIndex - 1
         );
     };
+
+
+     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+
 
     return (
         <>

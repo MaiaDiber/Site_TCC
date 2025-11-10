@@ -1,36 +1,41 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+
 import Home from './pages/home/index';
+import Perfil from './pages/Perfil/Perfil';
 import Cadastro from './pages/Cadastro/Cadastrao';
 import Sobrenos from './pages/Sobre/index';
 import Entrar from './pages/Entrar/Entrar';
 import Verificacao from './pages/Verificacao';
 import EmailEnviado from './pages/Entrar/PaginadeEspera';
 import AtualizarSenha from './pages/RedefinirSenha/TrocarSenha';
-import PaginaAdmin from './pages/Admin/index';
 import RotaProtegida from './components/component';
+import Solicitacoes from './pages/Admin/Solicitacoes';
+import TesteMapa from './pages/mapa/testeMapa';
+import PaginaAdmin from './pages/Admin/Principal';
+import EsqueciSenha from './pages/RedefinirSenha/enviarEmail';
+
 
 export default function Navegation() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Home />} />
                 <Route path='/Cadastro' element={<Cadastro />} />
-                <Route path='/Entrar' element={<Entrar />} />
-                <Route path='/Sobre' element={<Sobrenos />} />
-                <Route path='/PaginaDeEspera' element={<EmailEnviado />} />
-                <Route path='/RedefinirSenha' element={<AtualizarSenha />} />
-                <Route path='/Verificar' element={<Verificacao />} />
+                <Route path='/' element={<Entrar />} />
+                <Route path='/PaginaEspera' element={<EmailEnviado />} />
+                <Route path='/EnviarEmail' element={<EsqueciSenha />} />
+                <Route path='/RedefinirSenha/:token' element={<AtualizarSenha />}/>
 
-                {/* Rota protegida — somente Adm pode acessar */}
-                <Route
-                    path='/Admin'
-                    element={
-                        <RotaProtegida tipoPermitido="Adm">
-                            <PaginaAdmin />
-                        </RotaProtegida>
-                    }
-                />
+                <Route path='/Home' element={<RotaProtegida><Home /></RotaProtegida>} />
+                <Route path='/Sobre' element={<RotaProtegida><Sobrenos /></RotaProtegida>} />
+                <Route path='/Verificar' element={<RotaProtegida><Verificacao /></RotaProtegida>} />
+                <Route path='/Perfil' element={<RotaProtegida><Perfil /></RotaProtegida>} />
+                <Route path='/Mapa' element={<RotaProtegida><TesteMapa/></RotaProtegida>} />
+                <Route path='/Admin'  element={<RotaProtegida tipoPermitido="admin"><PaginaAdmin /></RotaProtegida>}/>
+                <Route path='/SolicitaçõesAdmin'  element={<RotaProtegida tipoPermitido="admin"><Solicitacoes /></RotaProtegida>}/>
             </Routes>
         </BrowserRouter>
     );
+
+    
 }

@@ -1,18 +1,21 @@
-// utils/jwt.js
+
 import jwt from 'jsonwebtoken';
 
-const KEY = 'borapracima';
+const KEY = 'ViaSaúde';
+
 
 export function generateToken(userInfo) {
   if (!userInfo.tipo)
-    userInfo.tipo = 'Paciente'; // valor padrão
+    userInfo.tipo = 'paciente';
 
-  return jwt.sign(userInfo, KEY, { expiresIn: '1h' });
+  return jwt.sign(userInfo, KEY, { expiresIn: '24h' });
 }
+
 
 export function getTokenInfo(req) {
   try {
-    let token = req.headers['authorization'];
+    let token = req.headers['authorization'] || req.headers['x-access-token'];
+    
     if (token && token.startsWith('Bearer '))
       token = token.slice(7);
 
@@ -26,7 +29,9 @@ export function getTokenInfo(req) {
 export function getAuthentication(checkRole, throw401 = true) {
   return (req, resp, next) => {
     try {
-      let token = req.headers['authorization'];
+      
+      let token = req.headers['authorization'] || req.headers['x-access-token'];
+      
       if (!token)
         return resp.status(401).send({ erro: 'Token não enviado' });
 
@@ -36,7 +41,8 @@ export function getAuthentication(checkRole, throw401 = true) {
       const signd = jwt.verify(token, KEY);
       req.user = signd;
 
-      if (checkRole && !checkRole(signd) && signd.tipo !== 'Adm')
+     
+      if (checkRole && !checkRole(signd) && signd.tipo !== 'admin')
         return resp.status(403).send({ erro: 'Acesso negado' });
 
       next();
@@ -45,6 +51,17 @@ export function getAuthentication(checkRole, throw401 = true) {
         return resp.status(401).send({ erro: 'Token inválido ou expirado' });
       else
         next();
+    }
+  };
+}
+
+
+export function verificarAdmin() {
+  return (req, resp, next) => {
+    if (req.user && req.user.tipo === 'admin') {
+      next();
+    } else {
+      resp.status(403).send({ erro: 'Acesso negado. Apenas administradores.' });
     }
   };
 }

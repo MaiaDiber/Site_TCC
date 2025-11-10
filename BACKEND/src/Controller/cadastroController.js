@@ -1,11 +1,9 @@
 import * as repo from '../Repository/cadastroRepository.js';
-import { getAuthentication } from '../../utils/jwt.js'
+import { getAuthentication } from '../../utils/jwt.js';
 import jwt from 'jsonwebtoken';
-
-import multer from 'multer';
 import { Router } from "express";
-const endpoints = Router();
 
+const endpoints = Router();
 const autenticador = getAuthentication();
 
 endpoints.post('/inserir', async (req, resp) => {
@@ -44,7 +42,7 @@ endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
 
     let registro = await repo.consultarCadastro(id);
-    
+
     if (registro) {
         resp.send(registro);
     } else {
@@ -58,25 +56,95 @@ endpoints.get('/listar', autenticador, async (req, resp) => {
 });
 
 endpoints.post('/login', async (req, resp) => {
-    let { email, senha } = req.body;
+    const { email, senha } = req.body;
 
-    let usuario = await repo.verificarLogin(email, senha);
+    if (!email || !senha) {
+        return resp.status(400).send({ erro: 'Informe email e senha' });
+    }
 
-    if (usuario) {
-        let token = jwt.sign({
+    const usuario = await repo.verificarLogin(email, senha);
+
+    if (!usuario) {
+        return resp.status(401).send({ erro: 'Email ou senha incorretos' });
+    }
+
+    const token = jwt.sign(
+        {
             id: usuario.id,
             nome: usuario.nome_completo,
             email: usuario.email
-        }, 'borapracima');
+        },
+        'ViaSaúde',
+        { expiresIn: '24h' }
+    );
 
-        resp.send({
-            token: token,
-            usuario: usuario
-        });
+    resp.send({
+        mensagem: 'Login realizado com sucesso',
+        token: token,
+        usuario: {
+            id: usuario.id,
+            nome: usuario.nome_completo,
+            email: usuario.email
+        }
+    });
+});
+
+endpoints.get('/perfil', autenticador, async (req, resp) => {
+    const registro = await repo.consultarCadastro(req.user.id);
+
+    if (registro) {
+        delete registro.senha;
+        resp.send(registro);
     } else {
-        resp.status(401).send({ erro: 'Credenciais inválidas' });
+        resp.status(404).send({ erro: 'Usuário não encontrado' });
     }
 });
 
-export default endpoints;
+endpoints.put('/perfil', autenticador, async (req, resp) => {
+    const dados = req.body;
 
+    const linhasAfetadas = await repo.alterarCadastro(req.user.id, dados);
+
+    if (linhasAfetadas >= 1) {
+        resp.send({ mensagem: 'Perfil atualizado com sucesso!' });
+    } else {
+        resp.status(404).send({ erro: 'Usuário não encontrado' });
+    }
+});
+
+endpoints.put('/alterar-senha', autenticador, async (req, resp) => {
+    const { senhaAtual, novaSenha } = req.body;
+
+    if (!senhaAtual || !novaSenha) {
+        return resp.status(400).send({ erro: 'Informe a senha atual e a nova senha' });
+    }
+
+    if (novaSenha.length < 6) {
+        return resp.status(400).send({ erro: 'A nova senha deve ter no mínimo 6 caracteres' });
+    }
+
+    const linhasAfetadas = await repo.alterarSenha(req.user.id, senhaAtual, novaSenha);
+
+    if (linhasAfetadas >= 1) {
+        resp.send({ mensagem: 'Senha alterada com sucesso!' });
+    } else {
+        resp.status(400).send({ erro: 'Não foi possível alterar a senha' });
+    }
+});
+
+endpoints.delete('/perfil', autenticador, async (req, resp) => {
+    const linhasAfetadas = await repo.deletarCadastro(req.user.id);
+
+    if (linhasAfetadas >= 1) {
+        resp.send({ mensagem: 'Conta deletada com sucesso' });
+    } else {
+        resp.status(404).send({ erro: 'Usuário não encontrado' });
+    }
+});
+
+endpoints.get('/listar-publico', async (req, resp) => {
+    const registros = await repo.listarCadastros();
+    resp.send(registros);
+});
+
+export default endpoints;

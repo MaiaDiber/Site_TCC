@@ -52,38 +52,330 @@
         margin-left: 5%;
       }
 
+      .dados{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+       
+        
       .inputs {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 25px;
-        margin-top: 20px;
+        align-items: center;  
+        flex-direction: column;
+        gap: 20px;
 
-        input {
-          height: 40px;
-          width: 300px;
-          border-radius: 8px;
-          border: 3px solid #017b38;
-          background-color: #eeeeee;
-          color: #000;
-          font-weight: bold;
-          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-          text-indent: 15px;
-          transition: 0.2s ease;
-
-          &:focus {
-            outline: none;
-            border-color: #065e4d;
-            background-color: #f6fefc;
-          }
-
-          &[type='date'] {
-            color: #000;
-          }
+        input.erro {
+        box-shadow: 0 0 7px 2px #ff0000 !important;
         }
+
+        .msg-erro {
+        margin-top: 10px;
+        color: #ff0000;
+        font-size: 13px;
+        font-weight: bold;
+        
+        }
+
+        label{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            p{
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color: #017B38;
+                font-weight: bold;
+            }
+        }
+
+        .grupo1{
+           display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+             width: 100%;
+
+            input{
+            text-align: left;
+            height: 35px;
+            width: 240px;
+            border-radius: 5px;
+            border: 3px solid transparent;
+            outline: none;
+            background-color: #EEEEEE;
+            color: #000000;
+            font-weight: bold;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-indent: 15px;
+            transition: border-color 0.3s ease;
+            outline: none;   
+
+            }
+
+            input:not(.erro) {
+            box-shadow: 0 0 5px 2px #2b6851;  /* borda padrão */
+            }
+
+            input.erro {
+            box-shadow: 0 0 7px 2px #ff0000 !important;
+            }
+
+            input[type="date"]{
+                color: black;
+                
+                
+            }
+            input[type="date"]:valid {
+                color: gray;
+                
+            }
+
+          
+        }
+
+        input{
+            text-align: left;
+            height: 35px;
+            width: 550px;
+            border-radius: 5px;
+            border: 3px solid transparent;
+            background-color: #EEEEEE;
+            color: #000000;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-indent: 15px;
+            transition: border-color 0.3s ease;
+            box-shadow: 0 0 5px 2px #2b6851;
+            outline: none; 
+        }
+
+      
+    }
       }
 
-      .doisfinais {
+    .endereço{
+        margin-top: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+
+        input.erro {
+        box-shadow: 0 0 7px 2px #ff0000 !important;
+        
+            }
+
+            .msg-erro {
+            color: #ff0000;
+            font-size: 13px;
+            margin-top: 2px;
+            font-weight: bold;
+        }
+
+        label{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            p{
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color: #017B38;
+                font-weight: bold;
+            }
+        }
+
+        .endereço-usu{
+            font-size: 20px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            color: #017B38;
+            position: absolute;
+            top: 45%;
+            left: 5%;
+        }
+
+         input{
+            display: flex;
+            justify-content: start;
+            height: 35px;
+            width: 550px;
+            border-radius: 5px;
+            border: 3px solid transparent;
+            background-color: #EEEEEE;
+            color: #000000;
+            font-weight: bold;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-indent: 15px;
+            transition: border-color 0.3s ease;
+            box-shadow: 0 0 5px 2px #2b6851;
+            outline: none;
+        }
+
+        .grupo2{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+             width: 100%;
+
+            
+
+            input{
+                display: flex;
+                justify-content: start;
+                height: 35px;
+                width: 240px;
+                border-radius: 5px;
+                border: 3px solid transparent;
+                background-color: #EEEEEE;
+                color: #000000;
+                font-weight: bold;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                text-indent: 15px;
+                transition: border-color 0.3s ease;
+                outline: none;
+                
+                
+            }
+
+             input:not(.erro) {
+            box-shadow: 0 0 5px 2px #2b6851;
+            }
+
+            input.erro {
+            box-shadow: 0 0 7px 2px #ff0000 !important;
+            }
+        }
+
+        
+       
+    }
+
+    
+
+    .dropdown {
+  position: relative;
+  width: 550px;
+
+   .dropdown-btn.erro {
+  box-shadow: 0 0 7px 2px #ff0000 !important;
+  
+}
+
+.msg-erro {
+    
+  color: #ff0000;
+  font-size: 13px;
+  margin-top: 2px;
+  font-weight: bold;
+}
+
+  .dropdown-btn {
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    border: 3px solid transparent;
+    background-color: #EEEEEE;
+    color: #000000;
+    font-weight: bold;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-indent: 15px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    transition: border-color 0.3s ease-in-out;
+    box-shadow: 0 0 5px 2px #2b6851;
+
+    .setinha {
+      font-size: 12px;
+      color: #017B38;
+    }
+
+    &:hover {
+      background-color: #e3f7ee;
+    }
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 0 5px 2px #2b6851;
+
+    .dropdown-item {
+      padding: 10px;
+      font-weight: bold;
+      color: #255a3d;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #e0f5ed;
+      }
+    }
+  }
+  
+
+
+}
+
+.motivo-admin {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+
+  p {
+    color: #017B38;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+  }
+
+  textarea {
+    width: 100%;
+    max-width: 550px; /* igual ao botão dropdown */
+    min-height: 90px;
+    border-radius: 5px;
+    border: 3px solid transparent;
+    background-color: #EEEEEE;
+    color: #000000;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 10px 15px;
+    box-shadow: 0 0 5px 2px #2b6851;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: none;
+    outline: none;
+  }
+
+  textarea.erro {
+    border-color: red !important;
+    box-shadow: none !important;
+  }
+
+  .msg-erro {
+    color: #ff0000;
+    font-size: 13px;
+    margin-top: 4px;
+    font-weight: bold;
+  }
+}
+
+
+}
+
+    .doisfinais{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -129,7 +421,7 @@
       }
     }
   }
-}
+
 
 /* 💻 Responsividade para notebooks (1366px) */
 @media (max-width: 1366px) {
