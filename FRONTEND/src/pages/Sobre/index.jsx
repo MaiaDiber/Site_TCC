@@ -22,10 +22,11 @@ export default function Sobrenos() {
       <h3>___________________________</h3>
       <br></br>
       <p>
-        A ideia para este projeto surgiu durante o desenvolvimento de um
-        Trabalho de Conclusão de Curso (TCC), quando nos deparamos com os
-        desafios da saúde pública e a falta de acesso à informação, especialmente
-        entre pessoas mais velhas ou com dificuldades de usar tecnologias.
+       A ideia para este projeto surgiu durante o desenvolvimento
+       de um Trabalho de Conclusão de Curso (TCC), quando 
+       nos deparamos com os desafios da saúde pública e a falta de acesso à informação,
+       especialmente entre pessoas mais velhas ou
+       com dificuldades de usar tecnologias.
       </p>
       <p>
         Com isso, criamos um site intuitivo, especialmente pensado para garantir
