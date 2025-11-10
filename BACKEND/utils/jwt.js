@@ -1,11 +1,9 @@
-// utils/jwt.js - VERSÃO FINAL CORRIGIDA
+
 import jwt from 'jsonwebtoken';
 
 const KEY = 'ViaSaúde';
 
-// ============================================
-// GERAR TOKEN
-// ============================================
+
 export function generateToken(userInfo) {
   if (!userInfo.tipo)
     userInfo.tipo = 'paciente';
@@ -13,9 +11,7 @@ export function generateToken(userInfo) {
   return jwt.sign(userInfo, KEY, { expiresIn: '24h' });
 }
 
-// ============================================
-// EXTRAIR INFORMAÇÕES DO TOKEN
-// ============================================
+
 export function getTokenInfo(req) {
   try {
     let token = req.headers['authorization'] || req.headers['x-access-token'];
@@ -30,13 +26,10 @@ export function getTokenInfo(req) {
   }
 }
 
-// ============================================
-// MIDDLEWARE DE AUTENTICAÇÃO
-// ============================================
 export function getAuthentication(checkRole, throw401 = true) {
   return (req, resp, next) => {
     try {
-      // ✅ Aceita tanto 'authorization' quanto 'x-access-token'
+      
       let token = req.headers['authorization'] || req.headers['x-access-token'];
       
       if (!token)
@@ -48,7 +41,7 @@ export function getAuthentication(checkRole, throw401 = true) {
       const signd = jwt.verify(token, KEY);
       req.user = signd;
 
-      // Verifica papel (role) se necessário
+     
       if (checkRole && !checkRole(signd) && signd.tipo !== 'admin')
         return resp.status(403).send({ erro: 'Acesso negado' });
 
@@ -62,9 +55,7 @@ export function getAuthentication(checkRole, throw401 = true) {
   };
 }
 
-// ============================================
-// MIDDLEWARE ESPECÍFICO PARA VERIFICAR SE É ADMIN
-// ============================================
+
 export function verificarAdmin() {
   return (req, resp, next) => {
     if (req.user && req.user.tipo === 'admin') {

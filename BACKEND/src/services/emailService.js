@@ -12,44 +12,56 @@ const transporter = nodemailer.createTransport({
 
 const enviarEmailRedefinicao = async (emailDestino, token) => {
     try {
-        const resetURL = `http://localhost:6045/reset-password/${token}`
+       const resetURL = `http://localhost:5173/RedefinirSenha/${token}`
+
 
         
         const mailOptions = {
             from: '"TCC Via Saúde" <viasaudetcc@gmail.com>',
             to: emailDestino,
             subject: 'Redefinição de Senha - Via Saúde',
-            html: `
-                 <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ; width: 600px; height: 200px;margin: 0 auto;">
-                    <div style="background: #1c7e5dff; color: white; padding: 20px; text-align: center;">
-                        <img src="cid:logoTCC" height="130px" alt="">
-                        <p style="font-size: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Sistema Inteligente de Saúde - Zona Sul SP</p>
-                    </div>
-                    
-                    <div style="padding: 30px;">
-                        <h2  style="color: #007bff; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">Redefinição de Senha</h2>
-                        <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" >Olá,</p>
-                        <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" >Você solicitou a redefinição de senha para sua conta no Via Saúde.</p>
-                        
-                        <div style="text-align: center; margin: 30px 0;">
-                            <a href="${resetURL}" 
-                               style="background: #339e7eff; color: white; padding: 15px 30px;
-                                      text-decoration: none; border-radius: 5px; 
-                                      display: inline-block; font-weight: bold; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
-                                Redefinir Minha Senha
-                            </a>
-                        </div>
-                        
-                        <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" >Se você não solicitou esta alteração, ignore este e-mail.</p>
-                        <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" ><strong>Este link expira em 1 hora.</strong></p>
-                    </div>
-                    
-                    <div style="background: #f8f9fa; padding: 15px; text-align: center; font-size: 12px; color: #666;">
-                        <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" >Via Saúde - Zona Sul de São Paulo</p>
-                        <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" >Trabalho de Conclusão de Curso</p>
-                    </div>
-                </div>
-            `,
+           html: `
+  <!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinição de Senha - Via Saúde</title>
+  </head>
+  <body style="margin:0; padding:0; background:#f4f4f4; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+    <div style="width: 100%; padding: 30px 0;">
+      <div style="background: #1c7e5dff; color: white; padding: 20px; text-align: center;">
+        <img src="cid:logoTCC" height="130" alt="Logo Via Saúde">
+        <p style="font-size: 16px; margin: 0;">Sistema Inteligente de Saúde - Zona Sul SP</p>
+      </div>
+
+      <div style="max-width: 600px; background: white; margin: 0 auto; padding: 30px; border-radius: 8px;">
+        <h2 style="color: #007bff;">Redefinição de Senha</h2>
+        <p>Olá,</p>
+        <p>Você solicitou a redefinição de senha para sua conta no <strong>Via Saúde</strong>.</p>
+
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="${resetURL}" 
+             style="background: #339e7eff; color: white; padding: 15px 30px;
+                    text-decoration: none; border-radius: 5px; 
+                    display: inline-block; font-weight: bold;">
+            Redefinir Minha Senha
+          </a>
+        </div>
+
+        <p>Se você não solicitou esta alteração, ignore este e-mail.</p>
+        <p><strong>Este link expira em 1 hora.</strong></p>
+      </div>
+
+      <div style="background: #f8f9fa; padding: 15px; text-align: center; font-size: 12px; color: #666;">
+        <p>Via Saúde - Zona Sul de São Paulo</p>
+        <p>Trabalho de Conclusão de Curso</p>
+      </div>
+    </div>
+  </body>
+  </html>
+`,
+
 
             attachments: [
                 {

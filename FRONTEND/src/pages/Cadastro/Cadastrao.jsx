@@ -116,25 +116,25 @@ async function salvar() {
         if (form.tipo === "Solicitar Administrador") {
             endpoint = '/solicitar-admin';
             dadosEnvio.motivo = form.motivo;
-            mensagemSucesso = '✅ Solicitação de administrador enviada!\\n\\nVocê já pode fazer login como usuário.\\nQuando sua solicitação for aprovada, você terá acesso à área de administrador.';
+            mensagemSucesso = '✅ Solicitação de administrador enviada! Você já pode fazer login como usuário.';
         } else {
             endpoint = '/cadastrar'; // ✅ ENDPOINT CORRETO
-            mensagemSucesso = '✅ Cadastro realizado com sucesso!\\n\\nAgora você pode fazer login.';
+            mensagemSucesso = '✅ Cadastro realizado com sucesso! Agora você pode fazer login.';
         }
 
-        // 🔥 TENTE PRIMEIRO COM adminController, SE DER ERRO, TENTE cadastroController
+        
         let response;
         try {
             response = await api.post(endpoint, dadosEnvio);
         } catch (erroEndpoint1) {
             console.log('Tentando endpoint alternativo...');
-            // Se o primeiro endpoint falhar, tente o alternativo
+          
             response = await api.post('/api/cadastro' + endpoint, dadosEnvio);
         }
 
         alert(mensagemSucesso);
 
-        // Limpar formulário
+       
         setform({
             nome_completo: '',
             cpf: '',
@@ -150,9 +150,9 @@ async function salvar() {
             motivo: ''
         });
 
-        // Redirecionar para login
+        
         setTimeout(() => {
-            navigate('/');
+            navigate('/Home');
         }, 1500);
 
     } catch (erro) {

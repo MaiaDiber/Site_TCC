@@ -1,84 +1,109 @@
-import { useState, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import './TrocarSenha.scss'
+// src/pages/RedefinirSenha.jsx
+import { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import api from '../../axios';
+import './TrocarSenha.scss';
 
-export default function AtualizarSenha() {
-    const [trocarPassword, setTrocarPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
-    const [message, setMessage] = useState('')
-    
-    const location = useLocation()
-    const navigate = useNavigate()
-    const token = new URLSearchParams(location.search).get('token')
+export default function RedefinirSenha() {
+  const { token } = useParams();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!token) {
-            setMessage('Link inválido ou expirado')
-        }
-    }, [token])
+  const [novaSenha, setNovaSenha] = useState('');
+  const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [carregando, setCarregando] = useState(false);
+  const [mensagem, setMensagem] = useState('');
+  const [erro, setErro] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        
-        if (!token) {
-            setMessage('Link inválido')
-            return
-        }
-        
-        if (password !== confirmPassword) {
-            setMessage('Senhas não coincidem')
-            return
-        }
-        
-        // Aqui você fará a chamada para API
-        console.log('Token:', token)
-        console.log('Nova senha:', password)
-        
-        setMessage('Senha atualizada com sucesso!')
-        // navigate('/login') // redirecionar depois
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!novaSenha || !confirmarSenha) {
+      setErro('Preencha todos os campos');
+      return;
     }
 
+    if (novaSenha.length < 6) {
+      setErro('A senha deve ter pelo menos 6 caracteres');
+      return;
+    }
+
+    if (novaSenha !== confirmarSenha) {
+      setErro('As senhas não coincidem');
+      return;
+    }
+
+    try {
+      setCarregando(true);
+      setErro('');
+      setMensagem('');
+
+      await api.post('/reset-password', {
+        token,
+        novaSenha,
+      });
+
+      setMensagem('✅ Sua senha foi redefinida com sucesso!');
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+    } catch (error) {
+      console.error('Erro ao redefinir senha:', error);
+      if (error.response?.status === 400) {
+        setErro('Token inválido ou expirado');
+      } else {
+        setErro('Erro ao redefinir a senha. Tente novamente.');
+      }
+    } finally {
+      setCarregando(false);
+    }
+  }
+
+  if (!token) {
     return (
-        <section className='all-senha'>
-            <div className="logo-senha">
-                <img src="/assets/Images/a.png" height={130} alt="" />
-            </div>
+      <div className="invalid-token">
+        <h2>Token inválido ou ausente</h2>
+        <p>O link de redefinição de senha parece estar incorreto ou expirado.</p>
+        <a href="/">Voltar para o login</a>
+      </div>
+    );
+  }
 
-            <section className='container-senha'>
-                <div className="titulo-linha">
-                    <h1>Redefina sua senha</h1>
-                    <div className="linha-senha"></div>
-                </div>
+  return (
+    <section className="redefinir-container">
 
-                {message && <div className="message">{message}</div>}
+    <img src="/public/assets/images/a.png" height={130} alt="" />
 
-                <form onSubmit={handleSubmit}>
-                    <div className="senha-confirmação">
-                        <label>
-                            <p>Crie uma nova senha</p>
-                            <input 
-                                type="password" 
-                                value={trocarPassword}
-                                onChange={(e) => setTrocarPassword(e.target.value)}
-                                required
-                            />
-                        </label>
-                        <label>
-                            <p>Confirme a senha</p>
-                            <input 
-                                type="password" 
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                required
-                            />
-                        </label>
-                    </div>
+      <div className="redefinir-card">
+        <h2>Redefinir Senha</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Nova Senha:
+            <input
+              type="password"
+              value={novaSenha}
+              onChange={(e) => setNovaSenha(e.target.value)}
+              disabled={carregando}
+            />
+          </label>
 
-                    <button type="submit">
-                        <p>Enviar</p>
-                    </button>
-                </form>
-            </section>
-        </section>
-    )
+          <label>
+            Confirmar Nova Senha:
+            <input
+              type="password"
+              value={confirmarSenha}
+              onChange={(e) => setConfirmarSenha(e.target.value)}
+              disabled={carregando}
+            />
+          </label>
+
+          {erro && <p className="erro">{erro}</p>}
+          {mensagem && <p className="sucesso">{mensagem}</p>}
+
+          <button type="submit" disabled={carregando}>
+            {carregando ? 'Redefinindo...' : 'Redefinir Senha'}
+          </button>
+        </form>
+      </div>
+    </section>
+  );
 }

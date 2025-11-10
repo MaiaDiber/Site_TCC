@@ -35,7 +35,7 @@
             align-items: center;
             flex-direction: column;
             gap: 20px;
-            height: 70%;
+            height: 75%;
             width: 90%;
             border: 3px solid #017B38;
             border-radius: 5px;
@@ -197,18 +197,21 @@
 
             .esquecisenha{
                 position: absolute;
-                bottom: 33%;
-                left: 7%;
+                bottom: 31%;
+                left: 3%;
                 background: none;
                 border: none;
                 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                font-size: 15px;
-                color: rgb(60, 127, 228);
+                font-size: 14px;
+                color: #0366fa;
                 cursor: pointer;
 
                 &:hover{
                     text-decoration: underline;
+                    transform: scale(1);
                 }
+
+
             }
 
            

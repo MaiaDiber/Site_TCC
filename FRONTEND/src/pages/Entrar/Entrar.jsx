@@ -11,8 +11,7 @@ export default function Entrar() {
 
     const navigate = useNavigate()
 
-    // ✅ SEM useEffect - SEM redirecionamento automático
-    // Agora você pode acessar /Entrar mesmo estando logado
+    
 
     async function logar() {
         try {
@@ -28,11 +27,12 @@ export default function Entrar() {
             localStorage.setItem("TOKEN", token)
             localStorage.setItem("usuario", JSON.stringify(usuario))
 
-            // ✅ Só redireciona se o login for bem-sucedido
+            
             if (usuario.tipo === 'admin') {
                 navigate('/Admin')
             } else {
-                navigate('/')
+                
+                navigate('/Home')
             }
 
         } catch (error) {
@@ -99,6 +99,12 @@ export default function Entrar() {
                                 </div>
                             </label>
                         </div>
+
+
+                        <Link to={'/EnviarEmail'} className='esquecisenha' type='button' >
+                            <p>Esqueci minha senha</p>
+                        </Link>
+
 
                         <button onClick={logar} className="btn-entrar">
                             <p>Entrar</p>
