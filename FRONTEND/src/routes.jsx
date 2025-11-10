@@ -11,23 +11,27 @@ import RotaProtegida from './components/component';
 import Solicitacoes from './pages/Admin/Solicitacoes';
 import TesteMapa from './pages/mapa/testeMapa';
 import PaginaAdmin from './pages/Admin/Principal';
+import CabecalhoAdmin from './components/Index/AdminCabecalho';
 
 export default function Navegation() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Home />} />
                 <Route path='/Cadastro' element={<Cadastro />} />
-                <Route path='/Entrar' element={<Entrar />} />
-                <Route path='/Sobre' element={<Sobrenos />} />
-                <Route path='/PaginaDeEspera' element={<EmailEnviado />} />
-                <Route path='/RedefinirSenha' element={<AtualizarSenha />} />
-                <Route path='/Verificar' element={<Verificacao />} />
-                <Route path='/Perfil' element={<Perfil />} />
-                <Route path='/Mapa' element={<TesteMapa/>} />
+                <Route path='/' element={<Entrar />} />
+
+                <Route path='/Home' element={<RotaProtegida><Home /></RotaProtegida>} />
+                <Route path='/Sobre' element={<RotaProtegida><Sobrenos /></RotaProtegida>} />
+                <Route path='/PaginaDeEspera' element={<RotaProtegida><EmailEnviado /></RotaProtegida>} />
+                <Route path='/RedefinirSenha' element={<RotaProtegida><AtualizarSenha /></RotaProtegida>} />
+                <Route path='/Verificar' element={<RotaProtegida><Verificacao /></RotaProtegida>} />
+                <Route path='/Perfil' element={<RotaProtegida><Perfil /></RotaProtegida>} />
+                <Route path='/Mapa' element={<RotaProtegida><TesteMapa/></RotaProtegida>} />
                 <Route path='/Admin'  element={<RotaProtegida tipoPermitido="admin"><PaginaAdmin /></RotaProtegida>}/>
                 <Route path='/SolicitaçõesAdmin'  element={<RotaProtegida tipoPermitido="admin"><Solicitacoes /></RotaProtegida>}/>
             </Routes>
         </BrowserRouter>
     );
+
+    
 }

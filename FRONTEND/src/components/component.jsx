@@ -10,12 +10,12 @@ export default function RotaProtegida({ children, tipoPermitido }) {
         const verificarAutorizacao = () => {
             try {
                 const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
-                const token = localStorage.getItem('token');
+                const token = localStorage.getItem('TOKEN');
 
                 // Verifica se está logado
                 if (!token || !usuario.id) {
                     alert('Acesso negado! Faça login primeiro.');
-                    navigate('/Entrar');
+                    navigate('/');
                     return;
                 }
 

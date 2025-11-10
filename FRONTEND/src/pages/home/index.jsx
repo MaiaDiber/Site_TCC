@@ -3,6 +3,9 @@ import Rodape from '../../components/Index/rodape'
 import './index.scss'
 
 export default function Home() {
+
+     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+
     return (
         <>
             <section className='Tudo'>

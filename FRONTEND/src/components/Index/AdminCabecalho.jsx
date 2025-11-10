@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Cabeçalho() {
+export default function CabecalhoAdmin() {
     const [menuOpen, setMenuOpen] = useState(false);
     const[PosicaoVisivel, setPosicaoVisivel] = useState(false);
 
@@ -59,11 +59,11 @@ export default function Cabeçalho() {
                 <div className="menu-content">
                     <h2>Menu</h2>
                     <ul>
-                        <li><Link to="/">Início</Link></li>
+                        <li><Link to="/Admin">Início</Link></li>
                         <li><Link to="/Sobre">Sobre</Link></li>
                         <li> <button 
                         className="btn consulta" 
-                        onClick={() => window.location.href = '/Admin'}
+                        onClick={() => window.location.href = '/SolicitaçõesAdmin'}
                     >
                         Ver Solicitações
                     </button></li>
@@ -74,7 +74,7 @@ export default function Cabeçalho() {
                                 localStorage.removeItem('TOKEN');
                                 localStorage.removeItem('usuario');
                                 localStorage.removeItem('EMAIL');
-                                window.location.href = '/Entrar'; // Redireciona para home
+                                window.location.href = '/'; 
                             }
                             }}
                                 className="btn-sair-menu"

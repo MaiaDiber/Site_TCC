@@ -59,7 +59,7 @@ export default function Cabeçalho() {
                 <div className="menu-content">
                     <h2>Menu</h2>
                     <ul>
-                        <li><Link to="/">Início</Link></li>
+                        <li><Link to="/Home">Início</Link></li>
                         <li><Link to="/Sobre">Sobre</Link></li>
                          <li>
                             <button 
@@ -68,7 +68,7 @@ export default function Cabeçalho() {
                                 localStorage.removeItem('TOKEN');
                                 localStorage.removeItem('usuario');
                                 localStorage.removeItem('EMAIL');
-                                window.location.href = '/Entrar'; // Redireciona para home
+                                window.location.href = '/'; // Redireciona para home
                             }
                             }}
                                 className="btn-sair-menu"

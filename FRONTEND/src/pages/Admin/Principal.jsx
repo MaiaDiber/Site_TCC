@@ -1,13 +1,16 @@
-import Cabeçalho from '../../components/Index/cabecalho'
+import CabecalhoAdmin from '../../components/Index/AdminCabecalho';
 import Rodape from '../../components/Index/rodape'
 import './Principal.scss'
 
 export default function PaginaAdmin() {
+
+     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+
     return (
         <>
             <section className='Tudo'>
                 <div className='img' style={{ backgroundImage: 'url(/assets/Images/Fundo.png)' }}>
-                    <Cabeçalho />
+                    <CabecalhoAdmin />
                     <div className="banner">
                         <div className="banner__overlay">
                             <div className="banner__content">

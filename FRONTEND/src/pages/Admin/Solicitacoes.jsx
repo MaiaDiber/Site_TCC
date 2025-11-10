@@ -1,4 +1,5 @@
 // Solicitacoes.jsx - PÁGINA DE SOLICITAÇÕES (ADMIN)
+// Solicitacoes.jsx - ADICIONE ESTE useEffect
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../axios.js';
@@ -10,79 +11,96 @@ export default function Solicitacoes() {
     const [processando, setProcessando] = useState(null);
     const navigate = useNavigate();
 
-    // Verificar se é admin
-  
+    // ✅ ADICIONE ESTE useEffect PARA CARREGAR AS SOLICITAÇÕES
+    useEffect(() => {
+        carregarSolicitacoes();
+    }, []);
 
-    async function carregarSolicitacoes() {
-        try {
-            setCarregando(true);
-            const resposta = await api.get('/solicitacoes');
-            setSolicitacoes(resposta.data);
-        } catch (erro) {
-            console.error('Erro ao carregar solicitações:', erro);
-            
-            if (erro.response?.status === 401) {
-                alert('Sessão expirada. Faça login novamente.');
-                navigate('/');
-            } else if (erro.response?.status === 403) {
-                alert('Acesso negado!');
-                navigate('/');
-            } else {
-                alert('Erro ao carregar solicitações: ' + (erro.response?.data?.erro || erro.message));
+   async function carregarSolicitacoes() {
+    try {
+        setCarregando(true);
+        
+        // ✅ ADICIONE O TOKEN MANUALMENTE
+        const token = localStorage.getItem('TOKEN');
+        const resposta = await api.get('/solicitacoes', {
+            headers: {
+                Authorization: `Bearer ${token}`
             }
-        } finally {
-            setCarregando(false);
+        });
+        
+        setSolicitacoes(resposta.data);
+    } catch (erro) {
+        console.error('Erro ao carregar solicitações:', erro);
+        
+        if (erro.response?.status === 401) {
+            alert('Sessão expirada. Faça login novamente.');
+            localStorage.removeItem('TOKEN');
+            localStorage.removeItem('usuario');
+            navigate('/Entrar');
+        } else if (erro.response?.status === 403) {
+            alert('Acesso negado! Você não é administrador.');
+            navigate('/');
+        } else {
+            alert('Erro ao carregar solicitações: ' + (erro.response?.data?.erro || erro.message));
         }
+    } finally {
+        setCarregando(false);
     }
+}
+
+    // ... resto do código permanece igual
 
     async function aprovarSolicitacao(id) {
-        if (!window.confirm('Tem certeza que deseja APROVAR esta solicitação?')) {
-            return;
-        }
-
-        try {
-            setProcessando(id);
-            await api.put(`/solicitacoes/${id}/aprovar`);
-            
-            alert('✅ Solicitação aprovada com sucesso!');
-            carregarSolicitacoes(); // Recarrega a lista
-        } catch (erro) {
-            console.error('Erro ao aprovar:', erro);
-            alert('Erro ao aprovar solicitação: ' + (erro.response?.data?.erro || erro.message));
-        } finally {
-            setProcessando(null);
-        }
+    if (!window.confirm('Tem certeza que deseja APROVAR esta solicitação?')) {
+        return;
     }
 
-    async function recusarSolicitacao(id) {
-        if (!window.confirm('Tem certeza que deseja RECUSAR esta solicitação?')) {
-            return;
-        }
+    try {
+        setProcessando(id);
+        
+        // ✅ PEGA O TOKEN E ENVIA NA REQUISIÇÃO
+        const token = localStorage.getItem('TOKEN');
+        await api.put(`/solicitacoes/${id}/aprovar`, {}, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        
+        alert('✅ Solicitação aprovada com sucesso!');
+        carregarSolicitacoes(); // Recarrega a lista
+    } catch (erro) {
+        console.error('Erro ao aprovar:', erro);
+        alert('Erro ao aprovar solicitação: ' + (erro.response?.data?.erro || erro.message));
+    } finally {
+        setProcessando(null);
+    }
+}
 
-        try {
-            setProcessando(id);
-            await api.put(`/solicitacoes/${id}/recusar`);
-            
-            alert('❌ Solicitação recusada.');
-            carregarSolicitacoes(); // Recarrega a lista
-        } catch (erro) {
-            console.error('Erro ao recusar:', erro);
-            alert('Erro ao recusar solicitação: ' + (erro.response?.data?.erro || erro.message));
-        } finally {
-            setProcessando(null);
-        }
+async function recusarSolicitacao(id) {
+    if (!window.confirm('Tem certeza que deseja RECUSAR esta solicitação?')) {
+        return;
     }
 
-    if (carregando) {
-        return (
-            <div className="solicitacoes-container">
-                <div className="loading">
-                    <div className="spinner"></div>
-                    <p>Carregando solicitações...</p>
-                </div>
-            </div>
-        );
+    try {
+        setProcessando(id);
+        
+        // ✅ PEGA O TOKEN E ENVIA NA REQUISIÇÃO
+        const token = localStorage.getItem('TOKEN');
+        await api.put(`/solicitacoes/${id}/recusar`, {}, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        
+        alert('❌ Solicitação recusada.');
+        carregarSolicitacoes(); // Recarrega a lista
+    } catch (erro) {
+        console.error('Erro ao recusar:', erro);
+        alert('Erro ao recusar solicitação: ' + (erro.response?.data?.erro || erro.message));
+    } finally {
+        setProcessando(null);
     }
+}
 
     return (
         <div className="solicitacoes-container">
