@@ -4,7 +4,6 @@ const router = express.Router();
 
 // Importação dos controllers existentes
 import cadastroController from './Controller/cadastroController.js';
-import enderecoController from './Controller/enderecoController.js';
 import campanhasController from './Controller/campanhasController.js';
 import susController from './Controller/susController.js';
 import medicamentosController from './Controller/medicamentosController.js';
@@ -16,14 +15,12 @@ import enderecoAdminController from './Controller/enderecoAdminController.js';
 import unidadesSaudeController from './Controller/unidadesSaudeController.js';
 import estoquesController from './Controller/estoquesController.js';
 
-// Novos controllers da outra versão
 import endpointLogar from './Controller/logarController.js';
 import endpointAdmin from './Controller/adminController.js';
 import redesenhaController from './Controller/redesenhaController.js';
 
 // Rotas principais
 router.use('/cadastro', cadastroController);
-router.use('/endereco', enderecoController);
 router.use('/campanhas', campanhasController);
 router.use('/sus', susController);
 router.use('/medicamentos', medicamentosController);
