@@ -290,3 +290,4 @@ export async function inserirAdmin(admin) {
 
     return resposta.insertId;
 }
+

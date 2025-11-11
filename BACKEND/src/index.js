@@ -6,14 +6,13 @@ import Rotas from './rotas.js';
 const app = express();
 app.use(express.json());
 
-// ✅ Configuração do CORS (teste)
+
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// ✅ Middleware adicional para o preflight
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');

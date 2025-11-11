@@ -1,14 +1,14 @@
-// src/axios.js
+
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:6045', // 👈 muda pra sua porta do backend
+  baseURL: 'http://localhost:6045', 
   timeout: 10000,
 });
 
-// ✅ Interceptor para enviar token automaticamente
+
 api.interceptors.request.use(config => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('TOKEN');
   if (token) {
     config.headers['x-access-token'] = token;
   }
