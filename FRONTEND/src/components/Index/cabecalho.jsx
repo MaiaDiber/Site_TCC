@@ -19,7 +19,6 @@ export default function Cabeçalho() {
             localStorage.removeItem('usuario');
             localStorage.removeItem('EMAIL');
 
-            // Redireciona para a página inicial
             navigate('/');
         }
     }
@@ -47,11 +46,6 @@ export default function Cabeçalho() {
                     <div className="botao">
                         <Link to="/"><button className="b"></button></Link>
                     </div>
-                    <div className="botao lupa">
-                        <button className="b" onClick={alternarSearch}>
-                            <img src="/assets/Images/lupa.png" alt="Lupa" width="55px" />
-                        </button>
-                    </div>
                     <div className="botao">
                         <button className="b" onClick={alternarMenu}>
                             <img src="/assets/Images/menu.png" alt="Imagem" width="55px" />
@@ -60,7 +54,6 @@ export default function Cabeçalho() {
                 </div>
             </header>
 
-            {/* Overlay e menu lateral */}
             {PosicaoVisivel && (
                 <div
                     className={`menu-overlay ${menuOpen ? 'show' : 'hide'}`}
@@ -93,27 +86,6 @@ export default function Cabeçalho() {
                     </ul>
                 </div>
             </div>
-
-            {/* Barra de pesquisa (com blur sincronizado e slide suave) */}
-            {searchOpen && (
-                <>
-                    <div
-                        className={`search-background ${searchOpen ? 'show' : ''}`}
-                        onClick={alternarSearch}
-                    ></div>
-
-                    <div className={`search-overlay ${searchOpen ? 'show' : ''}`}>
-                        <div className="search-bar">
-                            <input
-                                type="text"
-                                placeholder="Pesquisar..."
-                                autoFocus
-                            />
-                            <button className="close-search" onClick={alternarSearch}>X</button>
-                        </div>
-                    </div>
-                </>
-            )}
         </>
     );
 }
