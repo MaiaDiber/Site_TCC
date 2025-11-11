@@ -1,44 +1,56 @@
-drop database TCC;
-create database TCC;
-use TCC;
+DROP DATABASE IF EXISTS TCC;
+CREATE DATABASE TCC;
+USE TCC;
 
-create table Cadastrar (
-    id int auto_increment primary key,
-    nome_completo varchar(100) not null,
-    cpf char(11) not null unique,
-    data_nascimento date not null,
-    senha varchar(100) not null,
-    email varchar(200) not null unique
+
+CREATE TABLE Cadastrar (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome_completo VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) NOT NULL UNIQUE,
+    data_nascimento DATE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    email VARCHAR(200) NOT NULL UNIQUE,
+    tipo ENUM('paciente', 'admin') DEFAULT 'paciente',
+    status_admin ENUM('pendente', 'aprovado', 'recusado') DEFAULT 'aprovado',
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    resetToken VARCHAR(255) NULL,
+    resetExpires DATETIME NULL
 );
 
-create table Endereco (
-    id int auto_increment primary key,
-    cep varchar(9) not null,
-    rua_aven varchar(255) not null,
-    numero_casa varchar(10) not null,
-    bairro varchar(200) not null,
-    id_cadastro int not null,
-    foreign key (id_cadastro) references Cadastrar(id) on delete cascade
+
+select * from Cadastrar;
+
+
+INSERT INTO Cadastrar 
+(nome_completo, cpf, data_nascimento, senha, email, tipo, status_admin)
+VALUES 
+('Admin Principal', '056.370.503-40', '1990-01-01', MD5('senha123'), 'gustavomaiaxre@gmail.com', 'admin', 'aprovado'),
+('Carlão Silva do Pinto', '507.501.296-20', '1980-05-22', MD5('pinto99'), 'carlaodopinto@gmail.com', 'paciente', 'aprovado'),
+('Gustavo Maia', '305.905.892-40', '2010-09-02', MD5('abc123@frei'), 'ra50350929840@acaonsfatima.org.br', 'paciente', 'aprovado');
+
+
+CREATE TABLE Endereco (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    cep VARCHAR(10) NOT NULL,
+    rua_aven VARCHAR(255) NOT NULL,
+    numero_casa VARCHAR(8) NOT NULL,
+    bairro VARCHAR(200) NOT NULL,
+    id_cadastro INT,
+    FOREIGN KEY (id_cadastro) REFERENCES Cadastrar(id) ON DELETE CASCADE
 );
 
-create table Cadastrar_admin (
-    id int auto_increment primary key,
-    nome_completo varchar(100) not null,
-    cpf char(11) not null unique,
-    data_nascimento date not null,
-    senha varchar(100) not null,
-    email varchar(200) not null unique
+CREATE TABLE Solicitacoes_Admin (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT NOT NULL,
+    motivo_solicitacao TEXT NOT NULL,
+    status ENUM('pendente', 'aprovado', 'recusado') DEFAULT 'pendente',
+    data_solicitacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_resposta TIMESTAMP NULL,
+    admin_responsavel INT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Cadastrar(id) ON DELETE CASCADE,
+    FOREIGN KEY (admin_responsavel) REFERENCES Cadastrar(id)
 );
 
-create table Endereco_admin (
-    id int auto_increment primary key,
-    cep varchar(9) not null,
-    rua_aven varchar(255) not null,
-    numero_casa varchar(10) not null,
-    bairro varchar(200) not null,
-    id_admin int not null,
-    foreign key (id_admin) references Cadastrar_admin(id) on delete cascade
-);
 
 create table Campanhas (
     id int auto_increment primary key,
@@ -47,7 +59,7 @@ create table Campanhas (
     como_prevenir text,
     descricao text,
     id_admin int,
-    foreign key (id_admin) references Cadastrar_admin(id) on delete set null
+    foreign key (id_admin) references Cadastrar(id) on delete set null
 );
 
 create table Medicamentos (
@@ -60,7 +72,7 @@ create table Medicamentos (
     data_registro date,
     situacao varchar(50),
     id_admin int,
-    foreign key (id_admin) references Cadastrar_admin(id) on delete set null
+    foreign key (id_admin) references Cadastrar(id) on delete set null
 );
 
 create table Unidades_saude (
@@ -69,7 +81,7 @@ create table Unidades_saude (
     endereco varchar(255),
     telefone varchar(20),
     id_admin int,
-    foreign key (id_admin) references Cadastrar_admin(id) on delete set null
+    foreign key (id_admin) references Cadastrar(id) on delete set null
 );
 
 create table Estoques (
@@ -111,3 +123,40 @@ create table Historico_consultas (
     data_registro timestamp default current_timestamp,
     foreign key (id_consulta) references Consultas(id) on delete cascade
 );
+
+
+CREATE VIEW vw_solicitacoes_pendentes AS
+SELECT 
+    s.id AS id_solicitacao,
+    s.id_usuario,
+    c.nome_completo,
+    c.cpf,
+    c.email,
+    c.data_nascimento,
+    s.motivo_solicitacao,
+    s.data_solicitacao,
+    s.status
+FROM Solicitacoes_Admin s
+INNER JOIN Cadastrar c ON s.id_usuario = c.id
+WHERE s.status = 'pendente'
+ORDER BY s.data_solicitacao DESC;
+
+
+CREATE VIEW vw_usuarios_completo AS
+SELECT 
+    c.id,
+    c.nome_completo,
+    c.cpf,
+    c.email,
+    c.tipo,
+    c.status_admin,
+    e.cep,
+    e.rua_aven,
+    e.numero_casa,
+    e.bairro
+FROM Cadastrar c
+LEFT JOIN Endereco e ON c.id = e.id_cadastro;
+
+
+SHOW TABLES;
+

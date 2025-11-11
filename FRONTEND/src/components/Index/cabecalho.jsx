@@ -67,6 +67,7 @@ export default function Cabeçalho() {
                     <ul>
                         <li><Link to="/Home">Início</Link></li>
                         <li><Link to="/Sobre">Sobre</Link></li>
+                        <li><Link to="/Perfil">Perfil</Link></li>
                          <li>
                             <button
                                 onClick={() => {
