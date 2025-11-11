@@ -1,82 +1,248 @@
+// components/card.scss
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+
 .med-card {
-  background: white;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
   text-align: left;
-  border-left: 6px solid #36b37e;
+  border: 1px solid #e0e0e0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  overflow: hidden;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   }
 
-  h2 {
-    color: #2e7d32;
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+  .card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .icon-med {
+      font-size: 1.5rem;
+      color: #4caf50;
+      margin-right: 12px;
+    }
+
+    h2 {
+      color: #2e7d32;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+      flex: 1;
+    }
+
+    .status-badge {
+      background: #4caf50;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
   }
 
-  p {
-    margin: 4px 0;
-    color: #333;
-    font-size: 0.95rem;
-  }
+  .card-body {
+    flex: 1;
 
-  .data {
-    font-size: 0.8rem;
-    color: #666;
-    margin-top: 10px;
+    p {
+      margin: 12px 0; // Aumentado de 8px para 12px para mais espaçamento
+      color: #424242;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+
+      .icon-ubs {
+        margin-right: 8px;
+        color: #757575;
+      }
+    }
+
+    .estoque-info {
+      margin: 20px 0; // Aumentado de 16px para 20px para mais espaçamento
+
+      .estoque-text {
+        font-weight: 500;
+        font-size: 1rem;
+        color: #388e3c;
+
+        .estoque-num {
+          font-weight: 700;
+          color: #2e7d32;
+        }
+      }
+    }
+
+    .data {
+      font-size: 0.8rem;
+      color: #757575;
+      font-style: italic;
+      margin-top: 20px; // Aumentado de 0 para 20px para mais espaçamento em relação ao elemento anterior
+    }
   }
 
   .card-actions {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
+    margin-top: 20px;
+    gap: 12px;
 
     button {
       flex: 1;
-      margin: 0 4px;
-      padding: 8px 10px;
+      padding: 10px 16px;
       border: none;
-      border-radius: 10px;
-      font-weight: 600;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-transform: none;
     }
 
     .btn-mapa {
-      background: #36b37e;
+      background: #4caf50;
       color: #fff;
 
       &:hover {
-        background: #2e8b57;
+        background: #388e3c;
+        transform: translateY(-2px);
       }
     }
 
     .btn-detalhes {
-      background: #e0f2f1;
-      color: #00695c;
+      background: #f1f8e9;
+      color: #2e7d32;
+      border: 1px solid #c8e6c9;
 
       &:hover {
-        background: #b2dfdb;
+        background: #e8f5e8;
+        transform: translateY(-2px);
       }
     }
   }
 
   &.estoque-baixo {
-    border-left-color: #ffb300;
+    .status-badge {
+      background: #ffb300;
+    }
+
+    .estoque-info .estoque-text {
+      color: #f57c00;
+
+      .estoque-num {
+        color: #ef6c00;
+      }
+    }
   }
 
   &.indisponivel {
-    border-left-color: #d32f2f;
+    .status-badge {
+      background: #f44336;
+    }
 
     h2 {
       color: #c62828;
     }
+
+    .estoque-info .estoque-text {
+      color: #d32f2f;
+    }
   }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 90%;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  font-family: 'Roboto', sans-serif;
+  animation: slideIn 0.3s ease;
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 16px;
+
+    .modal-icon {
+      font-size: 1.5rem;
+      color: #4caf50;
+      margin-right: 12px;
+    }
+
+    h3 {
+      color: #2e7d32;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+      flex: 1;
+    }
+
+    .btn-close {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      color: #757575;
+      cursor: pointer;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #424242;
+      }
+    }
+  }
+
+  .modal-body {
+    p {
+      margin: 12px 0;
+      font-size: 0.95rem;
+      color: #424242;
+      line-height: 1.5;
+
+      strong {
+        color: #2e7d32;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: scale(0.95) translateY(-10px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
 }

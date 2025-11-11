@@ -1,25 +1,46 @@
+// index.scss
 .pagina-medicamentos {
   padding: 40px;
   text-align: center;
-  background: #f6fcf8;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 
   h1 {
     color: #2e7d32;
-    font-size: 2rem;
-    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
     justify-content: center;
-    padding: 10px 20px;
+    padding: 20px;
   }
 
   .loading {
     color: #388e3c;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 1200px) {
+    .cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cards-container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
   }
 }

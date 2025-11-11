@@ -8,9 +8,7 @@ const endpointAdmin = Router();
 const autenticador = getAuthentication();
 const verificadorAdmin = verificarAdmin();
 
-// ============================================
-// CADASTRO NORMAL (PÚBLICO)
-// ============================================
+
 endpointAdmin.post('/cadastrar', async (req, resp) => {
     try {
         const dados = req.body;
@@ -47,9 +45,7 @@ endpointAdmin.post('/cadastrar', async (req, resp) => {
     }
 });
 
-// ============================================
-// SOLICITAR ADMIN (PÚBLICO - SEM E-MAIL)
-// ============================================
+
 endpointAdmin.post('/solicitar-admin', async (req, resp) => {
     try {
         const dados = req.body;
@@ -72,9 +68,6 @@ endpointAdmin.post('/solicitar-admin', async (req, resp) => {
     }
 });
 
-// ============================================
-// LOGIN (PÚBLICO)
-// ============================================
 endpointAdmin.post('/login', async (req, resp) => {
     try {
         const { email, senha } = req.body;
@@ -117,9 +110,7 @@ endpointAdmin.post('/login', async (req, resp) => {
     }
 });
 
-// ============================================
-// LISTAR SOLICITAÇÕES PENDENTES (SOMENTE ADMIN)
-// ============================================
+
 endpointAdmin.get('/solicitacoes', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const solicitacoes = await repo.listarSolicitacoesPendentes();
@@ -130,9 +121,7 @@ endpointAdmin.get('/solicitacoes', autenticador, verificadorAdmin, async (req, r
     }
 });
 
-// ============================================
-// APROVAR SOLICITAÇÃO (SOMENTE ADMIN)
-// ============================================
+
 endpointAdmin.put('/solicitacoes/:id/aprovar', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const idSolicitacao = req.params.id;
@@ -147,9 +136,7 @@ endpointAdmin.put('/solicitacoes/:id/aprovar', autenticador, verificadorAdmin, a
     }
 });
 
-// ============================================
-// RECUSAR SOLICITAÇÃO (SOMENTE ADMIN)
-// ============================================
+
 endpointAdmin.put('/solicitacoes/:id/recusar', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const idSolicitacao = req.params.id;
@@ -164,9 +151,7 @@ endpointAdmin.put('/solicitacoes/:id/recusar', autenticador, verificadorAdmin, a
     }
 });
 
-// ============================================
-// CRUD ADMIN (SOMENTE ADMIN)
-// ============================================
+
 endpointAdmin.post('/inserirAdm', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const admin = req.body;

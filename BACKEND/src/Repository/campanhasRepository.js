@@ -2,15 +2,16 @@ import conexao from "./connection.js";
 
 export async function inserirCampanha(campanha) {
     let comando = `
-        INSERT INTO Campanhas (imagem, nome_campanha, como_prevenir, descricao)
-        VALUES (?, ?, ?, ?)
+        INSERT INTO Campanhas (imagem, nome_campanha, como_prevenir, descricao, id_admin)
+        VALUES (?, ?, ?, ?, ?)
     `;
 
     let [resposta] = await conexao.execute(comando, [
         campanha.imagem,
         campanha.nome_campanha,
         campanha.como_prevenir,
-        campanha.descricao
+        campanha.descricao,
+        campanha.id_admin
     ]);
 
     return resposta.insertId;

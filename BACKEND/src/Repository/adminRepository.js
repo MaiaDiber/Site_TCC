@@ -1,9 +1,7 @@
 // adminRepository.js - VERSÃO FINAL CORRETA
 import conexao from "./connection.js";
 
-// ============================================
-// CADASTRO DE USUÁRIO
-// ============================================
+
 export async function inserirUsuario(usuario) {
     const comando = `
         INSERT INTO Cadastrar 

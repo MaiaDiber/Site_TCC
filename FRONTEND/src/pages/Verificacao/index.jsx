@@ -1,21 +1,54 @@
+// index.jsx (sem mudanças significativas, apenas para referência)
 import React, { useEffect, useState } from "react";
 import MedicamentoCard from "../../components/Cartao";
+import Cabeçalho from "../../components/Index/cabecalho";
 import "./index.scss";
-
 
 export default function Verificacao() {
   const [medicamentos, setMedicamentos] = useState([]);
   const [carregando, setCarregando] = useState(true);
 
-
   useEffect(() => {
-
     async function carregarMedicamentos() {
-      const resposta = await fetch("https://api.exemplo.com/medicamentos");
-      const dados = await resposta.json();
-
-      setMedicamentos(dados); 
-      setCarregando(false);
+      try {
+        const resposta = await fetch("https://api.exemplo.com/medicamentos");
+        if (!resposta.ok) {
+          throw new Error("Erro na resposta da API");
+        }
+        const dados = await resposta.json();
+        setMedicamentos(dados);
+      } catch (erro) {
+        console.error("Erro ao carregar medicamentos:", erro);
+        // Dados mockados para demonstração
+        setMedicamentos([
+          {
+            id: 1,
+            nome: "Paracetamol",
+            ubs: "UBS Centro",
+            estoque: 10,
+            ultimaAtualizacao: "2023-10-01",
+            data_validade: "2024-12-31"
+          },
+          {
+            id: 2,
+            nome: "Ibuprofeno",
+            ubs: "UBS Norte",
+            estoque: 3,
+            ultimaAtualizacao: "2023-10-02",
+            data_validade: "2024-11-15"
+          },
+          {
+            id: 3,
+            nome: "Amoxicilina",
+            ubs: "UBS Sul",
+            estoque: 0,
+            ultimaAtualizacao: "2023-10-03",
+            data_validade: "2024-10-20"
+          }
+        ]);
+      } finally {
+        setCarregando(false);
+      }
     }
 
     carregarMedicamentos();
@@ -27,9 +60,9 @@ export default function Verificacao() {
 
   return (
     <>
-      <Cabecalho/>
+      <Cabeçalho />
       <div className="pagina-medicamentos">
-        <h1> Estoque de Medicamentos — ViaSaúde</h1>
+        <h1>Estoque de Medicamentos — ViaSaúde</h1>
 
         <div className="cards-container">
           {medicamentos.length > 0 ? (
@@ -40,13 +73,14 @@ export default function Verificacao() {
                 ubs={item.ubs}
                 estoque={item.estoque}
                 ultimaAtualizacao={item.ultimaAtualizacao}
-               />
-          ))
-        ) : (
-          <p>Nenhum medicamento encontrado.</p>
-        )}
+                data_validade={item.data_validade}
+              />
+            ))
+          ) : (
+            <p>Nenhum medicamento encontrado.</p>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 }
