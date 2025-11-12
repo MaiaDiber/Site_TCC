@@ -16,6 +16,7 @@ import PaginaAdmin from './pages/Admin/Principal';
 import EsqueciSenha from './pages/RedefinirSenha/enviarEmail';
 import UPAs from './pages/UPAs/upa';
 import CalendarioVacinacao from './pages/Vacinacao/CalendarioVacinacao';
+import Form from './pages/Formulario/index'
 
 
 export default function Navegation() {
@@ -37,6 +38,7 @@ export default function Navegation() {
                 <Route path='/Mapa' element={<RotaProtegida><TesteMapa/></RotaProtegida>} />
                 <Route path='/Admin'  element={<RotaProtegida tipoPermitido="admin"><PaginaAdmin /></RotaProtegida>}/>
                 <Route path='/SolicitaçõesAdmin'  element={<RotaProtegida tipoPermitido="admin"><Solicitacoes /></RotaProtegida>}/>
+                <Route path='/Forms' element={<Form/>}/>
             </Routes>
         </BrowserRouter>
     );

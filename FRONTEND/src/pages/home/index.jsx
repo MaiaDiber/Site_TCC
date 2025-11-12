@@ -1,9 +1,11 @@
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import Cabeçalho from '../../components/Index/cabecalho';
 import Rodape from '../../components/Index/rodape';
 import './index.scss';
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <>
       <section className='Tudo'>
@@ -28,11 +30,11 @@ export default function Home() {
             </div>
         </div>
         <div className='Cartoes'>
-            <div className='Card'>
+            <div className='Card' onClick={() => navigate('/Vacinaçoes')}>
                 <h3>Vacinas disponíveis</h3>
                 <p>Todas as UBS oferecem vacinas</p>
             </div>
-            <div className='Card'>
+            <div className='Card' onClick={() => navigate('/UPAs')}>
                 <h3>Unidades de saúde</h3>
                 <p>Procure as UBS mais próximas</p>
             </div>
@@ -43,7 +45,8 @@ export default function Home() {
         </div>
 
         <div className='Cartoes2'>
-            <div className='Card2'>
+
+            <div className='Card2' onClick={() => navigate('')}>
                 <img src='/public/assets/Images/pp.png' alt='popo' width='50px' className='primeira'/>
                 <h3>Consultas disponíveis</h3>
             </div>
