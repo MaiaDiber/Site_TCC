@@ -6,7 +6,7 @@ import Rotas from './rotas.js';
 const app = express();
 app.use(express.json());
 
-// ✅ Configuração CORS universal (funciona casa/escola)
+// Configuração CORS
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
@@ -24,10 +24,10 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'x-access-token']
 }));
 
-// ✅ Express 5 não aceita app.options('*') — faz manualmente:
+// Tratamento manual de OPTIONS (Express compat)
 app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+    res.header('Access-Control-Allow-Origin', req.headers.origin || '');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-access-token');
     return res.sendStatus(200);
@@ -44,4 +44,4 @@ app.use((req, res, next) => {
 Rotas(app);
 
 const PORT = process.env.PORTA || 6045;
-app.listen(PORT, () => console.log(` Servidor rodando na porta ${PORT}`));
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
