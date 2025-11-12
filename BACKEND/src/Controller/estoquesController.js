@@ -1,4 +1,4 @@
-import * as repo from '../Repositorio/estoquesRepository.js';
+import * as repo from '../Repository/estoquesRepository.js';
 import { getAuthentication } from '../../utils/jwt.js';
 import { Router } from 'express';
 const endpoints = Router();

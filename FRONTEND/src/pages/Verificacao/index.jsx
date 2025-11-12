@@ -1,51 +1,41 @@
-// index.jsx (sem mudanças significativas, apenas para referência)
+// src/pages/Verificacao/index.jsx
 import React, { useEffect, useState } from "react";
-import MedicamentoCard from "../../components/Cartao";
-import Cabeçalho from "../../components/Index/cabecalho";
+import MedicamentoCard from "../../components/Cartao"; 
+import Cabecalho from "../../components/Index/cabecalho";
 import "./index.scss";
 
 export default function Verificacao() {
   const [medicamentos, setMedicamentos] = useState([]);
   const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
 
   useEffect(() => {
     async function carregarMedicamentos() {
       try {
-        const resposta = await fetch("https://api.exemplo.com/medicamentos");
+        const resposta = await fetch("http://localhost:6045/medicamentos/listar");
+
         if (!resposta.ok) {
-          throw new Error("Erro na resposta da API");
+          throw new Error(`Erro ${resposta.status}: ${resposta.statusText}`);
         }
+
         const dados = await resposta.json();
-        setMedicamentos(dados);
+
+        // 🔁 Mapeia os campos do backend para o formato do frontend
+        const convertidos = dados.map((item) => ({
+          id: item.id,
+          nome: item.nome_produto || "Sem nome",
+          ubs: item.razao_social || "Não informado",
+          estoque: item.estoque_produto ?? 0,
+          ultimaAtualizacao: item.data_registro
+            ? new Date(item.data_registro).toLocaleDateString("pt-BR")
+            : "Data não informada",
+          data_validade: item.situacao || "Não informada",
+        }));
+
+        setMedicamentos(convertidos);
       } catch (erro) {
         console.error("Erro ao carregar medicamentos:", erro);
-        // Dados mockados para demonstração
-        setMedicamentos([
-          {
-            id: 1,
-            nome: "Paracetamol",
-            ubs: "UBS Centro",
-            estoque: 10,
-            ultimaAtualizacao: "2023-10-01",
-            data_validade: "2024-12-31"
-          },
-          {
-            id: 2,
-            nome: "Ibuprofeno",
-            ubs: "UBS Norte",
-            estoque: 3,
-            ultimaAtualizacao: "2023-10-02",
-            data_validade: "2024-11-15"
-          },
-          {
-            id: 3,
-            nome: "Amoxicilina",
-            ubs: "UBS Sul",
-            estoque: 0,
-            ultimaAtualizacao: "2023-10-03",
-            data_validade: "2024-10-20"
-          }
-        ]);
+        setErro("Não foi possível carregar os medicamentos. Tente novamente mais tarde.");
       } finally {
         setCarregando(false);
       }
@@ -55,12 +45,26 @@ export default function Verificacao() {
   }, []);
 
   if (carregando) {
-    return <p className="loading">⏳ Carregando informações...</p>;
+    return (
+      <>
+        <Cabecalho />
+        <p className="loading">⏳ Carregando informações...</p>
+      </>
+    );
+  }
+
+  if (erro) {
+    return (
+      <>
+        <Cabecalho />
+        <p className="erro">{erro}</p>
+      </>
+    );
   }
 
   return (
     <>
-      <Cabeçalho />
+      <Cabecalho />
       <div className="pagina-medicamentos">
         <h1>Estoque de Medicamentos — ViaSaúde</h1>
 
@@ -77,7 +81,7 @@ export default function Verificacao() {
               />
             ))
           ) : (
-            <p>Nenhum medicamento encontrado.</p>
+            <p className="vazio">Nenhum medicamento disponível no momento.</p>
           )}
         </div>
       </div>

@@ -1,16 +1,16 @@
-import cadastroController from './controllers/cadastroController.js';
-import campanhasController from './controllers/campanhasController.js';
-import susController from './controllers/susController.js';
-import medicamentosController from './controllers/medicamentosController.js';
-import medicosController from './controllers/medicosController.js';
-import consultasController from './controllers/consultasController.js';
-import historicoConsultasController from './controllers/historicoConsultasController.js';
-import unidadesSaudeController from './controllers/unidadesSaudeController.js';
-import estoquesController from './controllers/estoquesController.js';
+import cadastroController from './Controller/cadastroController.js';
+import campanhasController from './Controller/campanhasController.js';
+import susController from './Controller/susController.js';
+import medicamentosController from './Controller/medicamentosController.js';
+import medicosController from './Controller/medicosController.js';
+import consultasController from './Controller/consultasController.js';
+import historicoConsultasController from './Controller/historicoConsultasController.js';
+import unidadesSaudeController from './Controller/unidadesSaudeController.js';
+import estoquesController from './Controller/estoquesController.js';
 
-import endpointLogar from './controllers/logarController.js';
-import endpointAdmin from './controllers/adminController.js';
-import redesenhaController from './controllers/redesenhaController.js';
+import endpointLogar from './Controller/logarController.js';
+import endpointAdmin from './Controller/adminController.js';
+import redesenhaController from './Controller/redesenhaController.js';
 
 export default function Rotas(app) {
   if (cadastroController) app.use('/cadastro', cadastroController);

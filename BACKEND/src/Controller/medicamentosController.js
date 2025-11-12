@@ -1,4 +1,4 @@
-import * as repo from '../Repositorio/medicamentosRepository.js';
+import * as repo from '../Repository/medicamentosRepository.js';
 import { importarMedicamentosCSV } from '../services/importarMedicamentos.js';
 import { getAuthentication } from '../../utils/jwt.js';
 import { Router } from 'express';
@@ -6,6 +6,9 @@ import { Router } from 'express';
 const endpoints = Router();
 const autenticador = getAuthentication();
 
+/**
+ * Inserir novo medicamento
+ */
 endpoints.post('/inserir', autenticador, async (req, resp) => {
   try {
     let medicamento = req.body;
@@ -17,6 +20,9 @@ endpoints.post('/inserir', autenticador, async (req, resp) => {
   }
 });
 
+/**
+ * Alterar medicamento existente
+ */
 endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
   try {
     let id = req.params.id;
@@ -35,6 +41,9 @@ endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
   }
 });
 
+/**
+ * Consultar estoque de um medicamento
+ */
 endpoints.get('/estoque/:id', autenticador, async (req, resp) => {
   try {
     let id = req.params.id;
@@ -52,6 +61,9 @@ endpoints.get('/estoque/:id', autenticador, async (req, resp) => {
   }
 });
 
+/**
+ * Deletar medicamento
+ */
 endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
   try {
     let id = req.params.id;
@@ -69,6 +81,9 @@ endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
   }
 });
 
+/**
+ * Consultar medicamento por ID
+ */
 endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
   try {
     let id = req.params.id;
@@ -86,7 +101,11 @@ endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.get('/listar', autenticador, async (req, resp) => {
+/**
+ * Listar todos os medicamentos
+ * ⚠️ Esta rota NÃO exige autenticação — liberada para o frontend
+ */
+endpoints.get('/listar', async (req, resp) => {
   try {
     let registros = await repo.listarMedicamentos();
     resp.send(registros);
@@ -96,6 +115,9 @@ endpoints.get('/listar', autenticador, async (req, resp) => {
   }
 });
 
+/**
+ * Importar medicamentos via CSV
+ */
 endpoints.post('/importar', autenticador, async (req, resp) => {
   try {
     const resultado = await importarMedicamentosCSV('DADOS_ABERTOS_MEDICAMENTOS.csv');
@@ -106,6 +128,9 @@ endpoints.post('/importar', autenticador, async (req, resp) => {
   }
 });
 
+/**
+ * Listar medicamentos disponíveis (estoque > 0)
+ */
 endpoints.get('/disponiveis', autenticador, async (req, resp) => {
   try {
     const registros = await repo.listarMedicamentosDisponiveis();
