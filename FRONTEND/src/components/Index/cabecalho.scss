@@ -93,6 +93,20 @@
     right: 0; 
 }
 
+.btn-sair-menu{
+    background-color: #660f0f;
+    color: #ffffff;
+    padding: 8px 68px;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-size: 18px;
+
+    &:hover{
+        background-color: #d30f0f;
+        scale: 105%;
+    }
+}
+
 .menu-content {
     padding: 20px;
 
@@ -110,13 +124,26 @@
             margin-bottom: 15px;
 
             a {
+                padding: 7px 61px;
+                background-color: #2c8353;
+                border-radius: 5px;
                 text-decoration: none;
-                color: #333;
+                color: #ffffff;
                 font-size: 18px;
-                transition: color 0.2s ease;
+                transition: 0.25s ;
+                
 
                 &:hover {
-                    color: #015C2A;
+                    transform: scale();
+                    background-color: #04381b;
+                    
+                    
+                }
+
+                &:active{
+                    background-color: #ffffff;
+                    color: #333;
+                    transform: scale();
                 }
             }
         }

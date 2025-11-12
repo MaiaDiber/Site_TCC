@@ -119,6 +119,10 @@
         background-color: #055081;
         scale: 105%;
     }
+
+    &:active{
+        scale: 95%;
+    }
 }
 
 .menu-content {
