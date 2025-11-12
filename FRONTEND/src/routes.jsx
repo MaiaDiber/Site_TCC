@@ -17,6 +17,7 @@ import EsqueciSenha from './pages/RedefinirSenha/enviarEmail';
 import UPAs from './pages/UPAs/upa';
 import CalendarioVacinacao from './pages/Vacinacao/CalendarioVacinacao';
 import Horarios from './pages/Horarios/Horarios';
+import Form from './pages/Formulario';
 
 
 export default function Navegation() {
@@ -31,6 +32,7 @@ export default function Navegation() {
                 <Route path='/UPAs' element={<UPAs />}/>
                 <Route path='/Vacinações' element={<CalendarioVacinacao />}/>
                 <Route path='/Horários' element={<Horarios/>}/>
+                <Route path='/Formulario' element={<Form/>}/>
 
                 <Route path='/Home' element={<RotaProtegida><Home /></RotaProtegida>} />
                 <Route path='/Sobre' element={<RotaProtegida><Sobrenos /></RotaProtegida>} />
