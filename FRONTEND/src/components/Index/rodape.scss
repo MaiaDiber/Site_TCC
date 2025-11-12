@@ -1,78 +1,139 @@
 .rodape {
-  background-color: #015C2A; 
-  padding: 2rem 1rem;
-  font-family: "Poppins", "sans-serif";
-  color: #222;
-  margin-top: 250px;
-  border-top: 1px solid black;
-
-  .outro {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 1rem;
-  }
-
-  .Logo {
-    flex: 1 1 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-
-        img {
-            max-width: 180px;
-            height: auto;
-            opacity: 0.9;
-        }
-  }
-
-  .part {
-    flex: 1 1 200px;
-    margin: 1rem 0;
-
-        h4 {
-            font-size: 1rem;
-            font-weight: 100;
-            margin-bottom: 0.5rem;
-            color: #111;
-        }
-
-        p {
-            font-size: 0.9rem;
-            margin: 0.2rem 0;
-            color: #ffffff;
-            font-family: "sans-serif";
-        }
-  }
-
-  .bottom {
-    text-align: center;
-    font-size: 0.85rem;
-    color: #ffffff;
-    margin-top: 1rem;
-    padding-top: 0.5rem;
-  }
+  background-color: #0d4f23;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  padding: 3rem 2rem;
+  margin-top: 0;
+  border-top: 3px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
 }
 
-@media (max-width: 768px) {
-  .rodape {
-    .outro {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+.rodape-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
+}
 
-      .Logo {
-        margin-bottom: 1.5rem;
-      }
+/* Colunas */
+.col {
+  flex: 1 1 250px;
+  min-width: 220px;
+}
 
-      .part {
-        margin-bottom: 1rem;
-      }
-    }
+/* 🔹 Ajuste para mover o texto mais para o lado esquerdo */
+.marca {
+  text-align: left;
+  margin-left: -350px; /* ➜ Aumente para 80px ou 100px se quiser ainda mais à esquerda */
+}
+
+.marca h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.marca-sub {
+  font-size: 0.95rem;
+  color: #d5e8d3;
+  line-height: 1.4;
+}
+
+/* Links rápidos */
+.links h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #d5e8d3;
+  font-weight: 600;
+  text-align: center;
+}
+
+.links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.links li {
+  margin: 6px 0;
+}
+
+.links a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.links a:hover {
+  color: #bfeec9;
+}
+
+/* Ícones */
+.redes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.icons {
+  display: flex;
+  gap: 12px;
+}
+
+.icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.icons a:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: #bfeec9;
+  transform: translateY(-2px);
+}
+
+/* Rodapé inferior */
+.rodape-bottom {
+  text-align: center;
+  color: #cfe9d0;
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+  opacity: 0.85;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .rodape-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .marca {
+    margin-left: 0; /* 🔸 Remove o deslocamento no mobile */
+    text-align: center;
+  }
+
+  .redes {
+    justify-content: center;
   }
 }

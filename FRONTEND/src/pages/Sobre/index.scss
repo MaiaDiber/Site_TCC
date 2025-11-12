@@ -1,66 +1,78 @@
-.sobre {
-  max-width: 600px;
+.Tudo {
+  background-color: #f5f5f5;
   text-align: center;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.titulo{
-    display: flex;
-    gap: 5px;
-    text-align: center;
-    justify-content: center;
+.titulo {
+  display: flex;
+  gap: 5px;
+  text-align: center;
+  justify-content: center;
+  padding-top: 50px;
 }
 
-
-.so{
-    color: #12501d;
+.so {
+  color: #12501d;
 }
-.va{
-    color: #2f8f46;
+.va {
+  color: #4db164;
 }
-.sa{
-    color: #12501d;
+.sa {
+  color: #12501d;
 }
-
-
 
 .sobre h2 {
   color: #2f8f46;
-  font-size: 20px;
+  font-size: 25px;
   margin-bottom: 10px;
 }
 
 .descricao {
   color: #444;
-  font-size: 15px;
+  font-size: 17px;
+  line-height: 2;
   margin-bottom: 25px;
   text-align: center;
 }
 
 .historia {
-  background-color: #e8f7e9;
-  border-radius: 6px;
-  padding: 25px 20px;
+  background-color: #d2e9d3;
+  border: 2px solid #acebbb;   
+  border-radius: 10px;         
+  padding: 25px 40px;
   text-align: center;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  max-width: 1100px;
+  margin: 0 auto 60px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.historia:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .historia h3 {
   color: #3c914b;
-  margin-bottom: 5px;
-  font-size: 17px;
+  margin-bottom: 6px;
+  font-size: 20px;
 }
 
 .historia hr {
-  width: 40%;
+  width: 400px;                
+  height: 1px;
   border: none;
-  border-top: 1px solid #a8d4ad;
-  margin: 8px auto 15px auto;
+  background-color: #7cc98e;
+  margin: 5px auto 18px;
+  border-radius: 2px;
 }
 
 .historia p {
   color: #333;
-  font-size: 24px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.7;
   text-align: justify;
-  margin-bottom: 42px;
+  max-width: 750px; 
+  margin: 0 auto 15px; 
 }

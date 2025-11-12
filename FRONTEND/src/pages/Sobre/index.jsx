@@ -18,8 +18,9 @@ export default function Sobrenos() {
     </p>
 
     <div class="historia">
-      <h3>Nossa História</h3>
-      <h3>___________________________</h3>
+    <h3>Nossa História</h3>
+<hr />
+
       <br></br>
       <p>
        A ideia para este projeto surgiu durante o desenvolvimento
