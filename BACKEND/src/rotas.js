@@ -8,20 +8,19 @@ import historicoConsultasController from './Controller/historicoConsultasControl
 import unidadesSaudeController from './Controller/unidadesSaudeController.js';
 import estoquesController from './Controller/estoquesController.js';
 
-import endpointLogar from './Controller/logarController.js';
 import endpointAdmin from './Controller/adminController.js';
 import redesenhaController from './Controller/redesenhaController.js';
 
 export default function Rotas(app) {
-  app.use(endpointCadastro)
-  app.use(endpointCampanhas)
-  app.use(endpointSus)
-  app.use(endpointMedicamentos)
-  app.use(endpointMedicos)
-  app.use(endpointConsultas)
-  app.use(endpointHistorico)
-  app.use(endpointUnidades)
-  app.use(endpointEstoques)
-  app.use(endpointsAdmin) 
-  app.use(endpointRedeSenha)
+  app.use(cadastroController)
+  app.use(campanhasController)
+  app.use(susController)
+  app.use(medicamentosController)
+  app.use(medicosController)
+  app.use(consultasController)
+  app.use(historicoConsultasController)
+  app.use(unidadesSaudeController)
+  app.use(estoquesController)
+  app.use(endpointAdmin) 
+  app.use(redesenhaController)
 }
