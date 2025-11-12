@@ -32,7 +32,7 @@ export default function Cadastro() {
 
     function atualizar(campo, valor) {
         setform({ ...form, [campo]: valor });
-        // Limpar erro do campo ao digitar
+        
         if (erros[campo]) {
             setErros({ ...erros, [campo]: '' });
         }
@@ -84,11 +84,11 @@ export default function Cadastro() {
         return Object.keys(novosErros).length === 0;
     }
 
-    // NO SEU COMPONENTE Cadastro.jsx - ATUALIZE A FUNÇÃO salvar:
+    
 
 async function salvar() {
     try {
-        // Validar campos (seu código atual...)
+        
         if (!validarCampos()) {
             alert("Por favor, corrija os erros no formulário.");
             return;
@@ -96,7 +96,7 @@ async function salvar() {
 
         setCarregando(true);
 
-        // Preparar dados para envio
+       
         const dadosEnvio = {
             nome_completo: form.nome_completo,
             cpf: form.cpf,
@@ -107,7 +107,7 @@ async function salvar() {
             rua_aven: form.rua_aven,
             numero_casa: form.numero_casa,
             bairro: form.bairro,
-            tipo: form.tipo === "Solicitar Administrador" ? "paciente" : "paciente" // SEMPRE paciente inicialmente
+            tipo: form.tipo === "Solicitar Administrador" ? "paciente" : "paciente"
         };
 
         let endpoint = '';
@@ -118,7 +118,7 @@ async function salvar() {
             dadosEnvio.motivo = form.motivo;
             mensagemSucesso = '✅ Solicitação de administrador enviada! Você já pode fazer login como usuário.';
         } else {
-            endpoint = '/cadastrar'; // ✅ ENDPOINT CORRETO
+            endpoint = '/cadastrar';
             mensagemSucesso = '✅ Cadastro realizado com sucesso! Agora você pode fazer login.';
         }
 
@@ -151,9 +151,9 @@ async function salvar() {
         });
 
         
-        setTimeout(() => {
+        
             navigate('/Home');
-        }, 1500);
+        
 
     } catch (erro) {
         console.error('Erro ao cadastrar:', erro);
@@ -186,7 +186,7 @@ async function salvar() {
                 </div>
 
                 <div className='informação-usuário'>
-                    {/* DADOS PESSOAIS */}
+                    
                     <div className='dados-usu'>
                         <p>Dados Pessoais</p>
                     </div>
@@ -273,7 +273,7 @@ async function salvar() {
                         </div>
                     </div>
 
-                    {/* ENDEREÇO */}
+                    
                     <div className="endereço">
                         <div className="endereço-usu">
                             <p>Endereço</p>
@@ -341,7 +341,7 @@ async function salvar() {
                             )}
                         </label>
 
-                        {/* CARGO */}
+                        
                         <label>
                             <p>Cargo*</p>
                             <div className="dropdown">
@@ -393,7 +393,7 @@ async function salvar() {
                             )}
                         </label>
 
-                        {/* MOTIVO (se solicitar admin) */}
+                        
                         {form.tipo === "Solicitar Administrador" && (
                             <div className="motivo-admin">
                                 <p>Por que você quer ser administrador?*</p>
@@ -412,7 +412,7 @@ async function salvar() {
                         )}
                     </div>
 
-                    {/* BOTÃO CADASTRAR */}
+                    
                     <div className="doisfinais">
                         <button 
                             className='cadastrar-img' 

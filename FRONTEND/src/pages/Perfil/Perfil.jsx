@@ -51,7 +51,7 @@ export default function Perfil() {
     async function salvarAlteracoes() {
         setMensagem('');
         
-        // Validações
+        
         if (!dados.nome_completo || !dados.email || !dados.data_nascimento) {
             setTipoMensagem('erro');
             setMensagem('Nome, email e data de nascimento são obrigatórios');
@@ -184,10 +184,10 @@ export default function Perfil() {
                         <div className="campo">
                             <label>Data de Nascimento*</label>
                             {editando ? (
-                                <input
-                                    type="date"
-                                    value={dados.data_nascimento}
-                                    onChange={(e) => atualizar('data_nascimento', e.target.value)}
+                               <input
+                                type="date"
+                                value={dados.data_nascimento ? dados.data_nascimento.split('T')[0] : ''} 
+                                onChange={(e) => atualizar('data_nascimento', e.target.value)}
                                 />
                             ) : (
                                 <p>{formatarData(dados.data_nascimento)}</p>
