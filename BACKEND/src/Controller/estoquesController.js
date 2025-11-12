@@ -1,11 +1,11 @@
 import * as repo from '../Repositorio/estoquesRepository.js';
 import { getAuthentication } from '../../utils/jwt.js';
 import { Router } from 'express';
-const endpoints = Router();
+const endpointEstoques = Router();
 
 const autenticador = getAuthentication();
 
-endpoints.post('/inserir', autenticador, async (req, resp) => {
+endpointEstoques.post('/inserir', autenticador, async (req, resp) => {
   try {
     let estoque = req.body;
     let id = await repo.inserirEstoque(estoque);
@@ -16,7 +16,7 @@ endpoints.post('/inserir', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
+endpointEstoques.put('/alterar/:id', autenticador, async (req, resp) => {
   try {
     let id = req.params.id;
     let estoque = req.body;
@@ -34,7 +34,7 @@ endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
+endpointEstoques.delete('/deletar/:id', autenticador, async (req, resp) => {
   try {
     let id = req.params.id;
 
@@ -51,7 +51,7 @@ endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
+endpointEstoques.get('/consultar/:id', autenticador, async (req, resp) => {
   try {
     let id = req.params.id;
 
@@ -68,7 +68,7 @@ endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.get('/listar', autenticador, async (req, resp) => {
+endpointEstoques.get('/listar', autenticador, async (req, resp) => {
   try {
     let registros = await repo.listarEstoques();
     resp.send(registros);
@@ -78,4 +78,4 @@ endpoints.get('/listar', autenticador, async (req, resp) => {
   }
 });
 
-export default endpoints;
+export default endpointEstoques;

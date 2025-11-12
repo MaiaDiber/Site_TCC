@@ -4,12 +4,12 @@ import jwt from 'jsonwebtoken';
 import { Router } from "express";
 import { getAuthentication, verificarAdmin } from '../../utils/jwt.js';
 
-const endpointAdmin = Router();
+const endpointsAdmin = Router();
 const autenticador = getAuthentication();
 const verificadorAdmin = verificarAdmin();
 
 
-endpointAdmin.post('/cadastrar', async (req, resp) => {
+endpointsAdmin.post('/cadastrar', async (req, resp) => {
     try {
         const dados = req.body;
 
@@ -46,7 +46,7 @@ endpointAdmin.post('/cadastrar', async (req, resp) => {
 });
 
 
-endpointAdmin.post('/solicitar-admin', async (req, resp) => {
+endpointsAdmin.post('/solicitar-admin', async (req, resp) => {
     try {
         const dados = req.body;
 
@@ -68,7 +68,7 @@ endpointAdmin.post('/solicitar-admin', async (req, resp) => {
     }
 });
 
-endpointAdmin.post('/login', async (req, resp) => {
+endpointsAdmin.post('/login', async (req, resp) => {
     try {
         const { email, senha } = req.body;
 
@@ -111,7 +111,7 @@ endpointAdmin.post('/login', async (req, resp) => {
 });
 
 
-endpointAdmin.get('/solicitacoes', autenticador, verificadorAdmin, async (req, resp) => {
+endpointsAdmin.get('/solicitacoes', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const solicitacoes = await repo.listarSolicitacoesPendentes();
         resp.send(solicitacoes);
@@ -122,7 +122,7 @@ endpointAdmin.get('/solicitacoes', autenticador, verificadorAdmin, async (req, r
 });
 
 
-endpointAdmin.put('/solicitacoes/:id/aprovar', autenticador, verificadorAdmin, async (req, resp) => {
+endpointsAdmin.put('/solicitacoes/:id/aprovar', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const idSolicitacao = req.params.id;
         const idAdminResponsavel = req.user.id;
@@ -137,7 +137,7 @@ endpointAdmin.put('/solicitacoes/:id/aprovar', autenticador, verificadorAdmin, a
 });
 
 
-endpointAdmin.put('/solicitacoes/:id/recusar', autenticador, verificadorAdmin, async (req, resp) => {
+endpointsAdmin.put('/solicitacoes/:id/recusar', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const idSolicitacao = req.params.id;
         const idAdminResponsavel = req.user.id;
@@ -152,7 +152,7 @@ endpointAdmin.put('/solicitacoes/:id/recusar', autenticador, verificadorAdmin, a
 });
 
 
-endpointAdmin.post('/inserirAdm', autenticador, verificadorAdmin, async (req, resp) => {
+endpointsAdmin.post('/inserirAdm', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const admin = req.body;
         const id = await repo.inserirAdmin(admin);
@@ -162,7 +162,7 @@ endpointAdmin.post('/inserirAdm', autenticador, verificadorAdmin, async (req, re
     }
 });
 
-endpointAdmin.put('/alterarAdm/:id', autenticador, verificadorAdmin, async (req, resp) => {
+endpointsAdmin.put('/alterarAdm/:id', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const id = req.params.id;
         const admin = req.body;
@@ -175,7 +175,7 @@ endpointAdmin.put('/alterarAdm/:id', autenticador, verificadorAdmin, async (req,
     }
 });
 
-endpointAdmin.delete('/deletarAdm/:id', autenticador, verificadorAdmin, async (req, resp) => {
+endpointsAdmin.delete('/deletarAdm/:id', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const id = req.params.id;
         const linhas = await repo.deletarAdmin(id);
@@ -186,7 +186,7 @@ endpointAdmin.delete('/deletarAdm/:id', autenticador, verificadorAdmin, async (r
     }
 });
 
-endpointAdmin.get('/consultarAdm/:id', autenticador, verificadorAdmin, async (req, resp) => {
+endpointsAdmin.get('/consultarAdm/:id', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const id = req.params.id;
         const admin = await repo.consultarAdmin(id);
@@ -197,7 +197,7 @@ endpointAdmin.get('/consultarAdm/:id', autenticador, verificadorAdmin, async (re
     }
 });
 
-endpointAdmin.get('/listarAdm', autenticador, verificadorAdmin, async (req, resp) => {
+endpointsAdmin.get('/listarAdm', autenticador, verificadorAdmin, async (req, resp) => {
     try {
         const admins = await repo.listarAdmins();
         resp.send(admins);
@@ -206,7 +206,7 @@ endpointAdmin.get('/listarAdm', autenticador, verificadorAdmin, async (req, resp
     }
 });
 
-endpointAdmin.get('/perfil', autenticador, async (req, resp) => {
+endpointsAdmin.get('/perfil', autenticador, async (req, resp) => {
   try {
     const idUsuario = req.user.id;
 
@@ -224,7 +224,7 @@ endpointAdmin.get('/perfil', autenticador, async (req, resp) => {
 });
 
 
-endpointAdmin.put('/perfil/atualizar', autenticador, async (req, resp) => {
+endpointsAdmin.put('/perfil/atualizar', autenticador, async (req, resp) => {
   try {
     const idUsuario = req.user.id;
     const { nome_completo, email, data_nascimento } = req.body;
@@ -244,4 +244,4 @@ endpointAdmin.put('/perfil/atualizar', autenticador, async (req, resp) => {
   }
 });
 
-export default endpointAdmin
+export default endpointsAdmin

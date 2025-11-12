@@ -1,0 +1,265 @@
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .page-container {
+        min-height: 100vh;
+        background-color: #F5F5F5;
+      }
+
+      .header {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 300px;
+        
+       
+        padding: 1rem 2rem;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+        .voltar{
+            position: absolute;
+            right: 5%;
+             background: transparent;
+            color: #1c7e5d;
+            border: 2px solid #1c7e5d;
+            padding: 10px 25px;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+
+             &:hover {
+                background: #1c7e5d;
+                color: white;
+            }
+           
+        }
+      }
+
+      .header .logo {
+        height: 40px;
+      }
+
+      .header .menu-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      .main-content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      .hero-section {
+        text-align: center;
+        padding: 2rem 0;
+        background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        border-radius: 8px;
+        margin-bottom: 2rem;
+      }
+
+      .hero-section .clock-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero-section .page-title {
+        font-size: 2rem;
+        color: #4CAF50;
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-section .subtitle {
+        color: #666;
+        font-size: 1rem;
+      }
+
+      .date-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background-color: #E3F2FD;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+      }
+
+      .date-info .calendar-icon {
+        font-size: 2rem;
+      }
+
+      .date-info .date {
+        font-weight: bold;
+        color: #2196F3;
+      }
+
+      .date-info .time {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .alert-box {
+        display: flex;
+        gap: 1rem;
+        padding: 1.5rem;
+        background-color: #FFF9C4;
+        border-left: 4px solid #F9A825;
+        border-radius: 4px;
+        margin-bottom: 2rem;
+      }
+
+      .alert-box .alert-icon {
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      .alert-box .alert-content {
+        color: #333;
+        font-size: 0.95rem;
+      }
+
+      .alert-box .alert-content strong {
+        font-weight: 600;
+      }
+
+      .schedule-section {
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        color: #4CAF50;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #4CAF50;
+      }
+
+      .schedule-card {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+
+      .schedule-card .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .schedule-card .card-header h3 {
+        font-size: 1.25rem;
+        color: #333;
+      }
+
+      .schedule-card .card-header .badge {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .schedule-card .card-subtitle {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .schedule-card .schedule-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #E0E0E0;
+      }
+
+      .schedule-card .schedule-item:last-of-type {
+        border-bottom: none;
+      }
+
+      .schedule-card .schedule-item .icon {
+        font-size: 1.5rem;
+      }
+
+      .schedule-card .schedule-item strong {
+        color: #333;
+      }
+
+      .schedule-card .info-box {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background-color: #E3F2FD;
+        border-left: 4px solid #2196F3;
+        border-radius: 4px;
+      }
+
+      .schedule-card .info-box .info-icon {
+        font-size: 1.25rem;
+        flex-shrink: 0;
+        color: #2196F3;
+      }
+
+      .schedule-card .info-box p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #333;
+      }
+
+      .info-section .info-card {
+        display: flex;
+        gap: 1rem;
+        padding: 1.25rem;
+        background-color: #fff;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      }
+
+      .info-section .info-card .info-number {
+        font-size: 1.5rem;
+        color: #4CAF50;
+        flex-shrink: 0;
+      }
+
+      .info-section .info-card strong {
+        color: #333;
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 1rem;
+        }
+
+        .hero-section .page-title {
+          font-size: 1.5rem;
+        }
+
+        .schedule-card .card-header {
+          flex-direction: column;
+          align-items: flex-start !important;
+          gap: 0.5rem;
+        }
+      }
+    

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { MapPin, Building2, AlertCircle, Phone, Menu, X } from 'lucide-react';
+import ComponenteAcessibilidade from '../Cadastro/Acessibilidade';
+import { useNavigate } from 'react-router';
 import './upa.scss'
 
 export default function UPAs (){
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
       
@@ -101,11 +105,25 @@ export default function UPAs (){
 
   return (
     <section className="via-saude">
+
+                          <div style={{
+                                position: 'fixed',
+                                top: '20px',
+                                right: '20px',
+                                zIndex: 1000
+                            }}>
+                                <ComponenteAcessibilidade />
+                            </div>
+
       <header >
         <div className="container">
           <div className="header-content">
             <div className="logo">
               <img src="/public/assets/images/logo_ViaSaúde.png" height={90} alt="" />
+
+              <Link className="voltar" onClick={() => navigate(-1)}>
+                          ← Voltar
+                      </Link>
             </div>
            
           </div>

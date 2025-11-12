@@ -1,4 +1,4 @@
-// Cadastro.jsx - VERSÃO CORRIGIDA
+
 import { useState, useEffect, useRef } from 'react';
 import api from '../../axios.js';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,8 @@ import ComponenteAcessibilidade from './Acessibilidade.jsx';
 export default function Cadastro() {
 
     const dropdownRef = useRef(null);
-
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [erros, setErros] = useState({});
     const [carregando, setCarregando] = useState(false);
     const navigate = useNavigate();
@@ -23,6 +24,7 @@ export default function Cadastro() {
         data_nascimento: '',
         email: '',
         senha: '',
+        confirmar_senha: '', 
         cep: '',
         rua_aven: '',
         numero_casa: '',
@@ -54,14 +56,11 @@ export default function Cadastro() {
     }, [form.abrirDropdown]);
 
     function atualizar(campo, valor) {
-
-    
-    
-    if (campo === 'cpf') {
-        valor = formatarCPF(valor);
-    } else if (campo === 'cep') {
-        valor = formatarCEP(valor);
-    }
+        if (campo === 'cpf') {
+            valor = formatarCPF(valor);
+        } else if (campo === 'cep') {
+            valor = formatarCEP(valor);
+        }
         
         setform({ ...form, [campo]: valor });
         
@@ -94,6 +93,12 @@ export default function Cadastro() {
         else if (form.senha.length < 6)
             novosErros.senha = "Senha deve ter no mínimo 6 caracteres";
 
+        
+        if (!form.confirmar_senha.trim()) 
+            novosErros.confirmar_senha = "Confirme sua senha";
+        else if (form.senha !== form.confirmar_senha)
+            novosErros.confirmar_senha = "As senhas não coincidem";
+
         if (!form.cep.trim()) 
             novosErros.cep = "Informe o CEP";
 
@@ -116,129 +121,133 @@ export default function Cadastro() {
         return Object.keys(novosErros).length === 0;
     }
 
-    // Adicione estas funções de formatação no componente, antes do estado do form
-
-// Função para formatar CPF
-function formatarCPF(cpf) {
-    // Remove tudo que não é número
-    cpf = cpf.replace(/\D/g, '');
-    
-    // Aplica a formatação
-    if (cpf.length <= 3) {
-        return cpf;
-    } else if (cpf.length <= 6) {
-        return cpf.replace(/(\d{3})(\d{0,3})/, '$1.$2');
-    } else if (cpf.length <= 9) {
-        return cpf.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
-    } else {
-        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
-    }
-}
-
-// Função para formatar CEP
-function formatarCEP(cep) {
-    // Remove tudo que não é número
-    cep = cep.replace(/\D/g, '');
-    
-    // Aplica a formatação
-    if (cep.length <= 5) {
-        return cep;
-    } else {
-        return cep.replace(/(\d{5})(\d{0,3})/, '$1-$2');
-    }
-}
-
-    
-
-async function salvar() {
-    try {
-        
-        if (!validarCampos()) {
-            alert("Por favor, corrija os erros no formulário.");
-            return;
-        }
-
-        setCarregando(true);
-
+   
+    function formatarCPF(cpf) {
        
-        const dadosEnvio = {
-            nome_completo: form.nome_completo,
-            cpf: form.cpf,
-            data_nascimento: form.data_nascimento,
-            email: form.email,
-            senha: form.senha,
-            cep: form.cep,
-            rua_aven: form.rua_aven,
-            numero_casa: form.numero_casa,
-            bairro: form.bairro,
-            tipo: form.tipo === "Solicitar Administrador" ? "paciente" : "paciente"
-        };
-
-        let endpoint = '';
-        let mensagemSucesso = '';
-
-        if (form.tipo === "Solicitar Administrador") {
-            endpoint = '/solicitar-admin';
-            dadosEnvio.motivo = form.motivo;
-            mensagemSucesso = '✅ Solicitação de administrador enviada! Você já pode fazer login como usuário.';
+        cpf = cpf.replace(/\D/g, '');
+        
+        
+        if (cpf.length <= 3) {
+            return cpf;
+        } else if (cpf.length <= 6) {
+            return cpf.replace(/(\d{3})(\d{0,3})/, '$1.$2');
+        } else if (cpf.length <= 9) {
+            return cpf.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
         } else {
-            endpoint = '/cadastrar';
-            mensagemSucesso = '✅ Cadastro realizado com sucesso! Agora você pode fazer login.';
+            return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
         }
-
-        
-        let response;
-        try {
-            response = await api.post(endpoint, dadosEnvio);
-        } catch (erroEndpoint1) {
-            console.log('Tentando endpoint alternativo...');
-          
-            response = await api.post('/api/cadastro' + endpoint, dadosEnvio);
-        }
-
-        alert(mensagemSucesso);
-
-       
-        setform({
-            nome_completo: '',
-            cpf: '',
-            data_nascimento: '',
-            email: '',
-            senha: '',
-            cep: '',
-            rua_aven: '',
-            numero_casa: '',
-            bairro: '',
-            tipo: '',
-            abrirDropdown: false,
-            motivo: ''
-        });
-
-        
-        
-            navigate('/');
-        
-
-    } catch (erro) {
-        console.error('Erro ao cadastrar:', erro);
-        
-        let mensagemErro = 'Erro ao realizar cadastro.';
-        
-        if (erro.response?.data?.erro) {
-            mensagemErro = erro.response.data.erro;
-        } else if (erro.response?.status === 400) {
-            mensagemErro = 'Dados inválidos. Verifique os campos.';
-        } else if (erro.response?.status === 409) {
-            mensagemErro = 'Email ou CPF já cadastrado.';
-        } else if (erro.response?.status === 404) {
-            mensagemErro = 'Endpoint não encontrado. Verifique a configuração do servidor.';
-        }
-        
-        alert('❌ ' + mensagemErro);
-    } finally {
-        setCarregando(false);
     }
-}
+
+   
+    function formatarCEP(cep) {
+        
+        cep = cep.replace(/\D/g, '');
+        
+        
+        if (cep.length <= 5) {
+            return cep;
+        } else {
+            return cep.replace(/(\d{5})(\d{0,3})/, '$1-$2');
+        }
+    }
+
+    async function salvar() {
+        try {
+            
+            if (!validarCampos()) {
+                alert("Por favor, corrija os erros no formulário.");
+                return;
+            }
+
+            setCarregando(true);
+
+           
+            const dadosEnvio = {
+                nome_completo: form.nome_completo,
+                cpf: form.cpf,
+                data_nascimento: form.data_nascimento,
+                email: form.email,
+                senha: form.senha,
+                cep: form.cep,
+                rua_aven: form.rua_aven,
+                numero_casa: form.numero_casa,
+                bairro: form.bairro,
+                tipo: form.tipo === "Solicitar Administrador" ? "paciente" : "paciente"
+            };
+
+            let endpoint = '';
+            let mensagemSucesso = '';
+
+            if (form.tipo === "Solicitar Administrador") {
+                endpoint = '/solicitar-admin';
+                dadosEnvio.motivo = form.motivo;
+                mensagemSucesso = '✅ Solicitação de administrador enviada! Você já pode fazer login como usuário.';
+            } else {
+                endpoint = '/cadastrar';
+                mensagemSucesso = '✅ Cadastro realizado com sucesso! Agora você pode fazer login.';
+            }
+
+            
+            let response;
+            try {
+                response = await api.post(endpoint, dadosEnvio);
+            } catch (erroEndpoint1) {
+                console.log('Tentando endpoint alternativo...');
+            
+                response = await api.post('/api/cadastro' + endpoint, dadosEnvio);
+            }
+
+            alert(mensagemSucesso);
+
+            
+            setform({
+                nome_completo: '',
+                cpf: '',
+                data_nascimento: '',
+                email: '',
+                senha: '',
+                confirmar_senha: '', 
+                cep: '',
+                rua_aven: '',
+                numero_casa: '',
+                bairro: '',
+                tipo: '',
+                abrirDropdown: false,
+                motivo: ''
+            });
+
+                navigate('/');
+            
+
+        } catch (erro) {
+            console.error('Erro ao cadastrar:', erro);
+            
+            let mensagemErro = 'Erro ao realizar cadastro.';
+            
+            if (erro.response?.data?.erro) {
+                mensagemErro = erro.response.data.erro;
+            } else if (erro.response?.status === 400) {
+                mensagemErro = 'Dados inválidos. Verifique os campos.';
+            } else if (erro.response?.status === 409) {
+                mensagemErro = 'Email ou CPF já cadastrado.';
+            } else if (erro.response?.status === 404) {
+                mensagemErro = 'Endpoint não encontrado. Verifique a configuração do servidor.';
+            }
+            
+            alert('❌ ' + mensagemErro);
+        } finally {
+            setCarregando(false);
+        }
+    }
+
+    const togglePasswordVisivel = () => {
+        setShowPassword(!showPassword);
+    }
+
+   
+    const toggleConfirmPasswordVisivel = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    }
 
     return (
         <section className='all'>
@@ -332,16 +341,83 @@ async function salvar() {
 
                             <label>
                                 <p>Crie sua senha* (mínimo 6 caracteres)</p>
-                                <input 
-                                    type="password" 
+                               <div className="password-input-container">
+                                 <input 
+                                    type={showPassword ? "text" : "password"} 
                                     placeholder='Digite sua senha' 
                                     value={form.senha} 
                                     onChange={(e) => atualizar('senha', e.target.value)}
                                     className={erros.senha ? 'erro' : ''}
                                     disabled={carregando}
                                 />
+                                <button 
+                                        onClick={togglePasswordVisivel} 
+                                        type='button' 
+                                        className="toggle-password-btn"
+                                        aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                                        disabled={carregando}
+                                    >
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                            {showPassword ? (
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                                    <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                                                    <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                                                    <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                                                    <line x1="2" y1="2" x2="22" y2="22"/>
+                                                </svg>
+                                            ) : (
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                                    <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z"/>
+                                                    <circle cx="12" cy="12" r="3"/>
+                                                </svg>
+                                            )}
+                                        </svg>
+                                    </button>
+                                </div>
                                 {erros.senha && (
                                     <span className="msg-erro">{erros.senha}</span>
+                                )}
+                                
+                            </label>
+                            
+                            
+                            <label>
+                                <p>Confirme sua senha*</p>
+                                <div className="password-input-container">
+                                    <input 
+                                        type={showConfirmPassword ? "text" : "password"} 
+                                        placeholder='Digite sua senha novamente' 
+                                        value={form.confirmar_senha} 
+                                        onChange={(e) => atualizar('confirmar_senha', e.target.value)}
+                                        className={erros.confirmar_senha ? 'erro' : ''}
+                                        disabled={carregando}
+                                    />
+                                    <button 
+                                        onClick={toggleConfirmPasswordVisivel} 
+                                        type='button' 
+                                        className="toggle-password-btn"
+                                        aria-label={showConfirmPassword ? "Ocultar senha" : "Mostrar senha"}
+                                        disabled={carregando}
+                                    >
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                            {showConfirmPassword ? (
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                                    <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                                                    <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                                                    <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                                                    <line x1="2" y1="2" x2="22" y2="22"/>
+                                                </svg>
+                                            ) : (
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                                    <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z"/>
+                                                    <circle cx="12" cy="12" r="3"/>
+                                                </svg>
+                                            )}
+                                        </svg>
+                                    </button>
+                                </div>
+                                {erros.confirmar_senha && (
+                                    <span className="msg-erro">{erros.confirmar_senha}</span>
                                 )}
                             </label>
                         </div>

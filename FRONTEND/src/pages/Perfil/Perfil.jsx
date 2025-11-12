@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../axios';
+import ComponenteAcessibilidade from '../Cadastro/Acessibilidade';
 import './Perfil.scss';
 
 export default function Perfil() {
@@ -103,6 +104,16 @@ export default function Perfil() {
 
     return (
         <section className="all-perfil">
+        
+            <div style={{
+                                            position: 'fixed',
+                                            top: '20px',
+                                            right: '20px',
+                                            zIndex: 1000
+                                        }}>
+                                            <ComponenteAcessibilidade />
+                                        </div>
+
             <section className="container-perfil">
                 <div className="header-perfil">
                     <div className="avatar">

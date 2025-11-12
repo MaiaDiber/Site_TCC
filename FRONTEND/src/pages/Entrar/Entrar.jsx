@@ -2,6 +2,7 @@ import { useState } from 'react'
 import api from '../../axios'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import ComponenteAcessibilidade from '../Cadastro/Acessibilidade'
 import './Entrar.scss'
 
 export default function Entrar() {
@@ -30,7 +31,7 @@ export default function Entrar() {
 
     async function logar() {
         try {
-            // Valida os campos antes de fazer a requisição
+            
             if (!validarCampos()) {
                 alert("Por favor, corrija os erros no formulário.")
                 return
@@ -68,7 +69,7 @@ export default function Entrar() {
         setShowPassword(!showPassword)
     }
 
-    // Função para limpar erro específico quando o usuário começar a digitar
+   
     const limparErro = (campo) => {
         if (erros[campo]) {
             setErros({ ...erros, [campo]: '' })
@@ -78,6 +79,16 @@ export default function Entrar() {
     return (
         <>
             <section className='all-entrar'>
+
+                <div style={{
+                                position: 'fixed',
+                                top: '20px',
+                                right: '20px',
+                                zIndex: 1000
+                            }}>
+                                <ComponenteAcessibilidade />
+                            </div>
+
                 <section className='container-entrar'>
                     <img className='logosite-entrar' src='/assets/Images/logo_ViaSaúde.png' height={70} alt='' />
                     <div className='Entrar'>

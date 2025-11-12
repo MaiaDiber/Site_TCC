@@ -3,17 +3,17 @@ import { getAuthentication } from '../../utils/jwt.js';
 import jwt from 'jsonwebtoken';
 import { Router } from "express";
 
-const endpoints = Router();
+const endpointCadastro = Router();
 const autenticador = getAuthentication();
 
-endpoints.post('/inserir', async (req, resp) => {
+endpointCadastro.post('/inserir', async (req, resp) => {
     let cadastro = req.body;
     let id = await repo.inserirCadastro(cadastro);
 
     resp.send({ novoId: id });
 });
 
-endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
+endpointCadastro.put('/alterar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
     let cadastro = req.body;
 
@@ -26,7 +26,7 @@ endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
+endpointCadastro.delete('/deletar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
 
     let linhasAfetadas = await repo.deletarCadastro(id);
@@ -38,7 +38,7 @@ endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
+endpointCadastro.get('/consultar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
 
     let registro = await repo.consultarCadastro(id);
@@ -50,12 +50,12 @@ endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.get('/listar', autenticador, async (req, resp) => {
+endpointCadastro.get('/listar', autenticador, async (req, resp) => {
     let registros = await repo.listarCadastros();
     resp.send(registros);
 });
 
-endpoints.post('/login', async (req, resp) => {
+endpointCadastro.post('/login', async (req, resp) => {
     const { email, senha } = req.body;
 
     if (!email || !senha) {
@@ -89,7 +89,7 @@ endpoints.post('/login', async (req, resp) => {
     });
 });
 
-endpoints.get('/perfil', autenticador, async (req, resp) => {
+endpointCadastro.get('/perfil', autenticador, async (req, resp) => {
     const registro = await repo.consultarCadastro(req.user.id);
 
     if (registro) {
@@ -100,7 +100,7 @@ endpoints.get('/perfil', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.put('/perfil', autenticador, async (req, resp) => {
+endpointCadastro.put('/perfil', autenticador, async (req, resp) => {
     const dados = req.body;
 
     const linhasAfetadas = await repo.alterarCadastro(req.user.id, dados);
@@ -112,7 +112,7 @@ endpoints.put('/perfil', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.put('/alterar-senha', autenticador, async (req, resp) => {
+endpointCadastro.put('/alterar-senha', autenticador, async (req, resp) => {
     const { senhaAtual, novaSenha } = req.body;
 
     if (!senhaAtual || !novaSenha) {
@@ -132,7 +132,7 @@ endpoints.put('/alterar-senha', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.delete('/perfil', autenticador, async (req, resp) => {
+endpointCadastro.delete('/perfil', autenticador, async (req, resp) => {
     const linhasAfetadas = await repo.deletarCadastro(req.user.id);
 
     if (linhasAfetadas >= 1) {
@@ -142,9 +142,9 @@ endpoints.delete('/perfil', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.get('/listar-publico', async (req, resp) => {
+endpointCadastro.get('/listar-publico', async (req, resp) => {
     const registros = await repo.listarCadastros();
     resp.send(registros);
 });
 
-export default endpoints;
+export default endpointCadastro;

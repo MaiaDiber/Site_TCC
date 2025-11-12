@@ -1,9 +1,10 @@
-// src/pages/Vacinacao/calendarioVacinacao.jsx
+
 import Header from './Header.jsx';
 import VaccineCard from "./VaccineCard.jsx";
 import InfoBox from "./InfoBox.jsx";
 import "./calendario.scss";
 import { useEffect } from "react";
+import ComponenteAcessibilidade from '../Cadastro/Acessibilidade.jsx';
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -80,28 +81,38 @@ export default function CalendarioVacinacao() {
 
   return (
     <div className="calendario-container">
+
+         <div style={{
+          position: 'fixed',
+       top: '20px',
+         right: '20px',
+         zIndex: 1000
+         }}>
+        <ComponenteAcessibilidade />
+        </div>
+
       <Header />
 
-      {/* Mapa fixo no topo */}
+      
       <section className="map-section">
         <h2 className="map-title">UBS da Zona Sul de São Paulo</h2>
         <div id="map" className="map-container"></div>
       </section>
 
-      {/* Título e descrição */}
+      
       <section className="hero">
         <h2>Calendário Nacional de Vacinação</h2>
         <p>Vacinas disponíveis gratuitamente no SUS</p>
       </section>
 
-      {/* Aviso importante */}
+      
       <InfoBox
         type="alert"
         title="Importante"
         content="Leve seu Cartão Nacional de Vacinação (ou Caderneta de Vacinação) e documento de identidade com CPF. Todas as vacinas do Calendário Nacional são oferecidas gratuitamente nas UBS do SUS. Consulte a unidade mais próxima para verificar disponibilidade e horários."
       />
 
-      {/* Vacinas Adultos e Idosos */}
+      
       <section className="vacinas-section">
         <h3>Vacinas para Adolescentes, Adultos e Idosos</h3>
         <div className="vacina-grid">
@@ -114,7 +125,7 @@ export default function CalendarioVacinacao() {
         </div>
       </section>
 
-      {/* Vacinas Infantis */}
+      
       <section className="vacinas-section">
         <h3>Vacinas Infantis (0 a 10 anos)</h3>
         <div className="vacina-grid">
@@ -125,7 +136,7 @@ export default function CalendarioVacinacao() {
         </div>
       </section>
 
-      {/* Informações adicionais */}
+      
       <InfoBox
         type="tips"
         title="Informações Importantes sobre Vacinação no SUS"

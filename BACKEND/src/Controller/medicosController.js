@@ -1,18 +1,18 @@
 import * as repo from '../Repository/medicosRepository.js';
 import { getAuthentication } from '../../utils/jwt.js'
 import { Router } from "express";
-const endpoints = Router();
+const endpointMedicos = Router();
 
 const autenticador = getAuthentication();
 
-endpoints.post('/inserir', autenticador, async (req, resp) => {
+endpointMedicos.post('/inserir', autenticador, async (req, resp) => {
     let medico = req.body;
     let id = await repo.inserirMedico(medico);
 
     resp.send({ novoId: id });
 });
 
-endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
+endpointMedicos.put('/alterar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
     let medico = req.body;
 
@@ -25,7 +25,7 @@ endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
+endpointMedicos.delete('/deletar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
 
     let linhasAfetadas = await repo.deletarMedico(id);
@@ -37,7 +37,7 @@ endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
+endpointMedicos.get('/consultar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
 
     let registro = await repo.consultarMedico(id);
@@ -49,9 +49,9 @@ endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.get('/listar', autenticador, async (req, resp) => {
+endpointMedicos.get('/listar', autenticador, async (req, resp) => {
     let registros = await repo.listarMedicos();
     resp.send(registros);
 });
 
-export default endpoints;
+export default endpointMedicos;

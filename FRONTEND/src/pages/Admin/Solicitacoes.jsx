@@ -1,8 +1,8 @@
-// Solicitacoes.jsx - PÁGINA DE SOLICITAÇÕES (ADMIN)
-// Solicitacoes.jsx - ADICIONE ESTE useEffect
+
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../axios.js';
+import ComponenteAcessibilidade from '../Cadastro/Acessibilidade.jsx';
 import './Solicitacoes.scss';
 
 export default function Solicitacoes() {
@@ -11,7 +11,7 @@ export default function Solicitacoes() {
     const [processando, setProcessando] = useState(null);
     const navigate = useNavigate();
 
-    // ✅ ADICIONE ESTE useEffect PARA CARREGAR AS SOLICITAÇÕES
+    
     useEffect(() => {
         carregarSolicitacoes();
     }, []);
@@ -20,7 +20,7 @@ export default function Solicitacoes() {
     try {
         setCarregando(true);
         
-        // ✅ ADICIONE O TOKEN MANUALMENTE
+        
         const token = localStorage.getItem('TOKEN');
         const resposta = await api.get('/solicitacoes', {
             headers: {
@@ -48,7 +48,7 @@ export default function Solicitacoes() {
     }
 }
 
-    // ... resto do código permanece igual
+   
 
     async function aprovarSolicitacao(id) {
     if (!window.confirm('Tem certeza que deseja APROVAR esta solicitação?')) {
@@ -58,7 +58,7 @@ export default function Solicitacoes() {
     try {
         setProcessando(id);
         
-        // ✅ PEGA O TOKEN E ENVIA NA REQUISIÇÃO
+        
         const token = localStorage.getItem('TOKEN');
         await api.put(`/solicitacoes/${id}/aprovar`, {}, {
             headers: {
@@ -67,7 +67,7 @@ export default function Solicitacoes() {
         });
         
         alert('✅ Solicitação aprovada com sucesso!');
-        carregarSolicitacoes(); // Recarrega a lista
+        carregarSolicitacoes(); 
     } catch (erro) {
         console.error('Erro ao aprovar:', erro);
         alert('Erro ao aprovar solicitação: ' + (erro.response?.data?.erro || erro.message));
@@ -84,7 +84,7 @@ async function recusarSolicitacao(id) {
     try {
         setProcessando(id);
         
-        // ✅ PEGA O TOKEN E ENVIA NA REQUISIÇÃO
+       
         const token = localStorage.getItem('TOKEN');
         await api.put(`/solicitacoes/${id}/recusar`, {}, {
             headers: {
@@ -93,7 +93,7 @@ async function recusarSolicitacao(id) {
         });
         
         alert('❌ Solicitação recusada.');
-        carregarSolicitacoes(); // Recarrega a lista
+        carregarSolicitacoes();
     } catch (erro) {
         console.error('Erro ao recusar:', erro);
         alert('Erro ao recusar solicitação: ' + (erro.response?.data?.erro || erro.message));
@@ -104,6 +104,16 @@ async function recusarSolicitacao(id) {
 
     return (
         <div className="solicitacoes-container">
+
+                            <div style={{
+                                position: 'fixed',
+                                top: '20px',
+                                right: '20px',
+                                zIndex: 1000
+                            }}>
+                                <ComponenteAcessibilidade />
+                            </div>
+
             <header className="cabecalho">
                 <h1>📋 Solicitações de Administrador</h1>
                 <button onClick={() => navigate('/admin')} className="btn-voltar">

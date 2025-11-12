@@ -3,13 +3,13 @@ import { getAuthentication } from '../../utils/jwt.js'
 
 import multer from 'multer';
 import { Router } from "express";
-const endpoints = Router();
+const endpointCampanhas = Router();
 
 const autenticador = getAuthentication();
 
 const uploadImagem = multer({ dest: './public/strorage/' });
 
-endpoints.post('/inserir', autenticador, uploadImagem.single('imagem'), async (req, resp) => {
+endpointCampanhas.post('/inserir', autenticador, uploadImagem.single('imagem'), async (req, resp) => {
     let campanha = req.body;
 
     if (req.file) {
@@ -19,7 +19,7 @@ endpoints.post('/inserir', autenticador, uploadImagem.single('imagem'), async (r
     resp.send({ novoId: id });
 });
 
-endpoints.put('/alterar/:id', autenticador, uploadImagem.single('imagem'), async (req, resp) => {
+endpointCampanhas.put('/alterar/:id', autenticador, uploadImagem.single('imagem'), async (req, resp) => {
     let id = req.params.id;
     let campanha = req.body;
 
@@ -35,7 +35,7 @@ endpoints.put('/alterar/:id', autenticador, uploadImagem.single('imagem'), async
     }
 });
 
-endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
+endpointCampanhas.delete('/deletar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
     let linhasAfetadas = await repo.deletarCampanha(id);
     if (linhasAfetadas >= 1) {
@@ -46,7 +46,7 @@ endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
+endpointCampanhas.get('/consultar/:id', autenticador, async (req, resp) => {
     let id = req.params.id;
     let registro = await repo.consultarCampanha(id);
 
@@ -58,10 +58,10 @@ endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
     }
 });
 
-endpoints.get('/listar', autenticador, async (req, resp) => {
+endpointCampanhas.get('/listar', autenticador, async (req, resp) => {
     let registros = await repo.listarCampanhas();
     resp.send(registros);
 });
 
-export default endpoints;
+export default endpointCampanhas;
 

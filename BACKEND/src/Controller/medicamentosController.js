@@ -3,10 +3,10 @@ import { importarMedicamentosCSV } from '../services/importarMedicamentos.js';
 import { getAuthentication } from '../../utils/jwt.js';
 import { Router } from 'express';
 
-const endpoints = Router();
+const endpointMedicamentos = Router();
 const autenticador = getAuthentication();
 
-endpoints.post('/inserir', autenticador, async (req, resp) => {
+endpointMedicamentos.post('/inserir', autenticador, async (req, resp) => {
   try {
     let medicamento = req.body;
     let id = await repo.inserirMedicamento(medicamento);
@@ -17,7 +17,7 @@ endpoints.post('/inserir', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
+endpointMedicamentos.put('/alterar/:id', autenticador, async (req, resp) => {
   try {
     let id = req.params.id;
     let medicamento = req.body;
@@ -35,7 +35,7 @@ endpoints.put('/alterar/:id', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.get('/estoque/:id', autenticador, async (req, resp) => {
+endpointMedicamentos.get('/estoque/:id', autenticador, async (req, resp) => {
   try {
     let id = req.params.id;
 
@@ -52,7 +52,7 @@ endpoints.get('/estoque/:id', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
+endpointMedicamentos.delete('/deletar/:id', autenticador, async (req, resp) => {
   try {
     let id = req.params.id;
 
@@ -69,7 +69,7 @@ endpoints.delete('/deletar/:id', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
+endpointMedicamentos.get('/consultar/:id', autenticador, async (req, resp) => {
   try {
     let id = req.params.id;
 
@@ -86,7 +86,7 @@ endpoints.get('/consultar/:id', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.get('/listar', autenticador, async (req, resp) => {
+endpointMedicamentos.get('/listar', autenticador, async (req, resp) => {
   try {
     let registros = await repo.listarMedicamentos();
     resp.send(registros);
@@ -96,7 +96,7 @@ endpoints.get('/listar', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.post('/importar', autenticador, async (req, resp) => {
+endpointMedicamentos.post('/importar', autenticador, async (req, resp) => {
   try {
     const resultado = await importarMedicamentosCSV('DADOS_ABERTOS_MEDICAMENTOS.csv');
     resp.send({ mensagem: resultado });
@@ -106,7 +106,7 @@ endpoints.post('/importar', autenticador, async (req, resp) => {
   }
 });
 
-endpoints.get('/disponiveis', autenticador, async (req, resp) => {
+endpointMedicamentos.get('/disponiveis', autenticador, async (req, resp) => {
   try {
     const registros = await repo.listarMedicamentosDisponiveis();
     resp.send(registros);
@@ -116,4 +116,4 @@ endpoints.get('/disponiveis', autenticador, async (req, resp) => {
   }
 });
 
-export default endpoints;
+export default endpointMedicamentos;

@@ -1,8 +1,9 @@
-// EsqueciSenha.jsx
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../axios';
 import './enviarEmail.scss';
+import ComponenteAcessibilidade from '../Cadastro/Acessibilidade';
 
 export default function EsqueciSenha() {
     const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ export default function EsqueciSenha() {
     const [erro, setErro] = useState('');
 
     async function enviarEmailRecuperacao() {
-        // Validação básica
+        
         if (!email.trim()) {
             setErro('Informe o e-mail cadastrado');
             return;
@@ -51,6 +52,16 @@ export default function EsqueciSenha() {
 
     return (
         <section className='all-esqueci-senha'>
+
+                            <div style={{
+                                position: 'fixed',
+                                top: '20px',
+                                right: '20px',
+                                zIndex: 1000
+                            }}>
+                                <ComponenteAcessibilidade />
+                            </div>
+
             <section className='container-esqueci-senha'>
                 <img 
                     className='logo-site-esqueci-senha' 

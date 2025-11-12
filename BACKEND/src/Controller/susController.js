@@ -2,11 +2,11 @@ import axios from "axios";
 import { Router } from "express";
 import { getAuthentication } from '../../utils/jwt.js'
 
-const endpoints = Router();
+const endpointSus = Router();
 
 const autenticador = getAuthentication();
 
-endpoints.get("/estoques", autenticador, async (req, resp) => {
+endpointSus.get("/estoques", autenticador, async (req, resp) => {
     const url = "https://aplicacoes.saude.gov.br/api/bnafar/estoques";
 
 
@@ -16,4 +16,4 @@ endpoints.get("/estoques", autenticador, async (req, resp) => {
     resp.json(response.data);
 });
 
-export default endpoints;
+export default endpointSus;

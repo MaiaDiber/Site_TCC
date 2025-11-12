@@ -4,10 +4,10 @@ import crypto from 'crypto';
 import { enviarEmailRedefinicao } from '../services/emailService.js';
 import * as usuarioRepository from '../Repository/redesenhaRepository.js';
 
-const router = Router();
+const endpointRedeSenha = Router();
 
 // Rota para solicitar redefinição de senha
-router.post('/recuperar-senha', async (req, res) => {
+endpointRedeSenha.post('/recuperar-senha', async (req, res) => {
     const { email } = req.body;
 
     try {
@@ -40,7 +40,7 @@ router.post('/recuperar-senha', async (req, res) => {
 });
 
 // Rota para redefinir a senha
-router.post('/reset-password', async (req, res) => {
+endpointRedeSenha.post('/reset-password', async (req, res) => {
     const { token, novaSenha } = req.body;
 
     try {
@@ -61,4 +61,4 @@ router.post('/reset-password', async (req, res) => {
     }
 });
 
-export default router;
+export default endpointRedeSenha;

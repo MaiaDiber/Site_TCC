@@ -44,7 +44,7 @@ export default function ComponenteAcessibilidade() {
                 aria-expanded={menuAberto}
                 aria-label="Menu de acessibilidade"
             >
-                ⚙️
+                <img src="/public/assets/images/ChatGPT_Image_12_de_nov._de_2025__11_52_25-removebg-preview.png" height={50} alt="" />
             </button>
 
             {menuAberto && (
