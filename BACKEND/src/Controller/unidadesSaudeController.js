@@ -1,4 +1,4 @@
-import * as repo from '../Repositorio/unidadesSaudeRepository.js';
+import * as repo from '../Repository/unidadesSaudeRepository.js';
 import { getAuthentication } from '../../utils/jwt.js';
 import { Router } from 'express';
 const endpointUnidades = Router();

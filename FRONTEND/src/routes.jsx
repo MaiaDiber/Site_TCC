@@ -39,6 +39,7 @@ export default function Navegation() {
                 <Route path='/Mapa' element={<RotaProtegida><TesteMapa/></RotaProtegida>} />
                 <Route path='/Admin'  element={<RotaProtegida tipoPermitido="admin"><PaginaAdmin /></RotaProtegida>}/>
                 <Route path='/SolicitaçõesAdmin'  element={<RotaProtegida tipoPermitido="admin"><Solicitacoes /></RotaProtegida>}/>
+                <Route path='/Forms' element={<Form/>}/>
             </Routes>
         </BrowserRouter>
     );
