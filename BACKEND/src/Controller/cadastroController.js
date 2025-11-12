@@ -55,39 +55,7 @@ endpointCadastro.get('/listar', autenticador, async (req, resp) => {
     resp.send(registros);
 });
 
-endpointCadastro.post('/login', async (req, resp) => {
-    const { email, senha } = req.body;
 
-    if (!email || !senha) {
-        return resp.status(400).send({ erro: 'Informe email e senha' });
-    }
-
-    const usuario = await repo.verificarLogin(email, senha);
-
-    if (!usuario) {
-        return resp.status(401).send({ erro: 'Email ou senha incorretos' });
-    }
-
-    const token = jwt.sign(
-        {
-            id: usuario.id,
-            nome: usuario.nome_completo,
-            email: usuario.email
-        },
-        'ViaSaúde',
-        { expiresIn: '24h' }
-    );
-
-    resp.send({
-        mensagem: 'Login realizado com sucesso',
-        token: token,
-        usuario: {
-            id: usuario.id,
-            nome: usuario.nome_completo,
-            email: usuario.email
-        }
-    });
-});
 
 endpointCadastro.get('/perfil', autenticador, async (req, resp) => {
     const registro = await repo.consultarCadastro(req.user.id);

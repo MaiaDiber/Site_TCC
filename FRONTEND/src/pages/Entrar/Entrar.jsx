@@ -52,9 +52,11 @@ export default function Entrar() {
             localStorage.setItem("usuario", JSON.stringify(usuario))
 
             
-            if (usuario.tipo === 'admin') {
+            if (usuario.tipo == 'admin') {
                 navigate('/Admin')
-            } else {
+            } 
+            
+            else {
                 navigate('/Home')
             }
 

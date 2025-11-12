@@ -1,4 +1,4 @@
-import './cabecalho.scss';
+import './AdminCabecalho.scss';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -61,8 +61,9 @@ export default function CabecalhoAdmin() {
                     <ul>
                         <li><Link to="/Admin">Início</Link></li>
                         <li><Link to="/Sobre">Sobre</Link></li>
+                        <li><Link to="/Perfil">Perfil</Link></li>
                         <li> <button 
-                        className="btn consulta" 
+                        className="btn-consulta" 
                         onClick={() => window.location.href = '/SolicitaçõesAdmin'}
                     >
                         Ver Solicitações
