@@ -14,6 +14,8 @@ import Solicitacoes from './pages/Admin/Solicitacoes';
 import TesteMapa from './pages/mapa/testeMapa';
 import PaginaAdmin from './pages/Admin/Principal';
 import EsqueciSenha from './pages/RedefinirSenha/enviarEmail';
+import UPAs from './pages/UPAs/upa';
+import CalendarioVacinacao from './pages/Vacinacao/CalendarioVacinacao';
 
 
 export default function Navegation() {
@@ -25,6 +27,8 @@ export default function Navegation() {
                 <Route path='/PaginaEspera' element={<EmailEnviado />} />
                 <Route path='/EnviarEmail' element={<EsqueciSenha />} />
                 <Route path='/RedefinirSenha/:token' element={<AtualizarSenha />}/>
+                <Route path='/UPAs' element={<UPAs />}/>
+                <Route path='/Vacinações' element={<CalendarioVacinacao />}/>
 
                 <Route path='/Home' element={<RotaProtegida><Home /></RotaProtegida>} />
                 <Route path='/Sobre' element={<RotaProtegida><Sobrenos /></RotaProtegida>} />

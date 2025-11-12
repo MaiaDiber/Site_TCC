@@ -1,8 +1,8 @@
 // src/pages/Vacinacao/calendarioVacinacao.jsx
-import Header from "../../components/Header";
-import VaccineCard from "../../components/VaccineCard";
-import InfoBox from "../../components/InfoBox";
-import "../styles/calendario.css";
+import Header from './Header.jsx';
+import VaccineCard from "./VaccineCard.jsx";
+import InfoBox from "./InfoBox.jsx";
+import "./calendario.scss";
 import { useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";

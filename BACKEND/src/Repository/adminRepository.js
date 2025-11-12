@@ -291,3 +291,61 @@ export async function inserirAdmin(admin) {
     return resposta.insertId;
 }
 
+// ============================================
+// PERFIL (BUSCAR E ATUALIZAR)
+// ============================================
+
+export async function buscarPerfil(idUsuario) {
+  const comando = `
+    SELECT 
+        c.id,
+        c.nome_completo,
+        c.cpf,
+        c.data_nascimento,
+        c.email,
+        c.tipo,
+        c.data_cadastro,
+        e.cep,
+        e.rua_aven,
+        e.numero_casa,
+        e.bairro
+    FROM Cadastrar c
+    LEFT JOIN Endereco e ON c.id = e.id_cadastro
+    WHERE c.id = ?
+  `;
+
+  const [resultado] = await conexao.query(comando, [idUsuario]);
+  return resultado[0];
+}
+
+
+export async function atualizarPerfil(idUsuario, dados) {
+  const { nome_completo, email, data_nascimento, cep } = dados;
+
+  // Atualiza dados do usuário
+  const comandoUsuario = `
+    UPDATE Cadastrar 
+    SET nome_completo = ?, 
+        email = ?,
+        data_nascimento = ?
+    WHERE id = ?
+  `;
+  await conexao.query(comandoUsuario, [
+    nome_completo,
+    email,
+    data_nascimento,
+    idUsuario
+  ]);
+
+  // Atualiza endereço (se existir)
+  if (cep) {
+    const comandoEndereco = `
+      UPDATE Endereco 
+      SET cep = ?
+      WHERE id_cadastro = ?
+    `;
+    await conexao.query(comandoEndereco, [cep, idUsuario]);
+  }
+
+  return true;
+}

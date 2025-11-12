@@ -207,91 +207,41 @@ endpointAdmin.get('/listarAdm', autenticador, verificadorAdmin, async (req, resp
 });
 
 endpointAdmin.get('/perfil', autenticador, async (req, resp) => {
-    try {
-        const idUsuario = req.user.id;
+  try {
+    const idUsuario = req.user.id;
 
-        // Buscar dados completos do usuário
-        const comando = `
-            SELECT 
-                c.id,
-                c.nome_completo,
-                c.cpf,
-                c.data_nascimento,
-                c.email,
-                c.tipo,
-                c.data_cadastro,
-                e.cep,
-                e.rua_aven,
-                e.numero_casa,
-                e.bairro
-            FROM Cadastrar c
-            LEFT JOIN Endereco e ON c.id = e.id_cadastro
-            WHERE c.id = ?
-        `;
+    const usuario = await repo.buscarPerfil(idUsuario);
+    if (!usuario)
+      return resp.status(404).send({ erro: 'Usuário não encontrado' });
 
-        const [resultado] = await conexao.query(comando, [idUsuario]);
+    delete usuario.senha; // segurança
 
-        if (resultado.length === 0) {
-            return resp.status(404).send({ erro: 'Usuário não encontrado' });
-        }
-
-        const usuario = resultado[0];
-
-        // Não enviar senha para o frontend (segurança)
-        delete usuario.senha;
-
-        resp.send(usuario);
-
-    } catch (err) {
-        console.error('Erro ao buscar perfil:', err);
-        resp.status(500).send({ erro: 'Erro ao buscar dados do perfil' });
-    }
+    resp.send(usuario);
+  } catch (err) {
+    console.error('Erro ao buscar perfil:', err);
+    resp.status(500).send({ erro: 'Erro ao buscar dados do perfil' });
+  }
 });
+
 
 endpointAdmin.put('/perfil/atualizar', autenticador, async (req, resp) => {
-    try {
-        const idUsuario = req.user.id;
-        const { nome_completo, email, data_nascimento, cep } = req.body;
+  try {
+    const idUsuario = req.user.id;
+    const { nome_completo, email, data_nascimento } = req.body;
 
-        // Validações
-        if (!nome_completo || !email || !data_nascimento) {
-            return resp.status(400).send({ 
-                erro: 'Nome, email e data de nascimento são obrigatórios' 
-            });
-        }
-
-        // Atualizar dados do usuário
-        const comandoUsuario = `
-            UPDATE Cadastrar 
-            SET nome_completo = ?, 
-                email = ?,
-                data_nascimento = ?
-            WHERE id = ?
-        `;
-
-        await conexao.query(comandoUsuario, [
-            nome_completo,
-            email,
-            data_nascimento,
-            idUsuario
-        ]);
-
-        // Atualizar CEP no endereço (se tiver)
-        if (cep) {
-            const comandoEndereco = `
-                UPDATE Endereco 
-                SET cep = ?
-                WHERE id_cadastro = ?
-            `;
-            await conexao.query(comandoEndereco, [cep, idUsuario]);
-        }
-
-        resp.send({ mensagem: 'Perfil atualizado com sucesso!' });
-
-    } catch (err) {
-        console.error('Erro ao atualizar perfil:', err);
-        resp.status(500).send({ erro: 'Erro ao atualizar perfil' });
+    if (!nome_completo || !email || !data_nascimento) {
+      return resp.status(400).send({
+        erro: 'Nome, email e data de nascimento são obrigatórios',
+      });
     }
+
+    await repo.atualizarPerfil(idUsuario, req.body);
+
+    resp.send({ mensagem: 'Perfil atualizado com sucesso!' });
+  } catch (err) {
+    console.error('Erro ao atualizar perfil:', err);
+    resp.status(500).send({ erro: 'Erro ao atualizar perfil' });
+  }
 });
 
-export default endpointAdmin;
+export default endpointAdmin
