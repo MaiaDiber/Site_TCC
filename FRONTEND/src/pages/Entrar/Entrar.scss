@@ -35,7 +35,7 @@
             align-items: center;
             flex-direction: column;
             gap: 20px;
-            height: 75%;
+            height: 80%;
             width: 90%;
             border: 3px solid #017B38;
             border-radius: 5px;
@@ -71,7 +71,7 @@
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
-                gap: 25px;
+                gap: 5px;
                 width: 100%;
 
                 label {
@@ -80,6 +80,18 @@
                     align-items: flex-start;
                     width: 100%;
                     max-width: 550px;
+
+                    .msg-erro {
+                        color: #ff4444;
+                        font-size: 15px;
+                        margin-top: 5px;
+                        display: block;
+                            }
+
+                        input.erro {
+                        border-color: #ff4444 !important;
+                        background-color: #fff8f8;
+                        }
                     
                     p {
                         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -120,6 +132,18 @@
                         width: 100%;
                         display: flex;
                         align-items: center;
+
+                        .msg-erro {
+                        color: #ff4444;
+                        font-size: 12px;
+                        margin-top: 5px;
+                        display: block;
+                            }
+
+                        input.erro {
+                        border-color: #ff4444 !important;
+                        background-color: #fff8f8;
+                            }
 
                         
                         input {
@@ -198,13 +222,14 @@
             .esquecisenha{
                 position: absolute;
                 bottom: 31%;
-                left: 3%;
+                right: 7%;
                 background: none;
                 border: none;
                 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                font-size: 14px;
+                font-size: 15px;
                 color: #0366fa;
                 cursor: pointer;
+                text-decoration: none;
 
                 &:hover{
                     text-decoration: underline;
@@ -217,7 +242,7 @@
            
             .btn-entrar {
                 position: absolute;
-                bottom: 20%;
+                bottom: 19%;
                 padding: 14px 250px;
                 background-color: #017B38;
                 color: white;
@@ -241,10 +266,7 @@
                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 }
 
-                &:focus {
-                    outline: none;
-                    box-shadow: 0 0 0 3px rgba(16, 119, 100, 0.3);
-                }
+                
             }
 
             .naotemconta{

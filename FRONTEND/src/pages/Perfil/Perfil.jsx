@@ -52,9 +52,9 @@ export default function Perfil() {
         setMensagem('');
         
         
-        if (!dados.nome_completo || !dados.email || !dados.data_nascimento) {
+        if (!dados.nome_completo || !dados.email || !dados.data_nascimento || !dados.cep) {
             setTipoMensagem('erro');
-            setMensagem('Nome, email e data de nascimento são obrigatórios');
+            setMensagem('Nome, email, data de nascimento e cep são obrigatórios');
             return;
         }
 

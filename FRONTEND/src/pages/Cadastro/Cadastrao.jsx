@@ -1,12 +1,14 @@
 // Cadastro.jsx - VERSÃO CORRIGIDA
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import api from '../../axios.js';
 import { useNavigate } from 'react-router-dom';
 import './Cadastrao.scss';
 import CabecalhoCadastro from '../../components/Cadastro/cabecalhoCadastro';
+import ComponenteAcessibilidade from './Acessibilidade.jsx';
 
 export default function Cadastro() {
 
+    const dropdownRef = useRef(null);
 
     const [erros, setErros] = useState({});
     const [carregando, setCarregando] = useState(false);
@@ -30,7 +32,37 @@ export default function Cadastro() {
         motivo: ''
     });
 
+     useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setform(prevForm => ({
+                    ...prevForm,
+                    abrirDropdown: false
+                }));
+            }
+        }
+
+        if (form.abrirDropdown) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [form.abrirDropdown]);
+
     function atualizar(campo, valor) {
+
+    
+    
+    if (campo === 'cpf') {
+        valor = formatarCPF(valor);
+    } else if (campo === 'cep') {
+        valor = formatarCEP(valor);
+    }
+        
         setform({ ...form, [campo]: valor });
         
         if (erros[campo]) {
@@ -83,6 +115,38 @@ export default function Cadastro() {
         setErros(novosErros);
         return Object.keys(novosErros).length === 0;
     }
+
+    // Adicione estas funções de formatação no componente, antes do estado do form
+
+// Função para formatar CPF
+function formatarCPF(cpf) {
+    // Remove tudo que não é número
+    cpf = cpf.replace(/\D/g, '');
+    
+    // Aplica a formatação
+    if (cpf.length <= 3) {
+        return cpf;
+    } else if (cpf.length <= 6) {
+        return cpf.replace(/(\d{3})(\d{0,3})/, '$1.$2');
+    } else if (cpf.length <= 9) {
+        return cpf.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
+    } else {
+        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
+    }
+}
+
+// Função para formatar CEP
+function formatarCEP(cep) {
+    // Remove tudo que não é número
+    cep = cep.replace(/\D/g, '');
+    
+    // Aplica a formatação
+    if (cep.length <= 5) {
+        return cep;
+    } else {
+        return cep.replace(/(\d{5})(\d{0,3})/, '$1-$2');
+    }
+}
 
     
 
@@ -152,7 +216,7 @@ async function salvar() {
 
         
         
-            navigate('/Home');
+            navigate('/');
         
 
     } catch (erro) {
@@ -178,6 +242,16 @@ async function salvar() {
 
     return (
         <section className='all'>
+
+             <div style={{
+                position: 'fixed',
+                top: '20px',
+                right: '20px',
+                zIndex: 1000
+            }}>
+                <ComponenteAcessibilidade />
+            </div>
+
             <section className='Container'>
                 <CabecalhoCadastro />
                 
@@ -313,7 +387,7 @@ async function salvar() {
                             <label>
                                 <p>Número*</p>
                                 <input 
-                                    type="number" 
+                                    type="text" 
                                     placeholder='n° 1234' 
                                     value={form.numero_casa} 
                                     onChange={(e) => atualizar('numero_casa', e.target.value)}
@@ -344,7 +418,7 @@ async function salvar() {
                         
                         <label>
                             <p>Cargo*</p>
-                            <div className="dropdown">
+                            <div className="dropdown" ref={dropdownRef} >
                                 <button
                                     type="button"
                                     className={`dropdown-btn ${erros.tipo ? 'erro' : ''}`}

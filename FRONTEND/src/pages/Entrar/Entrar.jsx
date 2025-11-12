@@ -8,13 +8,36 @@ export default function Entrar() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
+    const [erros, setErros] = useState({})
+    const [carregando, setCarregando] = useState(false)
 
     const navigate = useNavigate()
 
-    
+    function validarCampos() {
+        const novosErros = {}
+
+        if (!email.trim()) 
+            novosErros.email = "Informe o e-mail"
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+            novosErros.email = "E-mail inválido"
+
+        if (!password.trim()) 
+            novosErros.password = "Informe a senha"
+
+        setErros(novosErros)
+        return Object.keys(novosErros).length === 0
+    }
 
     async function logar() {
         try {
+            // Valida os campos antes de fazer a requisição
+            if (!validarCampos()) {
+                alert("Por favor, corrija os erros no formulário.")
+                return
+            }
+
+            setCarregando(true)
+
             const body = {
                 "email": email,
                 "senha": password
@@ -31,17 +54,25 @@ export default function Entrar() {
             if (usuario.tipo === 'admin') {
                 navigate('/Admin')
             } else {
-                
                 navigate('/Home')
             }
 
         } catch (error) {
             alert('Erro ao fazer login: ' + (error.response?.data?.erro || error.message))
+        } finally {
+            setCarregando(false)
         }
     }
 
     const togglePasswordVisivel = () => {
         setShowPassword(!showPassword)
+    }
+
+    // Função para limpar erro específico quando o usuário começar a digitar
+    const limparErro = (campo) => {
+        if (erros[campo]) {
+            setErros({ ...erros, [campo]: '' })
+        }
     }
 
     return (
@@ -58,10 +89,20 @@ export default function Entrar() {
                         <div className="cpf-senha">
                             <label> 
                                 <p>E-mail</p>
-                                <input type="email" placeholder='Insira seu e-mail' 
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                <input 
+                                    type="email" 
+                                    placeholder='Insira seu e-mail' 
+                                    value={email}
+                                    onChange={(e) => {
+                                        setEmail(e.target.value)
+                                        limparErro('email')
+                                    }}
+                                    className={erros.email ? 'erro' : ''}
+                                    disabled={carregando}
                                 />
+                                {erros.email && (
+                                    <span className="msg-erro">{erros.email}</span>
+                                )}
                             </label>
                             
                             <label> 
@@ -70,8 +111,13 @@ export default function Entrar() {
                                     <input 
                                         type={showPassword ? "text" : "password"}
                                         value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        placeholder='Insira sua senha' 
+                                        onChange={(e) => {
+                                            setPassword(e.target.value)
+                                            limparErro('password')
+                                        }}
+                                        placeholder='Insira sua senha'
+                                        className={erros.password ? 'erro' : ''}
+                                        disabled={carregando}
                                     />
                                     
                                     <button 
@@ -79,6 +125,7 @@ export default function Entrar() {
                                         type='button' 
                                         className="toggle-password-btn"
                                         aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                                        disabled={carregando}
                                     >
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                             {showPassword ? (
@@ -97,17 +144,22 @@ export default function Entrar() {
                                         </svg>
                                     </button>
                                 </div>
+                                {erros.password && (
+                                    <span className="msg-erro">{erros.password}</span>
+                                )}
                             </label>
                         </div>
-
 
                         <Link to={'/EnviarEmail'} className='esquecisenha' type='button' >
                             <p>Esqueci minha senha</p>
                         </Link>
 
-
-                        <button onClick={logar} className="btn-entrar">
-                            <p>Entrar</p>
+                        <button 
+                            onClick={logar} 
+                            className="btn-entrar"
+                            disabled={carregando}
+                        >
+                            <p>{carregando ? 'Entrando...' : 'Entrar'}</p>
                         </button>
 
                         <div className="naotemconta">
