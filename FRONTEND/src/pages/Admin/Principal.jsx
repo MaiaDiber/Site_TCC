@@ -26,7 +26,7 @@ export default function PaginaAdmin() {
                     <p>Encontre UBSs, vacinas e medicamentos — tudo em um só lugar, rápido e fácil.</p>
                 </div>
 
-                {/* 🔹 Seção dos cartões principais */}
+                
                 <section className='Servicos'>
                     <div className="cards">
                         <div className="card">
@@ -46,7 +46,7 @@ export default function PaginaAdmin() {
                     </div>
                 </section>
 
-                {/* 🔹 Barra de busca */}
+                
                 <div className="Busca">
                     <p>O que você está procurando?</p>
                     <div className="barra">
@@ -54,14 +54,14 @@ export default function PaginaAdmin() {
                     </div>
                 </div>
 
-                {/* 🔹 Botões de ação */}
+                
                 <div className="Botoes">
                     <button className="btn consulta">Consultas Disponíveis</button>
                     <button className="btn medico">Médicos Disponíveis</button>
                     <button className="btn remedio">Medicamentos Disponíveis</button>
                 </div>
 
-                {/* 🔹 Bloco de UBS */}
+              
                 <div className="UBS">
                     <div className="UBS-header">
                         <h4>Clínica Geral</h4>

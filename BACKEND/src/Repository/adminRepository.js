@@ -1,4 +1,4 @@
-// adminRepository.js - VERSÃO FINAL CORRETA
+
 import conexao from "./connection.js";
 
 
@@ -37,16 +37,14 @@ export async function inserirEndereco(endereco, id_cadastro) {
     return resposta.insertId;
 }
 
-// ============================================
-// SOLICITAÇÃO DE ADMIN
-// ============================================
+
 export async function salvarSolicitacaoAdmin(dados) {
     const conn = await conexao.getConnection();
     
     try {
         await conn.beginTransaction();
 
-        // 1. Criar usuário como paciente
+       
         const [usuarioResult] = await conn.query(`
             INSERT INTO Cadastrar 
             (nome_completo, cpf, data_nascimento, senha, email, tipo, status_admin)
@@ -61,7 +59,7 @@ export async function salvarSolicitacaoAdmin(dados) {
 
         const idUsuario = usuarioResult.insertId;
 
-        // 2. Criar endereço
+       
         await conn.query(`
             INSERT INTO Endereco (cep, rua_aven, numero_casa, bairro, id_cadastro)
             VALUES (?, ?, ?, ?, ?)
@@ -73,7 +71,7 @@ export async function salvarSolicitacaoAdmin(dados) {
             idUsuario
         ]);
 
-        // 3. Criar solicitação de admin
+       
         const [solicitacaoResult] = await conn.query(`
             INSERT INTO Solicitacoes_Admin (id_usuario, motivo_solicitacao, status)
             VALUES (?, ?, 'pendente')
@@ -94,9 +92,7 @@ export async function salvarSolicitacaoAdmin(dados) {
     }
 }
 
-// ============================================
-// LISTAR SOLICITAÇÕES PENDENTES
-// ============================================
+
 export async function listarSolicitacoesPendentes() {
     const comando = `
         SELECT 
@@ -118,16 +114,14 @@ export async function listarSolicitacoesPendentes() {
     return resposta;
 }
 
-// ============================================
-// APROVAR SOLICITAÇÃO DE ADMIN
-// ============================================
+
 export async function aprovarSolicitacaoAdmin(idSolicitacao, idAdminResponsavel) {
     const conn = await conexao.getConnection();
     
     try {
         await conn.beginTransaction();
 
-        // 1. Buscar id do usuário
+      
         const [solicitacao] = await conn.query(
             'SELECT id_usuario FROM Solicitacoes_Admin WHERE id = ?',
             [idSolicitacao]
@@ -139,14 +133,14 @@ export async function aprovarSolicitacaoAdmin(idSolicitacao, idAdminResponsavel)
 
         const idUsuario = solicitacao[0].id_usuario;
 
-        // 2. Atualizar usuário para admin
+        
         await conn.query(`
             UPDATE Cadastrar 
             SET tipo = 'admin', status_admin = 'aprovado'
             WHERE id = ?
         `, [idUsuario]);
 
-        // 3. Atualizar solicitação
+       
         await conn.query(`
             UPDATE Solicitacoes_Admin 
             SET status = 'aprovado',
@@ -167,9 +161,7 @@ export async function aprovarSolicitacaoAdmin(idSolicitacao, idAdminResponsavel)
     }
 }
 
-// ============================================
-// RECUSAR SOLICITAÇÃO DE ADMIN
-// ============================================
+
 export async function recusarSolicitacaoAdmin(idSolicitacao, idAdminResponsavel) {
     const comando = `
         UPDATE Solicitacoes_Admin 
@@ -183,9 +175,7 @@ export async function recusarSolicitacaoAdmin(idSolicitacao, idAdminResponsavel)
     return resposta.affectedRows;
 }
 
-// ============================================
-// LOGIN
-// ============================================
+
 export async function verificarLogin(email, senha) {
     const comando = `
         SELECT 
@@ -204,9 +194,7 @@ export async function verificarLogin(email, senha) {
     return resposta[0];
 }
 
-// ============================================
-// CRUD DE ADMINS
-// ============================================
+
 export async function listarAdmins() {
     const comando = `
         SELECT 
@@ -291,9 +279,7 @@ export async function inserirAdmin(admin) {
     return resposta.insertId;
 }
 
-// ============================================
-// PERFIL (BUSCAR E ATUALIZAR)
-// ============================================
+
 
 export async function buscarPerfil(idUsuario) {
   const comando = `
@@ -322,7 +308,7 @@ export async function buscarPerfil(idUsuario) {
 export async function atualizarPerfil(idUsuario, dados) {
   const { nome_completo, email, data_nascimento, cep } = dados;
 
-  // Atualiza dados do usuário
+ 
   const comandoUsuario = `
     UPDATE Cadastrar 
     SET nome_completo = ?, 
@@ -337,7 +323,7 @@ export async function atualizarPerfil(idUsuario, dados) {
     idUsuario
   ]);
 
-  // Atualiza endereço (se existir)
+  
   if (cep) {
     const comandoEndereco = `
       UPDATE Endereco 

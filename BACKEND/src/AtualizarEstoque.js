@@ -10,7 +10,7 @@ async function atualizarEstoque() {
     .pipe(csv({ separator: ';' }))
     .on('data', (data) => {
       try {
-        // alguns CSVs já têm datas formatadas; adaptei para pegar DATA_VENCIMENTO_REGISTRO ou campo similar
+        
         const rawValidade = data['DATA_VENCIMENTO_REGISTRO'] || data['5'] || '';
         let anoValidade = null;
         if (rawValidade) {
