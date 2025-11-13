@@ -1,4 +1,4 @@
-// src/pages/Verificacao/index.jsx
+
 import React, { useEffect, useState } from "react";
 import MedicamentoCard from "../../components/Cartao"; 
 import Cabecalho from "../../components/Index/cabecalho";
@@ -20,7 +20,7 @@ export default function Verificacao() {
 
         const dados = await resposta.json();
 
-        // 🔁 Mapeia os campos do backend para o formato do frontend
+       
         const convertidos = dados.map((item) => ({
           id: item.id,
           nome: item.nome_produto || "Sem nome",

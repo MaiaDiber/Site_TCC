@@ -1,7 +1,7 @@
-// src/Repository/redesenhaRepository.js
+
 import conexao from "./connection.js";
 
-// Buscar usuário por e-mail
+
 export async function buscarUsuarioPorEmail(email) {
     const [rows] = await conexao.query(
         'SELECT * FROM Cadastrar WHERE email = ?',
@@ -10,7 +10,7 @@ export async function buscarUsuarioPorEmail(email) {
     return rows[0];
 }
 
-// Buscar usuário por token de redefinição
+
 export async function buscarUsuarioPorResetToken(token) {
     const [rows] = await conexao.query(
         `SELECT * FROM Cadastrar 
@@ -20,7 +20,7 @@ export async function buscarUsuarioPorResetToken(token) {
     return rows[0];
 }
 
-// Atualizar token de redefinição
+
 export async function atualizarResetToken(id, token, expires) {
     await conexao.query(
         'UPDATE Cadastrar SET resetToken = ?, resetExpires = ? WHERE id = ?',
@@ -28,8 +28,7 @@ export async function atualizarResetToken(id, token, expires) {
     );
 }
 
-// Redefinir senha e limpar token
-// ✅ MUDANÇA: Agora usa MD5() direto no MySQL
+
 export async function redefinirSenha(id, novaSenha) {
     await conexao.query(
         `UPDATE Cadastrar 

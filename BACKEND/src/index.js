@@ -6,7 +6,7 @@ import Rotas from './rotas.js';
 const app = express();
 app.use(express.json());
 
-// Configuração CORS
+
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
@@ -24,7 +24,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'x-access-token']
 }));
 
-// Tratamento manual de OPTIONS (Express compat)
+
 app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
     res.header('Access-Control-Allow-Origin', req.headers.origin || '');
@@ -35,7 +35,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// evita aviso do ngrok
+
 app.use((req, res, next) => {
   res.setHeader('ngrok-skip-browser-warning', 'true');
   next();

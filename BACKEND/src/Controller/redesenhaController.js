@@ -1,4 +1,4 @@
-// src/Controller/esqueciSenhaController.js
+
 import { Router } from 'express';
 import crypto from 'crypto';
 import { enviarEmailRedefinicao } from '../services/emailService.js';
@@ -6,7 +6,7 @@ import * as usuarioRepository from '../Repository/redesenhaRepository.js';
 
 const endpointRedeSenha = Router();
 
-// Rota para solicitar redefinição de senha
+
 endpointRedeSenha.post('/recuperar-senha', async (req, res) => {
     const { email } = req.body;
 
@@ -28,7 +28,7 @@ endpointRedeSenha.post('/recuperar-senha', async (req, res) => {
             message: "Verifique seu e-mail para redefinir a senha." 
         });
 
-        // Envia e-mail em segundo plano
+      
         enviarEmailRedefinicao(email, token)
             .then(() => console.log(`E-mail enviado para ${email}`))
             .catch(err => console.error("Erro ao enviar e-mail:", err));
@@ -39,7 +39,7 @@ endpointRedeSenha.post('/recuperar-senha', async (req, res) => {
     }
 });
 
-// Rota para redefinir a senha
+
 endpointRedeSenha.post('/reset-password', async (req, res) => {
     const { token, novaSenha } = req.body;
 
@@ -50,8 +50,7 @@ endpointRedeSenha.post('/reset-password', async (req, res) => {
             return res.status(400).json({ error: "Token inválido ou expirado." });
         }
 
-        // ✅ MUDANÇA: Usar MD5 (igual o resto do projeto)
-        // Não precisa importar nada, o MySQL faz isso
+       
         await usuarioRepository.redefinirSenha(usuario.id, novaSenha);
 
         res.json({ message: "Senha atualizada com sucesso!" });
