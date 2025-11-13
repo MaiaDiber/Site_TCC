@@ -100,10 +100,7 @@ export default function CalendarioVacinacao() {
       </section>
 
       
-      <section className="hero">
-        <h2>Calendário Nacional de Vacinação</h2>
-        <p>Vacinas disponíveis gratuitamente no SUS</p>
-      </section>
+      
 
       
       <InfoBox

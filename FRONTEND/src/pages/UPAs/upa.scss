@@ -22,13 +22,7 @@
         }
 
         
-        header {
-          background: white;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          position: sticky;
-          top: 0;
-          z-index: 100;
-        }
+       
 
         .header-content {
           display: flex;
@@ -44,13 +38,25 @@
           gap: 8px;
         }
 
-        
+        .map-section {
+  margin: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
 
-       
+.map-title {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #004d34;
+  font-weight: 600;
+}
 
-        
-
-
+.map-container {
+  height: 350px;
+  width: 100%;
+  border-radius: 10px;
+}
        
 
         /* Hero */
@@ -368,34 +374,7 @@
           font-size: 0.95rem;
         }
 
-        /* Footer */
-        .footer {
-          background: #2c7a7b;
-          color: white;
-          padding: 2rem 0;
-          text-align: center;
-        }
-
-        .footer-content {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 1rem;
-        }
-
-        .footer .logo-icon {
-          background: white;
-          color: #2c7a7b;
-        }
-
-        .footer .logo-via,
-        .footer .logo-saude {
-          color: white;
-        }
-
-        .footer p {
-          opacity: 0.9;
-        }
+        
     }
 
         /* Responsive */

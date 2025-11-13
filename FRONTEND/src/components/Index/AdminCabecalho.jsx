@@ -1,24 +1,24 @@
 import './AdminCabecalho.scss';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 export default function CabecalhoAdmin() {
     const [menuOpen, setMenuOpen] = useState(false);
-    const[PosicaoVisivel, setPosicaoVisivel] = useState(false);
+    const [PosicaoVisivel, setPosicaoVisivel] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
 
     const navigate = useNavigate()
 
-     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
 
     function fazerLogout() {
         if (window.confirm('Tem certeza que deseja sair?')) {
-            // Limpa todos os dados
+            
             localStorage.removeItem('TOKEN');
             localStorage.removeItem('usuario');
             localStorage.removeItem('EMAIL');
-            
-            // Redireciona para a página inicial
+
             navigate('/');
         }
     }
@@ -32,58 +32,67 @@ export default function CabecalhoAdmin() {
         }
     }, [menuOpen]);
 
-
-    const alternarMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
+    const alternarMenu = () => setMenuOpen(!menuOpen);
+    const alternarSearch = () => setSearchOpen(!searchOpen);
 
     return (
         <>
-            <div className="cabeçalho">
-                <div className="Logo">
-                    <img src="/assets/Images/logo_ViaSaúde.png" alt="Imagem" width="125px" />
-                </div>
-                <div className="botoes">
-                    <div className="botao">
-                        <Link to="/"><button className="b"></button></Link>
-                    </div>
-                    <div className="botao">
-                        <button className="b" onClick={alternarMenu}>
-                            <img src="/assets/Images/menu.png" alt="Imagem" width="60px" />
+            <header className="cabeçalho">
+
+                <div className="Perfil">
+                    <img src="/public/assets/images/ChatGPT_Image_12_de_nov._de_2025__21_45_38-removebg-preview.png" height={80} alt="" />
+
+                    <div className="double">
+                        <button onClick={() => navigate('/Perfil')} type='button' className="sobre-perfil ir-perfil">
+                            <p>Perfil</p>
                         </button>
-                    </div>
-                </div>
-            </div>
-            {PosicaoVisivel && <div className={`menu-overlay ${menuOpen ? 'show' : 'hide'}`} onClick={alternarMenu}></div>}
-            <div className={`menu-lateral ${menuOpen ? 'open' : ''}`}>
-                <div className="menu-content">
-                    <h2>Menu</h2>
-                    <ul>
-                        <li><Link to="/Admin">Início</Link></li>
-                        <li><Link to="/Sobre">Sobre</Link></li>
-                        <li><Link to="/Perfil">Perfil</Link></li>
-                        <li> <button 
-                        className="btn-consulta" 
-                        onClick={() => window.location.href = '/SolicitaçõesAdmin'}
-                    >
-                        Ver Solicitações
-                    </button></li>
-                         <li>
-                            <button 
-                                onClick={() => {
+                        <button  onClick={() => {
                                 if (window.confirm('Tem certeza que deseja sair?')) {
                                 localStorage.removeItem('TOKEN');
                                 localStorage.removeItem('usuario');
                                 localStorage.removeItem('EMAIL');
                                 window.location.href = '/'; 
                             }
-                            }}
-                                className="btn-sair-menu"
-                                 >
-                                 Sair
-                                </button>
-                                </li>
-                        
+                            }} type='button' className="sobre-perfil sair-perfil">
+                            <img src="/public/assets/images/ChatGPT_Image_12_de_nov._de_2025__22_21_56-removebg-preview.png" height={50}  alt="" />
+                            <p>Sair</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div className="Logo">
+                    <img src="/assets/Images/logo_ViaSaúde.png" alt="Imagem" height={80} />
+                </div>
+
+                <div className="botoes">
+                    <div className="botao">
+                        <Link to="/"><button className="b"></button></Link>
+                    </div>
+                    <div className="botao">
+                        <button className="b" onClick={alternarMenu}>
+                            <img src="/assets/Images/menu.png" alt="Imagem" height={80} />
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            {PosicaoVisivel && (
+                <div
+                    className={`menu-overlay ${menuOpen ? 'show' : 'hide'}`}
+                    onClick={alternarMenu}
+                ></div>
+            )}
+
+            <div className={`menu-lateral ${menuOpen ? 'open' : ''}`}>
+                <div className="menu-content">
+                    <h2>Menu</h2>
+                    <ul>
+                        <li><Link to="/Admin">Início</Link></li>
+                        <li><Link to="/Sobre">Sobre</Link></li>
+                        <li><Link to="/Solicitações">Solicitações</Link></li>
+                        <li><Link to="/CRUD">Gerenciar Conteúdo</Link></li>
+                       
+
                     </ul>
                 </div>
             </div>

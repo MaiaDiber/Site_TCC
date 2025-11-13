@@ -9,6 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 360px;
+  position: relative;
 }
 
 .rodape-inner {
@@ -23,16 +24,22 @@
   padding-bottom: 1.5rem;
 }
 
-/* Colunas */
+
 .col {
   flex: 1 1 250px;
   min-width: 220px;
 }
 
-/* 🔹 Ajuste para mover o texto mais para o lado esquerdo */
+
 .marca {
+  position: absolute;
+  left: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   text-align: left;
-  margin-left: -350px; /* ➜ Aumente para 80px ou 100px se quiser ainda mais à esquerda */
+  margin-left: -350px; 
 }
 
 .marca h3 {
@@ -48,7 +55,7 @@
   line-height: 1.4;
 }
 
-/* Links rápidos */
+
 .links h4 {
   margin-bottom: 0.5rem;
   font-size: 1rem;
@@ -79,11 +86,14 @@
   color: #bfeec9;
 }
 
-/* Ícones */
+
 .redes {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: absolute;
+  top: 10%;
+  right: 20%;
 }
 
 .icons {
@@ -98,19 +108,18 @@
   width: 34px;
   height: 34px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.1);
+
   color: #fff;
   font-size: 1rem;
   transition: all 0.2s ease;
 }
 
 .icons a:hover {
-  background: rgba(255, 255, 255, 0.25);
-  color: #bfeec9;
+ 
   transform: translateY(-2px);
 }
 
-/* Rodapé inferior */
+
 .rodape-bottom {
   text-align: center;
   color: #cfe9d0;
@@ -119,7 +128,7 @@
   opacity: 0.85;
 }
 
-/* Responsivo */
+
 @media (max-width: 900px) {
   .rodape-inner {
     flex-direction: column;
@@ -129,7 +138,7 @@
   }
 
   .marca {
-    margin-left: 0; /* 🔸 Remove o deslocamento no mobile */
+    margin-left: 0; 
     text-align: center;
   }
 

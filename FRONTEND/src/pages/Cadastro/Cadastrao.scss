@@ -42,8 +42,8 @@
       width: 700px;
       gap: 20px;
       background-color: #fff;
-      min-height: auto; // Alterado para auto para expandir
-      transition: min-height 0.3s ease; // Transição suave
+      min-height: auto;
+      transition: min-height 0.3s ease; 
 
       .dados-usu {
         font-size: 22px;
@@ -259,14 +259,13 @@
       }
 
       .endereço{
-        // REMOVIDO: margin-top: 120px; - Isso estava causando o problema
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         gap: 20px;
         width: 100%;
-        margin-top: 30px; // Adicionado espaçamento normal
+        margin-top: 30px;
 
         input.erro {
            border: 3px solid red !important;
@@ -299,9 +298,8 @@
           font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
           font-weight: bold;
           color: #017B38;
-          // REMOVIDO: position: absolute; top: 45%; left: 5%;
-          align-self: flex-start; // Mantém alinhado à esquerda
-          margin-left: 5%; // Mesma margem que .dados-usu
+          align-self: flex-start; 
+          margin-left: 5%; 
           margin-bottom: 10px;
         }
 
@@ -449,7 +447,7 @@
         background-color: #f8f9fa;
         border-radius: 8px;
         border: 1px solid #e9ecef;
-        animation: fadeIn 0.3s ease; // Animação suave
+        animation: fadeIn 0.3s ease; 
 
         p {
           color: #017B38;
@@ -535,7 +533,6 @@
   }
 }
 
-// Animação para suavizar a aparição do campo de motivo
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -547,7 +544,6 @@
   }
 }
 
-/* 💻 Responsividade para notebooks (1366px) */
 @media (max-width: 1366px) {
   .Container {
     width: 780px !important;
@@ -567,7 +563,7 @@
   }
 }
 
-/* 📱 Tablets */
+
 @media (max-width: 1024px) {
   .Container {
     width: 90%;
@@ -594,7 +590,7 @@
   }
 }
 
-/* 📱 Celulares */
+
 @media (max-width: 768px) {
   .all {
     padding: 20px 0;
@@ -632,7 +628,6 @@
         }
       }
 
-      // Ajustes responsivos para o grupo de inputs
       .grupo1, .grupo2 {
         flex-direction: column;
         gap: 15px !important;

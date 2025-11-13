@@ -18,6 +18,7 @@ import UPAs from './pages/UPAs/upa';
 import CalendarioVacinacao from './pages/Vacinacao/CalendarioVacinacao';
 import Horarios from './pages/Horarios/Horarios';
 import Form from './pages/Formulario';
+import AdminCRUD from './pages/CRUD/crud';
 
 
 export default function Navegation() {
@@ -26,14 +27,15 @@ export default function Navegation() {
             <Routes>
                 <Route path='/Cadastro' element={<Cadastro />} />
                 <Route path='/' element={<Entrar />} />
-                <Route path='/PaginaEspera' element={<EmailEnviado />} />
                 <Route path='/EnviarEmail' element={<EsqueciSenha />} />
                 <Route path='/RedefinirSenha/:token' element={<AtualizarSenha />}/>
-                <Route path='/UPAs' element={<UPAs />}/>
-                <Route path='/Vacinações' element={<CalendarioVacinacao />}/>
-                <Route path='/Horários' element={<Horarios/>}/>
-                <Route path='/Formulario' element={<Form/>}/>
+                
 
+                <Route path='/upas' element={<RotaProtegida><UPAs /></RotaProtegida>}/>
+                <Route path='/CRUD' element={<RotaProtegida><AdminCRUD /></RotaProtegida>}/>
+                <Route path='/Vacinacoes' element={<RotaProtegida><CalendarioVacinacao /></RotaProtegida>}/>
+                <Route path='/Horarios' element={<RotaProtegida><Horarios/></RotaProtegida>}/>
+                <Route path='/Formulario' element={<RotaProtegida><Form/></RotaProtegida>}/>
                 <Route path='/Home' element={<RotaProtegida><Home /></RotaProtegida>} />
                 <Route path='/Sobre' element={<RotaProtegida><Sobrenos /></RotaProtegida>} />
                 <Route path='/Verificar' element={<RotaProtegida><Verificacao /></RotaProtegida>} />

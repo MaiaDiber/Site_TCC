@@ -183,9 +183,6 @@ export async function recusarSolicitacaoAdmin(idSolicitacao, idAdminResponsavel)
     return resposta.affectedRows;
 }
 
-// ============================================
-// LOGIN
-// ============================================
 export async function verificarLogin(email, senha) {
     const comando = `
         SELECT 

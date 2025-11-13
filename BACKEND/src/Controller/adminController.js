@@ -1,4 +1,3 @@
-// adminController.js - VERSÃO FINAL SEM E-MAIL
 import * as repo from '../Repository/adminRepository.js';
 import jwt from 'jsonwebtoken';
 import { Router } from "express";
@@ -214,7 +213,7 @@ endpointsAdmin.get('/perfil', autenticador, async (req, resp) => {
     if (!usuario)
       return resp.status(404).send({ erro: 'Usuário não encontrado' });
 
-    delete usuario.senha; // segurança
+    delete usuario.senha; 
 
     resp.send(usuario);
   } catch (err) {
