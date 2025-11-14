@@ -89,7 +89,7 @@ export default function CabecalhoAdmin() {
                     <ul>
                         <li><Link to="/Admin">Início</Link></li>
                         <li><Link to="/Sobre">Sobre</Link></li>
-                        <li><Link to="/Solicitações">Solicitações</Link></li>
+                        <li><Link to="/SolicitaçõesAdmin">Solicitações</Link></li>
                         <li><Link to="/CRUD">Gerenciar Conteúdo</Link></li>
                        
 

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../Vacinacao/Header';
 import './Horarios.scss'
 import { Link } from 'react-router';
@@ -7,6 +7,40 @@ import { Link } from 'react-router';
 
 export default function Horarios() {
  const navigate = useNavigate()
+
+
+ function DataHora() {
+  const [agora, setAgora] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAgora(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer); 
+  }, []);
+
+  return (
+    <div style={{
+      
+    }} >
+      <p style={{
+        textAlign: "center",
+        fontFamily: 'Arial',
+        color: "#151546",
+        fontWeight: "bold"
+
+        }} >Data: {agora.toLocaleDateString("pt-BR")}</p>
+      <p style={{
+        textAlign: "center",
+        fontFamily: 'Arial',
+        color: "#151546",
+        fontWeight: "bold"
+
+        }}>Hora: {agora.toLocaleTimeString("pt-BR")}</p>
+    </div>
+  );
+}
 
   useEffect(() => {
      const existingMap = L.DomUtil.get("map");
@@ -93,8 +127,7 @@ export default function Horarios() {
         <div className="date-info">
           <span className="calendar-icon"></span>
           <div>
-            <div className="date">Sábado, 09/11/2025</div>
-            <div className="time">Horário atual: 16:18</div>
+            <DataHora />
           </div>
         </div>
 

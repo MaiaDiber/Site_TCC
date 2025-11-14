@@ -103,14 +103,14 @@ export default function Home() {
                 </div>
             </div>
             <div className='Card' onClick={() => navigate('/upas')}>
-              <img src="/public/assets/images/cea2b736-e634-4d70-8892-45bf6bc20405-removebg-preview.png" height={50} width={40} alt="" />
+              <img src="/public/assets/images/cea2b736-e634-4d70-8892-45bf6bc20405-removebg-preview.png" height={50} width={30} alt="" />
                 <div className="text">
                   <h3>Unidades de saúde</h3>
                 <p>Procure as UBS mais próximas</p>
                 </div>
             </div>
             <div className='Card' onClick={() => navigate('/Horarios')} >
-              <img src="/publuc/assets/images/a116a0f0-294f-4358-a5a3-3783724c527c-removebg-preview.png" height={50} width={40} alt="" />
+              <img src="/public/assets/images/download-removebg-preview.png" height={50} width={50} alt="" />
                 <div className="text">
                   <h3>Horário de Atendimento</h3>
                 <p>Segunda a sexta, 07h às 19h</p>

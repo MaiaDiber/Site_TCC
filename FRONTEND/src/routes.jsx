@@ -7,7 +7,6 @@ import Cadastro from './pages/Cadastro/Cadastrao';
 import Sobrenos from './pages/Sobre/index';
 import Entrar from './pages/Entrar/Entrar';
 import Verificacao from './pages/Verificacao';
-import EmailEnviado from './pages/Entrar/PaginadeEspera';
 import AtualizarSenha from './pages/RedefinirSenha/TrocarSenha';
 import RotaProtegida from './components/component';
 import Solicitacoes from './pages/Admin/Solicitacoes';
