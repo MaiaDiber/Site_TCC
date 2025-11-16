@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 import Header from '../Vacinacao/Header';
+import ComponenteAcessibilidade from '../Cadastro/Acessibilidade';
 import './Horarios.scss'
 import { Link } from 'react-router';
 
@@ -114,12 +115,26 @@ export default function Horarios() {
 
   return (
     <div className="page-container">
+
+      
+
       <Header />
+
+      
 
       <section className="map-section">
         <h2 className="map-title">UBS da Zona Sul de São Paulo</h2>
         <div id="map" className="map-container"></div>
       </section>
+
+      <div style={{
+                                                             position: 'fixed',
+                                                             top: '20px',
+                                                             right: '20px',
+                                                             zIndex: 1000
+                                                         }}>
+                                                             <ComponenteAcessibilidade />
+                                                         </div>
 
       <main className="main-content">
         

@@ -233,7 +233,19 @@ export default function Perfil() {
                     >
                         ← Voltar
                     </button>
-                </div>
+                
+
+                 <button  onClick={() => {
+                                if (window.confirm('Tem certeza que deseja sair?')) {
+                                localStorage.removeItem('TOKEN');
+                                localStorage.removeItem('usuario');
+                                localStorage.removeItem('EMAIL');
+                                window.location.href = '/'; 
+                            }
+                            }} type='button' className="sair-conta">
+                            <p>Sair da conta</p>
+                        </button>
+                        </div>
             </section>
         </section>
     );

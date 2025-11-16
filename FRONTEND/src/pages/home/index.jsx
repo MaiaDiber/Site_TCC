@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Cabeçalho from '../../components/Index/cabecalho';
 import Rodape from '../../components/Index/rodape';
 import InteractiveCardsSection from './cartoes';
+import ComponenteAcessibilidade from '../Cadastro/Acessibilidade';
 import './index.scss';
 
 export default function Home() {
@@ -49,6 +50,14 @@ export default function Home() {
     <>
       <section className='Tudo'>
        
+       <div style={{
+           position: 'fixed',
+          top: '20px',
+          right: '20px',
+         zIndex: 1000
+          }}>
+         <ComponenteAcessibilidade />
+         </div>
 
         <div className='carousel-container'>
           <Cabeçalho />

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import CabecalhoAdmin from '../../components/Index/AdminCabecalho';
 import Rodape from '../../components/Index/rodape';
+import ComponenteAcessibilidade from '../Cadastro/Acessibilidade';
 import './crud.scss';
 
 export default function AdminCRUD() {
@@ -172,6 +173,8 @@ export default function AdminCRUD() {
       return (
         <>
           <div className="form-group">
+
+
             <label>Especialidade *</label>
             <input
               type="text"
@@ -347,6 +350,16 @@ export default function AdminCRUD() {
 
   return (
     <>
+
+    
+             <div style={{
+                                            position: 'fixed',
+                                            top: '20px',
+                                            right: '20px',
+                                            zIndex: 1000
+                                        }}>
+                                            <ComponenteAcessibilidade />
+                                        </div>
       <CabecalhoAdmin />
       
       <div className="admin-page">

@@ -60,9 +60,9 @@ export default function Cabeçalho() {
                     </div>
                 </div>
 
-                <div className="Logo">
+                <button onClick={() => navigate(-1)} className="Logo">
                     <img src="/assets/Images/logo_ViaSaúde.png" alt="Imagem" height={80} />
-                </div>
+                </button>
 
                 <div className="botoes">
                     <div className="botao">

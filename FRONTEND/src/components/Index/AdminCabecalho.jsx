@@ -60,9 +60,9 @@ export default function CabecalhoAdmin() {
                     </div>
                 </div>
 
-                <div className="Logo">
+                <button onClick={() => navigate(-1)} className="Logo">
                     <img src="/assets/Images/logo_ViaSaúde.png" alt="Imagem" height={80} />
-                </div>
+                </button>
 
                 <div className="botoes">
                     <div className="botao">
@@ -88,7 +88,7 @@ export default function CabecalhoAdmin() {
                     <h2>Menu</h2>
                     <ul>
                         <li><Link to="/Admin">Início</Link></li>
-                        <li><Link to="/Sobre">Sobre</Link></li>
+                        <li><Link to="/SobreAdmin">Sobre</Link></li>
                         <li><Link to="/SolicitaçõesAdmin">Solicitações</Link></li>
                         <li><Link to="/CRUD">Gerenciar Conteúdo</Link></li>
                        

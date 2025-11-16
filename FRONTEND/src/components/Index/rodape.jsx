@@ -21,9 +21,10 @@ export default function Rodape() {
           <ul>
             <li><Link to={"/upas"}>UPAs</Link></li>
             <li><Link to={"/Sobre"}>Sobre</Link></li>
-            <li><Link to={"/Vacinacao"}>Vacinações</Link></li>
+            <li><Link to={"/Vacinacoes"}>Vacinações</Link></li>
             <li><Link to={"/Horarios"}>Horários</Link></li>
             <li><Link to={"/"}>Sair da conta</Link></li>
+            <li><Link to={"/Verificar"}>Verificacao</Link></li>
           </ul>
         </div>
 

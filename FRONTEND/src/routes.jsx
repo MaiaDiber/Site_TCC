@@ -18,6 +18,7 @@ import CalendarioVacinacao from './pages/Vacinacao/CalendarioVacinacao';
 import Horarios from './pages/Horarios/Horarios';
 import Form from './pages/Formulario';
 import AdminCRUD from './pages/CRUD/crud';
+import SobrenosAdmin from './pages/Sobre/sobreAdmin';
 
 
 export default function Navegation() {
@@ -36,6 +37,7 @@ export default function Navegation() {
                 <Route path='/Horarios' element={<RotaProtegida><Horarios/></RotaProtegida>}/>
                 <Route path='/Formulario' element={<RotaProtegida><Form/></RotaProtegida>}/>
                 <Route path='/Home' element={<RotaProtegida><Home /></RotaProtegida>} />
+                <Route path='/SobreAdmin' element={<RotaProtegida><SobrenosAdmin /></RotaProtegida>} />
                 <Route path='/Sobre' element={<RotaProtegida><Sobrenos /></RotaProtegida>} />
                 <Route path='/Verificar' element={<RotaProtegida><Verificacao /></RotaProtegida>} />
                 <Route path='/Perfil' element={<RotaProtegida><Perfil /></RotaProtegida>} />

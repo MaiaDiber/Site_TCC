@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import CabecalhoAdmin from '../../components/Index/AdminCabecalho'
 import Rodape from '../../components/Index/rodape';
 import InteractiveCardsSection from '../home/cartoes';
+import ComponenteAcessibilidade from '../Cadastro/Acessibilidade';
 import './Principal.scss';
 
 export default function PaginaAdmin() {
@@ -48,6 +49,15 @@ export default function PaginaAdmin() {
   return (
     <>
       <section className='Tudo'>
+
+        <div style={{
+                                position: 'fixed',
+                                top: '20px',
+                                right: '20px',
+                                zIndex: 1000
+                            }}>
+                                <ComponenteAcessibilidade />
+                            </div>
        
 
         <div className='carousel-container'>
