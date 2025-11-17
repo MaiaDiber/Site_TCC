@@ -1,12 +1,14 @@
 import './cabecalho.scss';
-import { Link } from 'react-router';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
+import api from '../../axios';
 
 export default function Cabeçalho() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [PosicaoVisivel, setPosicaoVisivel] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
+    const [foto, setFoto] = useState({ nome_completo: '' });
+
 
     const navigate = useNavigate()
 
@@ -23,6 +25,23 @@ export default function Cabeçalho() {
         }
     }
 
+    async function FotoPerfi() {
+        try {
+            const response = await api.get('/perfil');
+            setFoto({
+                nome_completo: response.data.nome_completo
+            })
+        }
+        catch (err) {
+            console.log("Erro ao carregar foto:", err);
+        }
+        
+    }
+
+    useEffect(() => {
+        FotoPerfi();
+    }, []);
+
     useEffect(() => {
         if (menuOpen) {
             setPosicaoVisivel(true);
@@ -30,6 +49,8 @@ export default function Cabeçalho() {
             const timer = setTimeout(() => setPosicaoVisivel(false), 800);
             return () => clearTimeout(timer);
         }
+
+         
     }, [menuOpen]);
 
     const alternarMenu = () => setMenuOpen(!menuOpen);
@@ -40,7 +61,12 @@ export default function Cabeçalho() {
             <header className="cabeçalho">
 
                 <div className="Perfil">
-                    <img src="/public/assets/images/ChatGPT_Image_12_de_nov._de_2025__21_45_38-removebg-preview.png" height={80} alt="" />
+
+                    
+                <div className="avatar">
+                {String(foto.nome_completo || '').charAt(0).toUpperCase()}
+                </div>
+
 
                     <div className="double">
                         <button onClick={() => navigate('/Perfil')} type='button' className="sobre-perfil ir-perfil">

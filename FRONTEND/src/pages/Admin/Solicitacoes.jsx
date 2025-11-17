@@ -115,7 +115,7 @@ async function recusarSolicitacao(id) {
                             </div>
 
             <header className="cabecalho">
-                <h1>📋 Solicitações de Administrador</h1>
+                <h1> Solicitações de Administrador</h1>
                 <button onClick={() => navigate('/admin')} className="btn-voltar">
                     ← Voltar
                 </button>

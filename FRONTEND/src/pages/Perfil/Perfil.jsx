@@ -117,7 +117,7 @@ export default function Perfil() {
             <section className="container-perfil">
                 <div className="header-perfil">
                     <div className="avatar">
-                        {dados.nome_completo.charAt(0).toUpperCase()}
+                        {dados.nome_completo?dados.nome_completo.charAt(0).toUpperCase() : '' }
                     </div>
                     <div className="info-basica">
                         <h1>{dados.nome_completo}</h1>
