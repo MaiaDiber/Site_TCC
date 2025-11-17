@@ -1,0 +1,276 @@
+
+.interactive-section {
+  background-color: #EEEEEE;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 40px;
+  margin: 50px auto;
+  max-width: 1300px;
+  margin-bottom: 50px;
+
+  .tab-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+
+    .tab-btn {
+      background-color: #017B38;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 20px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-width: 200px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      &:hover {
+        background-color: #015f2d;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      &.active {
+        background-color: #025a30;
+        box-shadow: 0 4px 16px rgba(1, 123, 56, 0.4);
+      }
+    }
+  }
+
+  .cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .alert-info {
+      background-color: #e3f2fd;
+      border: 1px solid #90caf9;
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #1565c0;
+
+      svg {
+        flex-shrink: 0;
+      }
+
+      p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+    }
+
+    .info-card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #eee;
+
+        h3 {
+          font-size: 20px;
+          color: #333;
+          margin: 0;
+        }
+
+        .doctor-info {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+
+          .doctor-avatar {
+            background-color: #017B38;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+          }
+
+          .crm {
+            color: #017B38;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 4px 0 0 0;
+          }
+        }
+
+        .medicine-info {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+
+          .medicine-icon {
+            background-color: #017B38;
+            border-radius: 12px;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+          }
+
+          .tipo {
+            color: #666;
+            font-size: 14px;
+            margin: 4px 0 0 0;
+          }
+        }
+
+        .status-badge {
+          background-color: #c8e6c9;
+          color: #2e7d32;
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 14px;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+
+          &.disponivel {
+            background-color: #c8e6c9;
+            color: #2e7d32;
+          }
+           &.indisponivel {
+    background-color: #ffcdd2;
+    color: #c62828;
+  }
+
+
+        }
+      }
+
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .info-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          color: #555;
+
+          svg {
+            flex-shrink: 0;
+            color: #017B38;
+            margin-top: 2px;
+          }
+
+          strong {
+            display: block;
+            color: #333;
+            margin-bottom: 4px;
+          }
+
+          p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #666;
+          }
+        }
+
+        .medicine-details {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+
+          > div {
+            strong {
+              display: block;
+              color: #333;
+              margin-bottom: 6px;
+              font-size: 14px;
+            }
+
+            p {
+              margin: 0;
+              font-size: 14px;
+              color: #666;
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .interactive-section {
+    margin: 30px 20px;
+    padding: 30px 20px;
+
+    .tab-buttons {
+      gap: 15px;
+
+      .tab-btn {
+        min-width: 160px;
+        padding: 16px 20px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .interactive-section {
+    .tab-buttons {
+      flex-direction: column;
+
+      .tab-btn {
+        width: 100%;
+      }
+    }
+
+    .cards-container {
+      .info-card {
+        .card-body {
+          .medicine-details {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .card-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+      }
+    }
+  }
+}

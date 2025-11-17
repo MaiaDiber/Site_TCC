@@ -1,20 +1,87 @@
 .cabeçalho {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
-    background-color: #ffffff;
-    border-bottom: 2px solid black;
-    position: relative;
-    z-index: 1000;
+    gap: 550px;
+    height: 130px;
+    width: 100%;
+    background-color: #fffdf3;
+    box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.08);
+    z-index: 10;
+    position: fixed;
+    top: 0;
 
-    .Logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-block: 10px;
-        padding-left: 800px;
+    .Perfil{
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        margin-top: 150px;
+
+        &:hover{
+            transform: scale(1.1);
+
+            .double{
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        
+
+        .double{
+            visibility: hidden;
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 150px;
+            width: 200px;
+            transition: all 0.3s ease-in-out;
+
+            .sobre-perfil{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 3px solid #000 ;
+                background-color: #FDF9E7;
+                transition: all 0.3s ease-in-out ;
+
+                &:hover{
+                    background-color: #3f3f3f;
+                    color: #FDF9E7;
+                }
+            }
+
+            .ir-perfil{
+                padding: 10px 33px;
+                font-size: 20px;
+                font-weight: bold;
+
+            }
+
+            .sair-perfil{
+                padding: 4px 9px;
+                display: flex;
+                gap: 10px;
+                font-weight: bold;
+                font-size: 20px;
+                transition: all 0.3s ease-in-out ;
+
+                &:hover{
+                    background-color: #3f3f3f;
+                    color: #FDF9E7;
+                }
+            }
+        }
     }
+
+    
+     .Logo{
+        cursor: pointer;
+        background: none;
+        border: none;
+    }
+    
 
     .botoes {
         display: flex;
@@ -24,8 +91,15 @@
         margin-top: 10px;
 
         .botao {
+                transition: all 0.3s ease-in-out;
+
+        &:hover{
+            transform: scale(1.1);
+        }
+
+
             .b {
-                padding: 1px 40px;
+                
                 font-size: 15px;
                 color: white;
                 background-color: transparent;
@@ -40,7 +114,6 @@
     }
 }
 
-/* ===== MENU LATERAL ===== */
 
 .menu-overlay {
     position: fixed;
@@ -150,7 +223,7 @@
     }
 }
 
-/* ===== BARRA DE PESQUISA ===== */
+
 
 .search-background {
     position: fixed;
@@ -223,7 +296,7 @@
     }
 }
 
-/* ===== RESPONSIVIDADE ===== */
+
 
 @media (max-width: 1366px) and (min-width: 1025px) {
     .cabeçalho {

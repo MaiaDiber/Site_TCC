@@ -1,0 +1,38 @@
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+    .menu{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 350px;
+        margin-left: 550px;
+    }
+
+.logo{
+    height: 80px;
+    width: 150px;
+}
+.botoes-footer {
+        padding: 25px 35px 35px;
+        display: flex;
+        justify-content: flex-start;
+
+        .btn-voltar {
+           transition: all 0.3s ease-in-out;
+            background: transparent;
+            color: #1c7e5d;
+            border: 2px solid #1c7e5d;
+            padding: 12px 30px;
+            font-size: 16px;
+
+            &:hover {
+                background: #1c7e5d;
+                color: white;
+            }
+        }
+    }
+}

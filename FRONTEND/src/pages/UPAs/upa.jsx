@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, Building2, AlertCircle, Phone, Menu, X } from 'lucide-react';
 import ComponenteAcessibilidade from '../Cadastro/Acessibilidade';
+import Header from '../Vacinacao/Header';
 import { useNavigate } from 'react-router';
 import './upa.scss'
 
@@ -8,6 +9,7 @@ export default function UPAs (){
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate()
+  
 
   useEffect(() => {
       
@@ -103,6 +105,77 @@ export default function UPAs (){
       }
     }, []);
 
+
+     useEffect(() => {
+        const existingMap = L.DomUtil.get("map");
+        if (existingMap != null) existingMap._leaflet_id = null;
+    
+        const map = L.map("map", {
+          center: [-23.65, -46.63],
+          zoom: 12,
+          minZoom: 11,
+          maxZoom: 18,
+          zoomControl: true,
+          scrollWheelZoom: true,
+          dragging: true,
+        });
+    
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        }).addTo(map);
+    
+        const bounds = L.latLngBounds([-23.74, -46.80], [-23.58, -46.50]);
+        map.setMaxBounds(bounds);
+        map.on("drag", () => map.panInsideBounds(bounds, { animate: false }));
+    
+        const ubsList = [
+          { nome: "UBS Jardim São Luís", coords: [-23.6662, -46.7371], info: "💉 Campanha de vacinação contra dengue ativa." },
+          { nome: "UBS Capão Redondo", coords: [-23.6528, -46.7743], info: "🩺 Atendimento ampliado aos sábados." },
+          { nome: "UBS Campo Limpo", coords: [-23.6375, -46.7567], info: "💉 Vacinação infantil até 17h." },
+          { nome: "UBS Santo Amaro", coords: [-23.6499, -46.7066], info: "🩹 Campanhas finalizadas, aguardando novas datas." },
+          { nome: "UBS Vila Andrade", coords: [-23.6215, -46.7312], info: "💉 Nova campanha contra gripe!" },
+        ];
+    
+        ubsList.forEach((ubs) => {
+          L.marker(ubs.coords).addTo(map).bindPopup(`<b>${ubs.nome}</b><br>${ubs.info}`);
+        });
+    
+        const group = L.featureGroup(ubsList.map((u) => L.marker(u.coords)));
+        map.fitBounds(group.getBounds(), { padding: [20, 20] });
+    
+        let userMarker = null;
+    
+        if (navigator.geolocation) {
+          navigator.geolocation.watchPosition(
+            (pos) => {
+              const { latitude, longitude } = pos.coords;
+              const userLatLng = [latitude, longitude];
+    
+              if (!userMarker) {
+                const userIcon = L.icon({
+                  iconUrl: "https://cdn-icons-png.flaticon.com/512/64/64113.png",
+                  iconSize: [32, 32],
+                  iconAnchor: [16, 32],
+                });
+                userMarker = L.marker(userLatLng, { icon: userIcon })
+                  .addTo(map)
+                  .bindPopup("📍 Você está aqui")
+                  .openPopup();
+    
+                map.setView(userLatLng, 14);
+              } else {
+                userMarker.setLatLng(userLatLng);
+              }
+            },
+            (err) => {
+              console.warn("Erro ao obter localização:", err.message);
+            },
+            { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+          );
+        }
+      }, []);
+
   return (
     <section className="via-saude">
 
@@ -115,31 +188,15 @@ export default function UPAs (){
                                 <ComponenteAcessibilidade />
                             </div>
 
-      <header >
-        <div className="container">
-          <div className="header-content">
-            <div className="logo">
-              <img src="/public/assets/images/logo_ViaSaúde.png" height={90} alt="" />
+      <Header />
 
-              <Link className="voltar" onClick={() => navigate(-1)}>
-                          ← Voltar
-                      </Link>
-            </div>
-           
-          </div>
-        </div>
-      </header>
+      <section className="map-section">
+        <h2 className="map-title">UBS da Zona Sul de São Paulo</h2>
+        <div id="map" className="map-container"></div>
+      </section>
 
       
-      <section className="hero">
-        <div className="container">
-          <div className="hero-content">
-            <MapPin className="hero-icon" size={48} />
-            <h1>Unidades de Saúde</h1>
-            <p>Como encontrar a unidade de saúde mais próxima de você</p>
-          </div>
-        </div>
-      </section>
+      
 
      
       <section className="info-alert">
@@ -428,20 +485,7 @@ export default function UPAs (){
       </section>
 
       
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <div className="logo">
-              <div className="logo-icon">+</div>
-              <div className="logo-text">
-                <span className="logo-via">VIA</span>
-                <span className="logo-saude">SAÚDE</span>
-              </div>
-            </div>
-            <p>Informações sobre saúde pública no Brasil</p>
-          </div>
-        </div>
-      </footer>
+      
 
     </section>
   )

@@ -8,7 +8,7 @@ dotenv.config();
 
 function formatarDataParaSQL(data) {
   if (!data) return null;
-  // aceita DD/MM/AAAA ou já AAAA-MM-DD
+  
   const s = data.toString().trim();
   if (s.includes('/')) {
     const parts = s.split('/');
@@ -16,7 +16,7 @@ function formatarDataParaSQL(data) {
     const [dia, mes, ano] = parts.map(p => p.trim());
     return `${ano.padStart(4, '0')}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
   }
-  // se já estiver AAAA-MM-DD
+  
   return s;
 }
 
@@ -35,7 +35,7 @@ export async function importarMedicamentosCSV(caminhoArquivo) {
       .pipe(csv({ separator: ';', mapHeaders: ({ header }) => header }))
       .on('data', (data) => {
         try {
-          // Ajusta chaves - aceita tanto cabeçalho com nomes quanto índices
+        
           const validadeBruta =
             data['DATA_VENCIMENTO_REGISTRO'] ||
             data['DATA_VENCIMENTO_REGISTRO '] ||
@@ -49,7 +49,7 @@ export async function importarMedicamentosCSV(caminhoArquivo) {
             validadeISO = `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
           }
 
-          // Verifica se ano é válido (>= 2026)
+        
           if (validadeISO) {
             const anoValidade = parseInt(validadeISO.split("-")[0], 10);
             if (anoValidade >= 2026) {
@@ -115,7 +115,7 @@ export async function importarMedicamentosCSV(caminhoArquivo) {
   });
 }
 
-// 👇 Adicione este trecho para executar automaticamente
+
 if (process.argv[1].includes('importarMedicamentos.js')) {
   importarMedicamentosCSV(process.env.CSV_PATH)
     .then((msg) => console.log(`✅ ${msg}`))

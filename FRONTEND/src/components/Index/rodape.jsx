@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import './rodape.scss';
 
 export default function Rodape() {
@@ -5,32 +6,37 @@ export default function Rodape() {
     <footer className="rodape">
       <div className="rodape-inner">
 
-        {/* Coluna 1 - Marca */}
+        
         <div className="col marca">
+          <img src="/public/assets/images/a.png" height={150} alt="" />
           <h3>Via Saúde</h3>
           <p className="marca-sub">
             Transformando o acesso à<br />saúde pública com tecnologia
           </p>
         </div>
 
-        {/* Coluna 2 - Links rápidos */}
+       
         <div className="col links">
           <h4>Links rápidos</h4>
           <ul>
-            <li><a href="#">Início</a></li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Equipe</a></li>
-            <li><a href="#">Contato</a></li>
+            <li><Link to={"/upas"}>UPAs</Link></li>
+            <li><Link to={"/Sobre"}>Sobre</Link></li>
+            <li><Link to={"/Vacinacoes"}>Vacinações</Link></li>
+            <li><Link to={"/Horarios"}>Horários</Link></li>
+            <li><Link to={"/"}>Sair da conta</Link></li>
+            <li><Link to={"/Verificar"}>Verificacao</Link></li>
           </ul>
         </div>
 
-        {/* Coluna 3 - Redes sociais */}
+        
         <div className="col redes">
           <div className="icons">
-            <a href="#"><i className="fa-brands fa-instagram"></i></a>
-            <a href="#"><i className="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i className="fa-brands fa-twitter"></i></a>
+            <Link to={"https://www.instagram.com/viasaude.tcc/"}><i className="fa-brands fa-instagram">
+              <img src="/public/assets/images/a24ccc83bec854a87cc133fd52eb9161-removebg-preview.png" height={60} alt="" />
+              </i></Link>
+            <Link to={"https://x.com/viasaudetcc"}><i className="fa-brands fa-facebook-f">
+              <img src="/public/assets/images/COLOURBOX65108000-removebg-preview.png" height={70} alt="" />
+              </i></Link>
           </div>
         </div>
 

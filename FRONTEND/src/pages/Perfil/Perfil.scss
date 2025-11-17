@@ -121,6 +121,7 @@
                 padding: 10px 20px;
                 background: #1c7e5d;
                 color: white;
+                transition: all 0.2s ease-in-out;
 
                 
 
@@ -227,7 +228,22 @@
     .botoes-footer {
         padding: 25px 35px 35px;
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
+
+        .sair-conta{
+            background: #991616;
+            color: #ffffff;
+            
+            padding: 12px 30px;
+            font-size: 16px;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                border: 2px solid #991616;
+                background: transparent;
+                color: #991616;
+            }
+        }
 
         .btn-voltar {
            
@@ -236,6 +252,7 @@
             border: 2px solid #1c7e5d;
             padding: 12px 30px;
             font-size: 16px;
+            transition: all 0.2s ease-in-out;
 
             &:hover {
                 background: #1c7e5d;

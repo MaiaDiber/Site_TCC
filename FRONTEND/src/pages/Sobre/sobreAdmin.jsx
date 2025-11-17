@@ -1,9 +1,9 @@
-import Cabeçalho from '../../components/Index/cabecalho'
+import CabecalhoAdmin from '../../components/Index/AdminCabecalho'
 import Rodape from '../../components/Index/rodape'
 import ComponenteAcessibilidade from '../Cadastro/Acessibilidade'
 import './index.scss'
 
-export default function Sobrenos() {
+export default function SobrenosAdmin() {
 
     return(
         <>
@@ -18,7 +18,7 @@ export default function Sobrenos() {
                                                        <ComponenteAcessibilidade />
                                                    </div>
 
-                <Cabeçalho/>
+                <CabecalhoAdmin/>
                <div className='titulo'>
     <div className='so'><h2>Sobre</h2></div><div className='va'><h2>Via</h2></div><div className='sa'><h2> Saúde</h2></div>
             </div>
