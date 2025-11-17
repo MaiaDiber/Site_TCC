@@ -1,15 +1,16 @@
 * {
-  margin: 0;
+  margin:0px;
   padding: 0;
-  box-sizing: border-box;
+  
 }
+
 
 .all {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
   background-color: #145045;
 
   .Container {
