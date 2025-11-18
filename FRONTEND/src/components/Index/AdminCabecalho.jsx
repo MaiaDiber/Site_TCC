@@ -2,11 +2,13 @@ import './AdminCabecalho.scss';
 import { Link } from 'react-router';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import api from '../../axios';
 
 export default function CabecalhoAdmin() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [PosicaoVisivel, setPosicaoVisivel] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
+    const [foto, setFoto] = useState({ nome_completo: '' });
 
     const navigate = useNavigate()
 
@@ -22,6 +24,23 @@ export default function CabecalhoAdmin() {
             navigate('/');
         }
     }
+
+     async function FotoPerfi() {
+            try {
+                const response = await api.get('/perfil');
+                setFoto({
+                    nome_completo: response.data.nome_completo
+                })
+            }
+            catch (err) {
+                console.log("Erro ao carregar foto:", err);
+            }
+            
+        }
+    
+        useEffect(() => {
+            FotoPerfi();
+        }, []);
 
     useEffect(() => {
         if (menuOpen) {
@@ -40,8 +59,11 @@ export default function CabecalhoAdmin() {
             <header className="cabeçalho">
 
                 <div className="Perfil">
-                    <img src="/public/assets/images/ChatGPT_Image_12_de_nov._de_2025__21_45_38-removebg-preview.png" height={80} alt="" />
 
+                <div className="avatar">
+                {String(foto.nome_completo || '').charAt(0).toUpperCase()}
+                </div>
+                
                     <div className="double">
                         <button onClick={() => navigate('/Perfil')} type='button' className="sobre-perfil ir-perfil">
                             <p>Perfil</p>

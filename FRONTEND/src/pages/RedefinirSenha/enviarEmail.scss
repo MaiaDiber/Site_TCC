@@ -1,4 +1,3 @@
-// EsqueciSenha.scss
 * {
     padding: 0;
     margin: 0;
@@ -29,19 +28,22 @@
             margin-top: -10px;
         }
 
-        .card-esqueci-senha {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 30px;
-            height: 75%;
-            width: 90%;
-            border: 3px solid #017B38;
-            border-radius: 8px;
-            padding: 40px 30px;
-            margin-top: 10px;
+        .card-esqueci-senha{
+    position: relative;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    flex-direction: column;
+    gap: 20px; 
+    height: auto; 
+    min-height: 500px;
+    width: 90%;
+    border: 3px solid #017B38;
+    border-radius: 8px;
+    padding: 30px 20px; 
+    margin-top: 10px;
+    overflow: hidden; 
+
 
             .cabecalho-esqueci-senha {
                 display: flex;
@@ -135,17 +137,23 @@
             }
 
             .mensagem-sucesso {
-                background-color: #d4edda;
-                color: #155724;
-                padding: 12px 20px;
-                border-radius: 6px;
-                border: 1px solid #c3e6cb;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                font-size: 15px;
-                text-align: center;
-                width: 100%;
-                max-width: 500px;
-            }
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px 20px;
+    border-radius: 6px;
+    border: 1px solid #c3e6cb;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    
+    /* Adicione estas propriedades */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    line-height: 1.4;
+}
 
             .btn-enviar-email {
                 padding: 14px 40px;

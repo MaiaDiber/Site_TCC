@@ -4,13 +4,13 @@ Info - C
 
 - Gustavo Maia ;
 
--Luigi Bernardes;
+- Luigi Bernardes;
 
--Sophia Pereira;
+- Sophia Pereira;
 
--Márcio;
+- Márcio;
 
--Lucas Oliveira;
+- Lucas Oliveira;
 
--Pietro Lucas;
+- Pietro Lucas;
 
