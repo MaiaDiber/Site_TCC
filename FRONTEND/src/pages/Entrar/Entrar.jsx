@@ -97,6 +97,7 @@ export default function Entrar() {
                         <div className='Login-linha'>
                             <h1>Login</h1>
                             <div className='linha-entrar'></div>
+
                         </div>
 
                         <div className="cpf-senha">

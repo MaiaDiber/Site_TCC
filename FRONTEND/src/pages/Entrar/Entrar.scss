@@ -1,312 +1,170 @@
-*{
-    padding: 0;
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.all-entrar{
+.all-entrar {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    width: 100%;
     background-color: #107764;
-    
+    padding: 20px;
+}
 
-    .container-entrar{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 10px;
-        height: 90%;
-        width: 700px;
-        background-color: #fff;
-        border-radius: 10px;
-        
+.container-entrar {
+    background: #fff;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
 
-        img{
-           margin-top: -20px;
-        }
+.logosite-entrar {
+    align-self: center;
+}
 
-        .Entrar{
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 20px;
-            height: 80%;
-            width: 90%;
-            border: 3px solid #017B38;
-            border-radius: 5px;
-            margin-top: 30px;
+.Entrar {
+    border: 3px solid #017B38;
+    border-radius: 8px;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
 
-            .Login-linha{
-                position: absolute;
-                top: 8%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                gap: 20px;
+.Login-linha {
+    text-align: center;
 
-                h1{
-                    font-family: 'Inter', sans-serif;
-                    font-size: 48px;
-                    color: #017B38;
-                }
+    h1 {
+        font-family: 'Inter', sans-serif;
+        font-size: 32px;
+        color: #017B38;
+    }
 
-                .linha-entrar{
-                    padding: 1px 225px ;
-                    background-color: #2e2e2e;
-                }
-            }
+    .linha-entrar {
+        width: 100%;
+        max-width: 200px;
+        height: 2px;
+        background: #2e2e2e;
+        margin: 8px auto 0 auto;
+    }
+}
 
+.cpf-senha {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
 
+label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 
-            .cpf-senha{
-                position: absolute;
-                top: 30%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                gap: 5px;
-                width: 100%;
+    p {
+        font-size: 18px;
+        color: #333;
+    }
 
-                label {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    width: 100%;
-                    max-width: 550px;
+    input {
+        height: 45px;
+        width: 100%;
+        padding: 0 14px;
+        border: 3px solid #017B38;
+        border-radius: 6px;
+        font-size: 16px;
+    }
 
-                    .msg-erro {
-                        color: #ff4444;
-                        font-size: 15px;
-                        margin-top: 5px;
-                        display: block;
-                            }
+    .msg-erro {
+        color: red;
+        font-size: 14px;
+    }
+}
 
-                        input.erro {
-                        border-color: #ff4444 !important;
-                        background-color: #fff8f8;
-                        }
-                    
-                    p {
-                        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                        font-size: 20px;
-                        margin-bottom: 8px;
-                        color: #333;
-                       
-                    }
+.password-input-container {
+    position: relative;
+    width: 100%;
 
-                    
-                    input[type="email"] {
-                        height: 45px;
-                        width: 100%;
-                        padding: 0 15px;
-                        border: 3px solid #017B38;
-                        border-radius: 8px;
-                        font-size: 16px;
-                        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                        transition: all 0.3s ease;
-                        box-sizing: border-box;
+    input {
+        padding-right: 45px;
+    }
+}
 
-                        &:focus {
-                            outline: none;
-                            border-color: #107764;
-                            box-shadow: 0 0 0 3px rgba(16, 119, 100, 0.2);
-                        }
+.toggle-password-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
 
-                        &::placeholder {
-                            color: #999;
-                            font-size: 14px;
-                        }
+.esquecisenha {
+    text-decoration: none;
+    color: #0366fa;
+    font-size: 15px;
+}
 
-                    }
+.btn-entrar {
+    background-color: #017B38;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+}
 
-                    
-                    .password-input-container {
-                        position: relative;
-                        width: 100%;
-                        display: flex;
-                        align-items: center;
+.naotemconta {
+    text-align: center;
 
-                        .msg-erro {
-                        color: #ff4444;
-                        font-size: 12px;
-                        margin-top: 5px;
-                        display: block;
-                            }
+    a {
+        color: #017B38;
+        font-weight: bold;
+        text-decoration: none;
+    }
+}
 
-                        input.erro {
-                        border-color: #ff4444 !important;
-                        background-color: #fff8f8;
-                            }
+/* ===================== RESPONSIVO ===================== */
 
-                        
-                        input {
-                            width: 100%;
-                            height: 45px;
-                            padding: 0 50px 0 15px; 
-                            border: 3px solid #017B38;
-                            border-radius: 8px;
-                            font-size: 16px;
-                            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                            transition: all 0.3s ease;
-                            
+@media (max-width: 450px) {
+    .Entrar {
+        padding: 18px;
+    }
 
-                            &:focus {
-                                outline: none;
-                                border-color: #107764;
-                                box-shadow: 0 0 0 3px rgba(16, 119, 100, 0.2);
-                            }
+    .Login-linha h1 {
+        font-size: 26px;
+    }
 
-                            &::placeholder {
-                                color: #999;
-                                font-size: 14px;
-                            }
+    label p {
+        font-size: 16px;
+    }
 
-                           
-                        }
+    input {
+        font-size: 14px;
+    }
 
-                        
-                        .toggle-password-btn {
-                            position: absolute;
-                            right: 12px;
-                            top: 50%;
-                            transform: translateY(-50%);
-                            background: #fff;
-                            border: none;
-                            cursor: pointer;
-                            padding: 6px;
-                            color: #666;
-                            border-radius: 4px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            transition: all 0.2s ease;
-                            width: 32px;
-                            height: 32px;
-                            z-index: 10;
+    .btn-entrar {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
 
-                            &:hover {
-                                background-color: #f0f0f0;
-                                color: #333;
-                            }
+@media (max-width: 380px) {
+    .container-entrar {
+        padding: 15px;
+    }
 
-                            &:active {
-                                background-color: #e0e0e0;
-                                transform: translateY(-50%) scale(0.95);
-                            }
-
-                            svg {
-                                width: 20px;
-                                height: 20px;
-                               
-                                transition: all 0.2s ease;
-                            }
-
-                           
-                            &:hover svg {
-                                transform: scale(1.1);
-                            }
-                        }
-
-                        
-                    }
-                }
-            }
-
-            .esquecisenha{
-                position: absolute;
-                bottom: 31%;
-                right: 7%;
-                background: none;
-                border: none;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                font-size: 15px;
-                color: #0366fa;
-                cursor: pointer;
-                text-decoration: none;
-
-                &:hover{
-                    text-decoration: underline;
-                    transform: scale(1);
-                }
-
-
-            }
-
-           
-            .btn-entrar {
-                position: absolute;
-                bottom: 19%;
-                padding: 14px 250px;
-                background-color: #017B38;
-                color: white;
-                border: none;
-                border-radius: 8px;
-                font-size: 18px;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-                &:hover {
-                    background-color: #107764;
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-                }
-
-                &:active {
-                    transform: translateY(0);
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                }
-
-                
-            }
-
-            .naotemconta{
-                position: absolute;
-                bottom: 5%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                gap: 10px;
-
-                p{
-                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                    font-size: 17px;
-                    color: rgb(107, 107, 107);
-
-                }
-
-                a{
-                    font-weight: bold;
-                    border: 3px solid #017B38;
-                    border-radius: 5px;
-                    padding: 5px 8px;
-                    text-decoration: none;
-                    color: #017B38;
-                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                    transition: all 0.4s ease-in-out;
-
-
-                    &:hover{
-                        transform: translateY(-3px) scale(1.1);
-                        border: 3px solid #017B38;
-                        color: #017B38;
-                    }
-
-                    &:active{
-                        transform: translate(3px);
-                    }
-                }
-            }
-        }
+    .Entrar {
+        padding: 15px;
     }
 }

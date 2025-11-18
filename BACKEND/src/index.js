@@ -6,7 +6,6 @@ import Rotas from './rotas.js';
 const app = express();
 app.use(express.json());
 
-
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
@@ -24,7 +23,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'x-access-token']
 }));
 
-
 app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
     res.header('Access-Control-Allow-Origin', req.headers.origin || '');
@@ -35,7 +33,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use((req, res, next) => {
   res.setHeader('ngrok-skip-browser-warning', 'true');
   next();
@@ -44,4 +41,6 @@ app.use((req, res, next) => {
 Rotas(app);
 
 const PORT = process.env.PORTA || 6045;
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+app.listen(PORT, "0.0.0.0", () =>
+  console.log(`Servidor rodando na porta ${PORT}`)
+);
