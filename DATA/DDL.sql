@@ -22,6 +22,28 @@ VALUES
 ('Admin Principal', '056.370.503-40', '1990-01-01', MD5('senha123'), 'gustavomaiaxre@gmail.com', 'admin', 'aprovado'),
 ('Carlão Silva do Pinto', '507.501.296-20', '1980-05-22', MD5('pinto99'), 'carlaodopinto@gmail.com', 'paciente', 'aprovado');
 
+CREATE TABLE Endereco (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    cep VARCHAR(10) NOT NULL,
+    rua_aven VARCHAR(255) NOT NULL,
+    numero_casa VARCHAR(8) NOT NULL,
+    bairro VARCHAR(200) NOT NULL,
+    id_cadastro INT,
+    FOREIGN KEY (id_cadastro) REFERENCES Cadastrar(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Solicitacoes_Admin (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT NOT NULL,
+    motivo_solicitacao TEXT NOT NULL,
+    status ENUM('pendente', 'aprovado', 'recusado') DEFAULT 'pendente',
+    data_solicitacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_resposta TIMESTAMP NULL,
+    admin_responsavel INT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Cadastrar(id) ON DELETE CASCADE,
+    FOREIGN KEY (admin_responsavel) REFERENCES Cadastrar(id)
+);
+
 CREATE TABLE Unidades_saude (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome_unidade VARCHAR(150) NOT NULL,

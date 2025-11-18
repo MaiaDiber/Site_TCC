@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
 
 const enviarEmailRedefinicao = async (emailDestino, token) => {
     try {
-       const resetURL = `http://192.168.0.125:5173/RedefinirSenha/${token}`
+       const resetURL = `http://localhost:5173/RedefinirSenha/${token}`
 
 
 

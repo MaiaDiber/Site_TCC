@@ -8,12 +8,12 @@ import endpointAdmin from './Controller/adminController.js'
 import redesenhaController from './Controller/redesenhaController.js'
 
 export default function Rotas(app) {
-  app.use('/cadastro', cadastroController)
-  app.use('/sus', susController)
-  app.use('/medicamentos', medicamentosController)
-  app.use('/unidades', unidadesSaudeController)
-  app.use('/estoques', estoquesController)
-  app.use('/admin', endpointAdmin)
-  app.use('/senha', redesenhaController)
+  app.use( cadastroController)
+  app.use( susController)
+  app.use( medicamentosController)
+  app.use( unidadesSaudeController)
+  app.use( estoquesController)
+  app.use( endpointAdmin)
+  app.use( redesenhaController)
 }
 

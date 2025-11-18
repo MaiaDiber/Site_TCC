@@ -7,7 +7,7 @@ const endpointSus = Router();
 const autenticador = getAuthentication();
 
 endpointSus.get("/estoques", autenticador, async (req, resp) => {
-    const url = "https:
+    const url = "https:"
 
 
     const response = await axios.get(url, { params: req.query });
