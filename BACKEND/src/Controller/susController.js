@@ -7,7 +7,7 @@ const endpointSus = Router();
 const autenticador = getAuthentication();
 
 endpointSus.get("/estoques", autenticador, async (req, resp) => {
-    const url = "https://aplicacoes.saude.gov.br/api/bnafar/estoques";
+    const url = "https:
 
 
     const response = await axios.get(url, { params: req.query });
@@ -17,3 +17,4 @@ endpointSus.get("/estoques", autenticador, async (req, resp) => {
 });
 
 export default endpointSus;
+

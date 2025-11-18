@@ -244,3 +244,4 @@ endpointsAdmin.put('/perfil/atualizar', autenticador, async (req, resp) => {
 });
 
 export default endpointsAdmin
+

@@ -1,11 +1,12 @@
-
 import React, { useEffect, useState } from "react";
-import MedicamentoCard from "../../components/Cartao"; 
+import MedicamentoCard from "../../components/Cartao/index"; 
 import Cabecalho from "../../components/Index/cabecalho";
 import "./index.scss";
 
 export default function Verificacao() {
   const [medicamentos, setMedicamentos] = useState([]);
+  const [medicamentosFiltrados, setMedicamentosFiltrados] = useState([]);
+  const [termoPesquisa, setTermoPesquisa] = useState("");
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
 
@@ -20,19 +21,34 @@ export default function Verificacao() {
 
         const dados = await resposta.json();
 
-       
-        const convertidos = dados.map((item) => ({
+        // DEBUG: Verifique a estrutura dos dados
+        console.log("Dados da API:", dados);
+        if (dados.length > 0) {
+          console.log("Primeiro medicamento:", dados[0]);
+          console.log("Data registro:", dados[0].data_registro);
+          console.log("Data validade:", dados[0].data_validade);
+        }
+
+        const medicamentosConvertidos = dados.map(item => ({
           id: item.id,
-          nome: item.nome_produto || "Sem nome",
-          ubs: item.razao_social || "Não informado",
-          estoque: item.estoque_produto ?? 0,
+          nome: item.nome_produto,
+          estoque: Number(item.estoque_total ?? 0),
+          ubs: Array.isArray(item.unidades) && item.unidades.length > 0
+               ? item.unidades.map(u => u.nome_unidade).join(", ")
+               : "Nenhuma unidade disponível",
           ultimaAtualizacao: item.data_registro
             ? new Date(item.data_registro).toLocaleDateString("pt-BR")
-            : "Data não informada",
-          data_validade: item.situacao || "Não informada",
+            : "Não informado",
+          data_validade: item.data_validade
+            ? new Date(item.data_validade).toLocaleDateString("pt-BR")
+            : "Não informado"
         }));
 
-        setMedicamentos(convertidos);
+        console.log("Medicamentos convertidos:", medicamentosConvertidos);
+
+        setMedicamentos(medicamentosConvertidos);
+        setMedicamentosFiltrados(medicamentosConvertidos); // Inicialmente mostra todos
+
       } catch (erro) {
         console.error("Erro ao carregar medicamentos:", erro);
         setErro("Não foi possível carregar os medicamentos. Tente novamente mais tarde.");
@@ -43,6 +59,22 @@ export default function Verificacao() {
 
     carregarMedicamentos();
   }, []);
+
+  // Função para filtrar medicamentos em tempo real
+  useEffect(() => {
+    if (termoPesquisa.trim() === "") {
+      setMedicamentosFiltrados(medicamentos);
+    } else {
+      const filtrados = medicamentos.filter(medicamento =>
+        medicamento.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
+      );
+      setMedicamentosFiltrados(filtrados);
+    }
+  }, [termoPesquisa, medicamentos]);
+
+  const handlePesquisaChange = (event) => {
+    setTermoPesquisa(event.target.value);
+  };
 
   if (carregando) {
     return (
@@ -68,9 +100,25 @@ export default function Verificacao() {
       <div className="pagina-medicamentos">
         <h1>Estoque de Medicamentos — ViaSaúde</h1>
 
+        {/* Barra de Pesquisa */}
+        <div className="barra-pesquisa">
+          <input
+            type="text"
+            placeholder="🔍 Pesquisar medicamento por nome..."
+            value={termoPesquisa}
+            onChange={handlePesquisaChange}
+            className="input-pesquisa"
+          />
+          {termoPesquisa && (
+            <span className="contador-resultados">
+              {medicamentosFiltrados.length} medicamento(s) encontrado(s)
+            </span>
+          )}
+        </div>
+
         <div className="cards-container">
-          {medicamentos.length > 0 ? (
-            medicamentos.map((item) => (
+          {medicamentosFiltrados.length > 0 ? (
+            medicamentosFiltrados.map((item) => (
               <MedicamentoCard
                 key={item.id}
                 nome={item.nome}
@@ -81,7 +129,15 @@ export default function Verificacao() {
               />
             ))
           ) : (
-            <p className="vazio">Nenhum medicamento disponível no momento.</p>
+            <div className="nenhum-resultado">
+              <p>Nenhum medicamento encontrado para "<strong>{termoPesquisa}</strong>"</p>
+              <button 
+                onClick={() => setTermoPesquisa("")}
+                className="btn-limpar-pesquisa"
+              >
+                Limpar pesquisa
+              </button>
+            </div>
           )}
         </div>
       </div>

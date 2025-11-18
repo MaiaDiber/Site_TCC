@@ -335,3 +335,4 @@ export async function atualizarPerfil(idUsuario, dados) {
 
   return true;
 }
+

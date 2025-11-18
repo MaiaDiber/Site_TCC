@@ -1,6 +1,5 @@
-// components/card.jsx
 import React, { useState } from "react";
-import { FaPills, FaMapMarkerAlt, FaInfoCircle, FaTimes } from "react-icons/fa"; // Ícones profissionais
+import { FaPills, FaMapMarkerAlt, FaInfoCircle, FaTimes } from "react-icons/fa";
 import "./index.scss";
 
 export default function MedicamentoCard({ nome, ubs, estoque, ultimaAtualizacao, data_validade }) {
@@ -18,6 +17,7 @@ export default function MedicamentoCard({ nome, ubs, estoque, ultimaAtualizacao,
             {disponivel ? "Disponível" : estoqueBaixo ? "Estoque Baixo" : "Indisponível"}
           </span>
         </div>
+
         <div className="card-body">
           <p><FaMapMarkerAlt className="icon-ubs" /> <strong>UBS:</strong> {ubs}</p>
           <div className="estoque-info">
@@ -29,6 +29,7 @@ export default function MedicamentoCard({ nome, ubs, estoque, ultimaAtualizacao,
           </div>
           <p className="data">Última atualização: {ultimaAtualizacao}</p>
         </div>
+
         <div className="card-actions">
           <button className="btn-mapa">
             <FaMapMarkerAlt /> Ver no mapa

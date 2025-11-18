@@ -146,3 +146,4 @@ export async function deletarCadastro(id) {
     const [resposta] = await conexao.query(comando, [id]);
     return resposta.affectedRows;
 }
+

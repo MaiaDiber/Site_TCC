@@ -1,26 +1,19 @@
-import cadastroController from './Controller/cadastroController.js';
-import campanhasController from './Controller/campanhasController.js';
-import susController from './Controller/susController.js';
-import medicamentosController from './Controller/medicamentosController.js';
-import medicosController from './Controller/medicosController.js';
-import consultasController from './Controller/consultasController.js';
-import historicoConsultasController from './Controller/historicoConsultasController.js';
-import unidadesSaudeController from './Controller/unidadesSaudeController.js';
-import estoquesController from './Controller/estoquesController.js';
+import cadastroController from './Controller/cadastroController.js'
+import susController from './Controller/susController.js'
+import medicamentosController from './Controller/medicamentosController.js'
+import unidadesSaudeController from './Controller/unidadesSaudeController.js'
+import estoquesController from './Controller/estoquesController.js'
 
-import endpointAdmin from './Controller/adminController.js';
-import redesenhaController from './Controller/redesenhaController.js';
+import endpointAdmin from './Controller/adminController.js'
+import redesenhaController from './Controller/redesenhaController.js'
 
 export default function Rotas(app) {
-  app.use(cadastroController)
-  app.use(campanhasController)
-  app.use(susController)
-  app.use(medicamentosController)
-  app.use(medicosController)
-  app.use(consultasController)
-  app.use(historicoConsultasController)
-  app.use(unidadesSaudeController)
-  app.use(estoquesController)
-  app.use(endpointAdmin) 
-  app.use(redesenhaController)
+  app.use('/cadastro', cadastroController)
+  app.use('/sus', susController)
+  app.use('/medicamentos', medicamentosController)
+  app.use('/unidades', unidadesSaudeController)
+  app.use('/estoques', estoquesController)
+  app.use('/admin', endpointAdmin)
+  app.use('/senha', redesenhaController)
 }
+

@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS TCC;
 CREATE DATABASE TCC;
 USE TCC;
 
-
+-- Tabelas base
 CREATE TABLE Cadastrar (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome_completo VARCHAR(100) NOT NULL,
@@ -17,146 +17,125 @@ CREATE TABLE Cadastrar (
     resetExpires DATETIME NULL
 );
 
-
-select * from Cadastrar;
-
-
-INSERT INTO Cadastrar 
-(nome_completo, cpf, data_nascimento, senha, email, tipo, status_admin)
+INSERT INTO Cadastrar (nome_completo, cpf, data_nascimento, senha, email, tipo, status_admin)
 VALUES 
 ('Admin Principal', '056.370.503-40', '1990-01-01', MD5('senha123'), 'gustavomaiaxre@gmail.com', 'admin', 'aprovado'),
-('Carlão Silva do Pinto', '507.501.296-20', '1980-05-22', MD5('pinto99'), 'carlaodopinto@gmail.com', 'paciente', 'aprovado'),
-('Gustavo Maia', '305.905.892-40', '2010-09-02', MD5('abc123@frei'), 'ra50350929840@acaonsfatima.org.br', 'paciente', 'aprovado');
+('Carlão Silva do Pinto', '507.501.296-20', '1980-05-22', MD5('pinto99'), 'carlaodopinto@gmail.com', 'paciente', 'aprovado');
 
-
-CREATE TABLE Endereco (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    cep VARCHAR(10) NOT NULL,
-    rua_aven VARCHAR(255) NOT NULL,
-    numero_casa VARCHAR(8) NOT NULL,
-    bairro VARCHAR(200) NOT NULL,
-    id_cadastro INT,
-    FOREIGN KEY (id_cadastro) REFERENCES Cadastrar(id) ON DELETE CASCADE
+CREATE TABLE Unidades_saude (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_unidade VARCHAR(150) NOT NULL,
+    endereco VARCHAR(255),
+    telefone VARCHAR(20),
+    id_admin INT,
+    FOREIGN KEY (id_admin) REFERENCES Cadastrar(id) ON DELETE SET NULL
 );
 
-CREATE TABLE Solicitacoes_Admin (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    id_usuario INT NOT NULL,
-    motivo_solicitacao TEXT NOT NULL,
-    status ENUM('pendente', 'aprovado', 'recusado') DEFAULT 'pendente',
-    data_solicitacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    data_resposta TIMESTAMP NULL,
-    admin_responsavel INT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Cadastrar(id) ON DELETE CASCADE,
-    FOREIGN KEY (admin_responsavel) REFERENCES Cadastrar(id)
+-- UBS de exemplo
+INSERT INTO Unidades_saude (nome_unidade, endereco, telefone, id_admin)
+VALUES
+('UBS Centro', 'Rua Central, 123', '(11) 1111-1111', 1),
+('UBS Norte', 'Rua Norte, 456', '(11) 2222-2222', 1),
+('UBS Sul', 'Rua Sul, 789', '(11) 3333-3333', 1);
+
+CREATE TABLE Medicamentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_produto VARCHAR(255) NOT NULL,
+    estoque_produto INT DEFAULT 0,
+    numero_registro VARCHAR(50),
+    cnpj VARCHAR(20),
+    razao_social VARCHAR(255),
+    data_registro DATE,
+    situacao VARCHAR(50),
+    id_admin INT,
+    FOREIGN KEY (id_admin) REFERENCES Cadastrar(id) ON DELETE SET NULL
 );
 
-
-create table Campanhas (
-    id int auto_increment primary key,
-    imagem varchar(255),
-    nome_campanha varchar(255) not null,
-    como_prevenir text,
-    descricao text,
-    id_admin int,
-    foreign key (id_admin) references Cadastrar(id) on delete set null
+CREATE TABLE Estoques (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_medicamento INT NOT NULL,
+    id_unidade INT NOT NULL,
+    quantidade INT DEFAULT 0,
+    FOREIGN KEY (id_medicamento) REFERENCES Medicamentos(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_unidade) REFERENCES Unidades_saude(id) ON DELETE CASCADE
 );
 
-create table Medicamentos (
-    id int auto_increment primary key,
-    nome_produto varchar(255) not null,
-    estoque_produto int default 0,
-    numero_registro varchar(50),
-    cnpj varchar(20),
-    razao_social varchar(255),
-    data_registro date,
-    situacao varchar(50),
-    id_admin int,
-    foreign key (id_admin) references Cadastrar(id) on delete set null
-);
+-- Configurar charset para suportar caracteres especiais
+ALTER DATABASE TCC CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE Medicamentos CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE Unidades_saude CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE Estoques CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE Cadastrar CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE Medicamentos ADD COLUMN data_validade DATE AFTER data_registro;
+------------------------------------------------------------
 
-create table Unidades_saude (
-    id int auto_increment primary key,
-    nome_unidade varchar(150) not null,
-    endereco varchar(255),
-    telefone varchar(20),
-    id_admin int,
-    foreign key (id_admin) references Cadastrar(id) on delete set null
-);
+SELECT nome_produto, data_validade, estoque_produto 
+FROM Medicamentos 
+WHERE data_validade IS NOT NULL 
+LIMIT 10;
 
-create table Estoques (
-    id int auto_increment primary key,
-    id_medicamento int not null,
-    id_unidade int not null,
-    quantidade int default 0,
-    foreign key (id_medicamento) references Medicamentos(id) on delete cascade,
-    foreign key (id_unidade) references Unidades_saude(id) on delete cascade
-);
+Select * from medicamentos;
 
-create table Medicos (
-    id int auto_increment primary key,
-    nome_medico varchar(150) not null,
-    especialidade varchar(100) not null,
-    horario_disponivel varchar(100),
-    id_unidade int,
-    foreign key (id_unidade) references Unidades_saude(id) on delete set null
-);
-
-create table Consultas (
-    id int auto_increment primary key,
-    id_paciente int not null,
-    id_medico int not null,
-    data_consulta date not null,
-    hora_consulta time not null,
-    status enum('agendada', 'concluída', 'cancelada') default 'agendada',
-    foreign key (id_paciente) references Cadastrar(id) on delete cascade,
-    foreign key (id_medico) references Medicos(id) on delete cascade
-);
-
-create table Historico_consultas (
-    id int auto_increment primary key,
-    id_consulta int not null,
-    data_consulta date,
-    hora_consulta time,
-    status_final enum('concluída', 'cancelada'),
-    observacoes text,
-    data_registro timestamp default current_timestamp,
-    foreign key (id_consulta) references Consultas(id) on delete cascade
-);
-
-
-CREATE VIEW vw_solicitacoes_pendentes AS
 SELECT 
-    s.id AS id_solicitacao,
-    s.id_usuario,
-    c.nome_completo,
-    c.cpf,
-    c.email,
-    c.data_nascimento,
-    s.motivo_solicitacao,
-    s.data_solicitacao,
-    s.status
-FROM Solicitacoes_Admin s
-INNER JOIN Cadastrar c ON s.id_usuario = c.id
-WHERE s.status = 'pendente'
-ORDER BY s.data_solicitacao DESC;
+     nome_produto, 
+     data_registro, 
+     data_validade
+ FROM Medicamentos 
+ WHERE data_validade IS NOT NULL 
+ LIMIT 10;
+ 
+SELECT COUNT(*) as total_medicamentos FROM Medicamentos;
+SELECT COUNT(*) as com_estoque FROM Medicamentos WHERE estoque_produto > 0;
 
-
-CREATE VIEW vw_usuarios_completo AS
 SELECT 
-    c.id,
-    c.nome_completo,
-    c.cpf,
-    c.email,
-    c.tipo,
-    c.status_admin,
-    e.cep,
-    e.rua_aven,
-    e.numero_casa,
-    e.bairro
-FROM Cadastrar c
-LEFT JOIN Endereco e ON c.id = e.id_cadastro;
+    m.nome_produto,
+    m.estoque_produto as estoque_total,
+    u.nome_unidade,
+    e.quantidade
+FROM Medicamentos m
+LEFT JOIN Estoques e ON m.id = e.id_medicamento
+LEFT JOIN Unidades_saude u ON e.id_unidade = u.id
+WHERE m.estoque_produto > 0
+LIMIT 10;
+
+SELECT 
+    nome_produto, 
+    data_registro, 
+    data_validade
+FROM Medicamentos 
+WHERE data_validade >= '2026-01-01'
+LIMIT 100;
+
+SHOW VARIABLES LIKE 'character_set%';
+SHOW VARIABLES LIKE 'collation%';
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE Medicamentos 
+SET razao_social = 
+    REPLACE(
+    REPLACE(
+    REPLACE(
+    REPLACE(
+    REPLACE(
+    REPLACE(
+        razao_social,
+        '�', 'Ú'),
+    'Ã¡', 'á'),
+    'Ã£', 'ã'),
+    'Ã©', 'é'),
+    'Ã³', 'ó'),
+    'Ãº', 'ú')
+WHERE razao_social REGEXP '[�Ã]';
+SET SQL_SAFE_UPDATES = 1;
+
+UPDATE Medicamentos 
+SET estoque_produto = FLOOR(RAND() * 0) -- 0 a 10
+ORDER BY id desc
+LIMIT 10;
+
+SET NAMES 'utf8mb4';
 
 
-SHOW TABLES;
-
+SELECT nome_produto, estoque_produto
+FROM Medicamentos 
+WHERE estoque_produto BETWEEN 0 AND 1;

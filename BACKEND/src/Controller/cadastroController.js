@@ -116,3 +116,4 @@ endpointCadastro.get('/listar-publico', async (req, resp) => {
 });
 
 export default endpointCadastro;
+

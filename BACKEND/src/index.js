@@ -45,3 +45,4 @@ Rotas(app);
 
 const PORT = process.env.PORTA || 6045;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+

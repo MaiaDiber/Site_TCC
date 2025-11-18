@@ -50,3 +50,4 @@ export async function listarUnidadesSaude() {
   let [resposta] = await conexao.execute(comando);
   return resposta;
 }
+

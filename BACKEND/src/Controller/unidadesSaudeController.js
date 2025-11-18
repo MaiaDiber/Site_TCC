@@ -79,3 +79,4 @@ endpointUnidades.get('/listar', autenticador, async (req, resp) => {
 });
 
 export default endpointUnidades;
+

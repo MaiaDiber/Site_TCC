@@ -48,3 +48,4 @@ export async function listarEstoques() {
   let [resposta] = await conexao.execute(comando);
   return resposta;
 }
+

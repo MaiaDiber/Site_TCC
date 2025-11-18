@@ -50,3 +50,4 @@ async function atualizarEstoque() {
 }
 
 atualizarEstoque();
+

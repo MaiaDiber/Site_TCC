@@ -16,9 +16,9 @@ import EsqueciSenha from './pages/RedefinirSenha/enviarEmail';
 import UPAs from './pages/UPAs/upa';
 import CalendarioVacinacao from './pages/Vacinacao/CalendarioVacinacao';
 import Horarios from './pages/Horarios/Horarios';
-import Form from './pages/Formulario';
 import AdminCRUD from './pages/CRUD/crud';
 import SobrenosAdmin from './pages/Sobre/sobreAdmin';
+
 
 
 export default function Navegation() {
@@ -35,7 +35,7 @@ export default function Navegation() {
                 <Route path='/CRUD' element={<RotaProtegida><AdminCRUD /></RotaProtegida>}/>
                 <Route path='/Vacinacoes' element={<RotaProtegida><CalendarioVacinacao /></RotaProtegida>}/>
                 <Route path='/Horarios' element={<RotaProtegida><Horarios/></RotaProtegida>}/>
-                <Route path='/Formulario' element={<RotaProtegida><Form/></RotaProtegida>}/>
+
                 <Route path='/Home' element={<RotaProtegida><Home /></RotaProtegida>} />
                 <Route path='/SobreAdmin' element={<RotaProtegida><SobrenosAdmin /></RotaProtegida>} />
                 <Route path='/Sobre' element={<RotaProtegida><Sobrenos /></RotaProtegida>} />
@@ -44,7 +44,6 @@ export default function Navegation() {
                 <Route path='/Mapa' element={<RotaProtegida><TesteMapa/></RotaProtegida>} />
                 <Route path='/Admin'  element={<RotaProtegida tipoPermitido="admin"><PaginaAdmin /></RotaProtegida>}/>
                 <Route path='/SolicitaçõesAdmin'  element={<RotaProtegida tipoPermitido="admin"><Solicitacoes /></RotaProtegida>}/>
-                <Route path='/Forms' element={<Form/>}/>
             </Routes>
         </BrowserRouter>
     );

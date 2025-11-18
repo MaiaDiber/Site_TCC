@@ -125,6 +125,13 @@ export default function Home() {
                 <p>Segunda a sexta, 07h às 19h</p>
                 </div>
             </div>
+            <div className='Card' onClick={() => navigate('/Verificar')} >
+              <img src="/public/assets/images/download-removebg-preview.png" height={50} width={50} alt="" />
+                <div className="text">
+                  <h3>Medicamentos</h3>
+                <p>Seu medicamento aqui</p>
+                </div>
+            </div>
         </div>
 
       

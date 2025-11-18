@@ -79,3 +79,4 @@ endpointEstoques.get('/listar', autenticador, async (req, resp) => {
 });
 
 export default endpointEstoques;
+
