@@ -1,23 +1,23 @@
-/* Reset básico */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Página inteira - garante que o conteúdo pode crescer e rolar */
+
 .all {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* start para permitir scroll natural do conteúdo */
+  align-items: flex-start; 
   min-height: 100vh;
   width: 100%;
-  padding: 20px; /* espaço ao redor em telas pequenas */
+  padding: 20px; 
   background-color: #145045;
-  overflow-x: hidden; /* evita overflow horizontal */
+  overflow-x: hidden; 
 }
 
-/* Card principal - responsivo */
+
 .Container {
   display: flex;
   flex-direction: column;
@@ -26,15 +26,15 @@
   background-color: white;
   border-radius: 15px;
   width: 100%;
-  max-width: 850px;   /* limite máximo para desktop */
-  padding: 40px 20px; /* padding responsivo */
+  max-width: 850px;   
+  padding: 40px 20px; 
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 
-  /* quando o conteúdo for muito alto, deixa rolar internamente (mas preferimos a rolagem da página) */
+ 
   height: auto;
 }
 
-/* Texto introdutório */
+
 .primeiroP {
   text-align: center;
   font-size: 17px;
@@ -45,7 +45,7 @@
   max-width: 780px;
 }
 
-/* Bloco de informações do usuário */
+
 .informação-usuário {
   display: flex;
   flex-direction: column;
@@ -54,14 +54,14 @@
   border-radius: 25px;
   padding: 30px 20px;
   width: 100%;
-  max-width: 700px; /* usa max-width ao invés de width fixa */
+  max-width: 700px;
   gap: 20px;
   background-color: #fff;
   transition: min-height 0.3s ease;
   box-sizing: border-box;
 }
 
-/* Título do bloco */
+
 .dados-usu {
   font-size: 22px;
   font-weight: bold;
@@ -71,7 +71,7 @@
   margin-left: 5%;
 }
 
-/* Layout dos campos - usa coluna no mobile */
+
 .dados {
   display: flex;
   justify-content: center;
@@ -87,7 +87,7 @@
   max-width: 700px;
 }
 
-/* Erros */
+
 input.erro, .dropdown-btn.erro, textarea.erro {
   border: 3px solid red !important;
   box-shadow: 0 0 2px 0 #fff;
@@ -100,7 +100,7 @@ input.erro, .dropdown-btn.erro, textarea.erro {
   font-weight: bold;
 }
 
-/* Labels e inputs */
+
 label {
   display: flex;
   flex-direction: column;
@@ -115,7 +115,7 @@ label p {
   margin-left: 4px;
 }
 
-/* Grupo com dois campos lado a lado em telas maiores, empilha em telas pequenas */
+
 .grupo1, .grupo2 {
   display: flex;
   gap: 20px;
@@ -125,7 +125,7 @@ label p {
   box-sizing: border-box;
 }
 
-/* cada input agora é fluido */
+
 input {
   height: 35px;
   width: 100%;
@@ -147,12 +147,12 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(16, 119, 100, 0.12);
 }
 
-/* inputs tipo date com aparência normal */
+
 input[type="date"] {
   color: black;
 }
 
-/* Container do input de senha com ícone de olho (ok usar absolute aqui) */
+
 .password-input-container {
   position: relative;
   width: 100%;
@@ -164,7 +164,7 @@ input[type="date"] {
   padding-right: 48px;
 }
 
-/* botão do olho */
+
 .toggle-password-btn {
   position: absolute;
   right: 8px;
@@ -181,7 +181,7 @@ input[type="date"] {
   justify-content: center;
 }
 
-/* Endereço */
+
 .endereço {
   display: flex;
   flex-direction: column;
@@ -200,7 +200,7 @@ input[type="date"] {
   margin-bottom: 10px;
 }
 
-/* Dropdown personalizado - largura fluida */
+
 .dropdown {
   position: relative;
   width: 100%;
@@ -237,7 +237,7 @@ input[type="date"] {
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
-/* Motivo admin */
+
 .motivo-admin {
   margin-top: 15px;
   display: flex;
@@ -260,7 +260,7 @@ input[type="date"] {
   resize: vertical;
 }
 
-/* Botões finais */
+
 .doisfinais {
   display: flex;
   flex-direction: column;
@@ -287,29 +287,29 @@ input[type="date"] {
 
 .cadastrar-img img { height: 40px; }
 
-/* animação */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* =================== MEDIA QUERIES (apenas ajustes) =================== */
 
-/* Desktop large */
+
+
 @media (min-width: 1366px) {
   .Container { padding: 40px; }
 
   .informação-usuário { padding: 40px; }
 }
 
-/* Tablet / Small laptop */
+
 @media (max-width: 1024px) {
   .Container { padding: 30px; }
   .grupo1, .grupo2 { gap: 16px; }
   .inputs { max-width: 680px; }
 }
 
-/* Mobile */
+
 @media (max-width: 768px) {
   
   .all { padding: 12px; align-items: flex-start; }
@@ -321,7 +321,7 @@ input[type="date"] {
   .password-input-container, input { max-width: 100%; }
 }
 
-/* Telas muito pequenas */
+
 @media (max-width: 360px) {
   .Container { padding: 14px; }
   .primeiroP { font-size: 14px; }

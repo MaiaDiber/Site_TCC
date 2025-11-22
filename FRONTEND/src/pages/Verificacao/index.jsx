@@ -21,7 +21,7 @@ export default function Verificacao() {
 
         const dados = await resposta.json();
 
-        // DEBUG: Verifique a estrutura dos dados
+        
         console.log("Dados da API:", dados);
         if (dados.length > 0) {
           console.log("Primeiro medicamento:", dados[0]);
@@ -47,7 +47,7 @@ export default function Verificacao() {
         console.log("Medicamentos convertidos:", medicamentosConvertidos);
 
         setMedicamentos(medicamentosConvertidos);
-        setMedicamentosFiltrados(medicamentosConvertidos); // Inicialmente mostra todos
+        setMedicamentosFiltrados(medicamentosConvertidos); 
 
       } catch (erro) {
         console.error("Erro ao carregar medicamentos:", erro);
@@ -60,7 +60,7 @@ export default function Verificacao() {
     carregarMedicamentos();
   }, []);
 
-  // Função para filtrar medicamentos em tempo real
+  
   useEffect(() => {
     if (termoPesquisa.trim() === "") {
       setMedicamentosFiltrados(medicamentos);

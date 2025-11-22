@@ -222,9 +222,8 @@
   }
 }
 
-/* Media Queries para Responsividade */
 
-/* Tablets */
+
 @media (max-width: 768px) {
   .redefinir-container {
     padding: 15px;
@@ -277,7 +276,7 @@
   }
 }
 
-/* Celulares Pequenos */
+
 @media (max-width: 480px) {
   .redefinir-container {
     padding: 10px;
@@ -358,7 +357,7 @@
   }
 }
 
-/* Celulares Muito Pequenos */
+
 @media (max-width: 360px) {
   .redefinir-container {
     padding: 5px;
@@ -386,7 +385,7 @@
   }
 }
 
-/* Ajustes para orientação landscape em celulares */
+
 @media (max-height: 600px) and (orientation: landscape) {
   .redefinir-container {
     padding-top: 20px;
@@ -403,7 +402,7 @@
   }
 }
 
-/* Melhorias de acessibilidade para foco */
+
 @media (prefers-reduced-motion: reduce) {
   .redefinir-container {
     .redefinir-card {
@@ -417,7 +416,7 @@
   }
 }
 
-/* Alto contraste para usuários com preferência */
+
 @media (prefers-contrast: high) {
   .redefinir-container {
     .redefinir-card {

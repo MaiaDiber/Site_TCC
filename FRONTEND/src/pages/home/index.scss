@@ -24,7 +24,7 @@ html, body {
   .carousel {
     position: relative;
     width: 100%;
-    height: 500px; /* Reduzido para mobile */
+    height: 500px; 
   }
 
   .carousel-slide {
@@ -67,7 +67,7 @@ html, body {
     max-width: 90%;
     
     h1 {
-      font-size: 1.8rem; /* Reduzido para mobile */
+      font-size: 1.8rem; 
       font-weight: bold;
       margin-bottom: 0.5rem;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -75,7 +75,7 @@ html, body {
     }
     
     .banner__subtitle {
-      font-size: 1rem; /* Reduzido para mobile */
+      font-size: 1rem; 
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
   }
@@ -163,7 +163,7 @@ html, body {
 
   .Cartoes {
     display: flex;
-    flex-direction: column; /* Coluna para mobile */
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     gap: 25px;
@@ -213,9 +213,9 @@ html, body {
   }
 }
 
-/* Media Queries para Responsividade */
 
-/* Tablets */
+
+
 @media (min-width: 768px) {
   .Tudo {
     .carousel {
@@ -255,7 +255,7 @@ html, body {
   }
 }
 
-/* Desktop */
+
 @media (min-width: 1024px) {
   .Tudo {
     .carousel {
@@ -322,7 +322,7 @@ html, body {
   }
 }
 
-/* Celulares muito pequenos */
+
 @media (max-width: 360px) {
   .Tudo {
     .carousel {

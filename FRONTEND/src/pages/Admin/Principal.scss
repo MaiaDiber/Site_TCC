@@ -13,9 +13,7 @@ body {
 .Tudo {
   background-color: #fffdf3;
 
-  /* ==============================
-     CARROSSEL 100% RESPONSIVO
-  =============================== */
+
 
   .carousel-container {
     width: 100%;
@@ -24,7 +22,7 @@ body {
 
   .carousel {
     width: 100%;
-    aspect-ratio: 16 / 9; /* 🔥 O segredo para parar cortes em celular */
+    aspect-ratio: 16 / 9; 
     max-height: 450px;
     position: relative;
   }
@@ -47,9 +45,7 @@ body {
     }
   }
 
-  /* ==============================
-     OVERLAY DO BANNER
-  =============================== */
+
 
   .banner__overlay {
     position: absolute;
@@ -71,7 +67,7 @@ body {
     max-width: 90%;
 
     h1 {
-      font-size: clamp(1.4rem, 4vw, 2.8rem); /* 🔥 Texto que escala sozinho */
+      font-size: clamp(1.4rem, 4vw, 2.8rem); 
       font-weight: bold;
       margin-bottom: 0.5rem;
       line-height: 1.2;
@@ -107,10 +103,7 @@ body {
     }
   }
 
-  /* ==============================
-     FAIXA VERDE
-  =============================== */
-
+  
   .faixa-verde {
     background-color: #017b38;
     display: flex;
@@ -153,10 +146,7 @@ body {
     }
   }
 
-  /* ==============================
-     CARTÕES TOTALMENTE FLEX
-  =============================== */
-
+ 
   .Cartoes {
     display: flex;
     flex-direction: column;
@@ -202,9 +192,7 @@ body {
     }
   }
 
-  /* ==============================
-     RESPONSIVIDADE REAL
-  =============================== */
+ 
 
   @media (min-width: 768px) {
     .Cartoes {

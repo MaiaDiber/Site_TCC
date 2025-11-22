@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS TCC;
 CREATE DATABASE TCC;
 USE TCC;
 
--- Tabelas base
+
 CREATE TABLE Cadastrar (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome_completo VARCHAR(100) NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE Unidades_saude (
     FOREIGN KEY (id_admin) REFERENCES Cadastrar(id) ON DELETE SET NULL
 );
 
--- UBS de exemplo
+
 INSERT INTO Unidades_saude (nome_unidade, endereco, telefone, id_admin)
 VALUES
 ('UBS Centro', 'Rua Central, 123', '(11) 1111-1111', 1),
@@ -82,14 +82,14 @@ CREATE TABLE Estoques (
     FOREIGN KEY (id_unidade) REFERENCES Unidades_saude(id) ON DELETE CASCADE
 );
 
--- Configurar charset para suportar caracteres especiais
+
 ALTER DATABASE TCC CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE Medicamentos CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE Unidades_saude CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE Estoques CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE Cadastrar CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE Medicamentos ADD COLUMN data_validade DATE AFTER data_registro;
-------------------------------------------------------------
+
 
 SELECT nome_produto, data_validade, estoque_produto 
 FROM Medicamentos 
@@ -151,7 +151,7 @@ WHERE razao_social REGEXP '[�Ã]';
 SET SQL_SAFE_UPDATES = 1;
 
 UPDATE Medicamentos 
-SET estoque_produto = FLOOR(RAND() * 0) -- 0 a 10
+SET estoque_produto = FLOOR(RAND() * 0) 
 ORDER BY id desc
 LIMIT 10;
 
