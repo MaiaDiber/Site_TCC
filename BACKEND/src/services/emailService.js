@@ -9,19 +9,15 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-
 const enviarEmailRedefinicao = async (emailDestino, token) => {
     try {
        const resetURL = `http://localhost:5173/RedefinirSenha/${token}`
 
-
-
-        
         const mailOptions = {
             from: '"TCC Via Saúde" <viasaudetcc@gmail.com>',
             to: emailDestino,
             subject: 'Redefinição de Senha - Via Saúde',
-           html: `
+            html: `
   <!DOCTYPE html>
   <html lang="pt-BR">
   <head>
@@ -62,8 +58,6 @@ const enviarEmailRedefinicao = async (emailDestino, token) => {
   </body>
   </html>
 `,
-
-
             attachments: [
                 {
                     filename: 'a.png',          
@@ -71,12 +65,8 @@ const enviarEmailRedefinicao = async (emailDestino, token) => {
                     cid: 'logoTCC'                 
                 }
             ]
-
-
-
-
         }
-        
+
         await transporter.sendMail(mailOptions)
         console.log(`E-mail enviado com sucesso para: ${emailDestino}`)
         return { success: true }
@@ -88,4 +78,4 @@ const enviarEmailRedefinicao = async (emailDestino, token) => {
 }
 
 export { transporter }
-export  { enviarEmailRedefinicao }
+export { enviarEmailRedefinicao }

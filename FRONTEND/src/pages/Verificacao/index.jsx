@@ -100,7 +100,6 @@ export default function Verificacao() {
       <div className="pagina-medicamentos">
         <h1>Estoque de Medicamentos — ViaSaúde</h1>
 
-        {/* Barra de Pesquisa */}
         <div className="barra-pesquisa">
           <input
             type="text"
